@@ -4,6 +4,8 @@
 
 <h1 align="center">MAGOH Spell</h1>
 
+<p align="center"><b>Italiano</b> · <a href="README.en.md">English</a></p>
+
 <p align="center">
   <a href="https://github.com/francesco-dantoni/MAGOH-Spell/releases/latest"><img src="https://img.shields.io/badge/Scarica_il_plugin-MAGOH__Spell__V1.0.zip-1e78b4?style=for-the-badge" alt="Scarica il plugin: MAGOH_Spell_V1.0.zip"></a>
 </p>
@@ -11,6 +13,11 @@
 MAGOH Spell è un plugin QGIS per documentare e consultare interventi, ritrovamenti ed evidenze archeologiche secondo il modello MAGOH. Consente di lavorare in un GeoPackage locale, importare dati dalle API MAGOH, produrre schede PDF e convertire i dati nel Template GNA 1.6.0.
 
 Sviluppato da **Francesco D’Antoni** e **Lorena Bravi**.
+
+## MAGOH e MAGOH Wiki
+
+- **[MAGOH](https://magoh.cfs.unipi.it/web/guest)** (*Managing Archaeological data for a sustainable Governance of Heritage*) è il portale web per la consultazione dei dati archeologici sviluppato dal MAPPA Lab del Dipartimento di Civiltà e Forme del Sapere dell’Università di Pisa. MAGOH Spell ne importa le schede tramite le API.
+- **[MAGOH Wiki](https://magoh-wiki.cfs.unipi.it/index.html)** è la documentazione tecnica del modello dati: Scheda di Intervento, Ritrovamento (III livello), Evidenza archeologica (IV livello), sepolture e thesauri. Le maschere del plugin aprono direttamente la pagina della Wiki relativa alla scheda. È disponibile anche [in inglese](https://magoh-wiki.cfs.unipi.it/en/index.html).
 
 ## Installazione in QGIS
 
