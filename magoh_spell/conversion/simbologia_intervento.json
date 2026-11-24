@@ -1,0 +1,45 @@
+{
+  "_nota": "Vestizione della scheda Intervento MAGOH, ricavata dal file interventi_lucca.qml fornito. Il renderer del .qml categorizza sul campo indicato in \"campo\"; i colori sono quelli del .qml, riportati in forma leggibile. Il plugin applica questa vestizione ai layer MAGOH che carica, e non la scrive mai nel GeoPackage dell'utente.",
+  "_sorgente": "interventi_lucca.qml",
+  "campo": "prec_georef",
+  "campi_alternativi": [
+    "prec_georef",
+    "precisione_di_georeferenziazione",
+    "localizzazione_precisione_di_georeferenziazione"
+  ],
+  "_campi_alternativi_nota": "Se il layer non ha il campo del .qml, si prova con questi, nell'ordine: la stessa informazione ha nomi diversi fra il layer di lavoro e il GeoPackage.",
+  "categorie": [
+    {
+      "valore": "Preciso",
+      "etichetta": "Preciso",
+      "color": "255,127,0,64",
+      "outline_color": "255,127,0,255",
+      "outline_width": "1",
+      "style": "solid"
+    },
+    {
+      "valore": "Non Preciso",
+      "etichetta": "Non Preciso",
+      "color": "102,175,232,64",
+      "outline_color": "102,175,232,255",
+      "outline_width": "1",
+      "style": "solid"
+    },
+    {
+      "valore": "Non localizzabile",
+      "etichetta": "Non localizzabile",
+      "color": "147,104,175,64",
+      "outline_color": "124,81,155,255",
+      "outline_width": "1",
+      "style": "solid"
+    }
+  ],
+  "ripiego": {
+    "etichetta": "altro / non indicato",
+    "color": "150,150,150,64",
+    "outline_color": "90,90,90,255",
+    "outline_width": "0.26",
+    "style": "solid",
+    "_nota": "Categoria di ripiego per i valori che il .qml non prevede, compreso il vuoto. Serve a non lasciare feature senza simbolo: un poligono invisibile si scambia per un poligono assente. Ogni valore che finisce qui viene elencato nel log."
+  }
+}

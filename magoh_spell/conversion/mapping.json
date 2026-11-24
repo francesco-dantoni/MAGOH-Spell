@@ -1,0 +1,3409 @@
+{
+ "DSCM_magoh_to_gna": {
+  "Assistenza": "scavo stratigrafico",
+  "Carotaggio": "scavo stratigrafico",
+  "Indagine geofisica/geochimica": "scavo stratigrafico",
+  "Lettura elevati": "scavo stratigrafico",
+  "Recupero occasionale": "recupero",
+  "Ricognizione": "scavo stratigrafico",
+  "Scavo d'emergenza": "scavo stratigrafico",
+  "Scavo preventivo": "scavo stratigrafico",
+  "Scavo programmato": "scavo stratigrafico",
+  "Telerilevamento": "scavo stratigrafico",
+  "Sopralluogo": "scavo stratigrafico",
+  "Non specificato": "scavo stratigrafico",
+  "Scavo clandestino": "sterro"
+ },
+ "DSCT_magoh_to_gna": {
+  "Assistenza": "assistenza ai lavori",
+  "Carotaggio": "indagine geognostica/ geofisica/ geochimica",
+  "Indagine geofisica/geochimica": "indagine geognostica/ geofisica/ geochimica",
+  "Recupero occasionale": "recupero occasionale/ segnalazione",
+  "Non specificato": "recupero occasionale/ segnalazione",
+  "Scavo clandestino": "recupero occasionale/ segnalazione",
+  "Ricognizione": "ricognizione archeologica/ sopralluogo",
+  "Sopralluogo": "ricognizione archeologica/ sopralluogo",
+  "Scavo d'emergenza": "scavo d'emergenza",
+  "Scavo preventivo": "scavo preventivo",
+  "Scavo programmato": "scavo/ indagine programmata",
+  "Lettura elevati": "scavo/ indagine programmata",
+  "Telerilevamento": "scavo/ indagine programmata"
+ },
+ "MTIP_gna_to_magoh": {
+  "scavo stratigrafico||scavo/ indagine programmata": [
+   "Lettura elevati",
+   "Telerilevamento",
+   "Scavo programmato"
+  ],
+  "recupero||recupero occasionale/ segnalazione": [
+   "Recupero occasionale"
+  ],
+  "scavo stratigrafico||ricognizione archeologica/ sopralluogo": [
+   "Ricognizione",
+   "Sopralluogo"
+  ],
+  "scavo stratigrafico||scavo d'emergenza": [
+   "Scavo d'emergenza"
+  ],
+  "scavo stratigrafico||scavo preventivo": [
+   "Scavo preventivo"
+  ],
+  "sterro||recupero occasionale/ segnalazione": [
+   "Scavo clandestino"
+  ],
+  "scavo stratigrafico||indagine geognostica/ geofisica/ geochimica": [
+   "Indagine geofisica/geochimica",
+   "Carotaggio"
+  ],
+  "scavo stratigrafico||recupero occasionale/ segnalazione": [
+   "Non specificato"
+  ],
+  "scavo stratigrafico||assistenza ai lavori": [
+   "Assistenza"
+  ]
+ },
+ "DSCEX_ogd_to_esito": {
+  "area priva di tracce archeologiche": "negativo",
+  "sito non identificato": "positivo",
+  "area a uso funerario": "positivo",
+  "area di materiale mobile": "positivo",
+  "elemento toponomastico": "positivo",
+  "giacimento in cavità naturale": "positivo",
+  "giacimento paleontologico": "positivo",
+  "giacimento subacqueo": "positivo",
+  "infrastruttura agraria": "positivo",
+  "infrastruttura assistenziale": "positivo",
+  "infrastruttura di consolidamento": "positivo",
+  "infrastruttura di servizio": "positivo",
+  "infrastruttura idrica": "positivo",
+  "infrastruttura portuale": "positivo",
+  "infrastruttura viaria": "positivo",
+  "insediamento": "positivo",
+  "luogo a uso pubblico": "positivo",
+  "luogo commemorativo": "positivo",
+  "luogo con deposizione di materiale": "positivo",
+  "elemento per la confinazione": "positivo",
+  "ritrovamento sporadico": "positivo",
+  "luogo con evidenze di frequentazione": "positivo",
+  "luogo di attività produttiva": "positivo",
+  "sito pluristratificato": "positivo",
+  "struttura abitativa": "positivo",
+  "struttura di fortificazione": "positivo",
+  "strutture per il culto": "positivo",
+  "anomalia rilevata sul terreno": "positivo",
+  "elemento geomorfologico": "positivo",
+  "area ad uso agrario": "positivo",
+  "non indicato": "positivo"
+ },
+ "GPT_magoh_to_gna": {
+  "CAR": "rilievo da cartografia senza sopralluogo",
+  "GPS": "rilievo tramite GPS",
+  "RD": "rilievo tramite punti di appoggio fiduciali o trigonometrici"
+ },
+ "GPM_magoh_to_gna": {
+  "PRECISO": "posizionamento esatto",
+  "NON PRECISO/NON LOCALIZZABILE": "posizionamento approssimato"
+ },
+ "GPBB_magoh_to_gna": {
+  "CTR": "Carta Tecnica Regionale (CTR)",
+  "CAT": "cartografia catastale WMS",
+  "IMG": "altro (specificare nelle note)",
+  "IIM": "altro (specificare nelle note)",
+  "OFC": "altro (specificare nelle note)"
+ },
+ "OGD": {
+  "area a uso funerario": {
+   "magoh_key": "1",
+   "gna_key": "1",
+   "gna_value": "area a uso funerario"
+  },
+  "area di materiale mobile": {
+   "magoh_key": "2",
+   "gna_key": "2",
+   "gna_value": "area di materiale mobile"
+  },
+  "area priva di tracce archeologiche": {
+   "magoh_key": "3",
+   "gna_key": "3",
+   "gna_value": "area priva di tracce archeologiche"
+  },
+  "elemento toponomastico": {
+   "magoh_key": "4",
+   "gna_key": "4",
+   "gna_value": "elemento toponomastico"
+  },
+  "giacimento in cavità naturale": {
+   "magoh_key": "5",
+   "gna_key": "5",
+   "gna_value": "giacimento in cavità naturale"
+  },
+  "giacimento paleontologico": {
+   "magoh_key": "6",
+   "gna_key": "6",
+   "gna_value": "giacimento paleontologico"
+  },
+  "giacimento subacqueo": {
+   "magoh_key": "7",
+   "gna_key": "7",
+   "gna_value": "giacimento subacqueo"
+  },
+  "infrastruttura agraria": {
+   "magoh_key": "8",
+   "gna_key": "8",
+   "gna_value": "infrastruttura agraria"
+  },
+  "infrastruttura assistenziale": {
+   "magoh_key": "9",
+   "gna_key": "9",
+   "gna_value": "infrastruttura assistenziale"
+  },
+  "infrastruttura di consolidamento": {
+   "magoh_key": "10",
+   "gna_key": "10",
+   "gna_value": "infrastruttura di consolidamento"
+  },
+  "infrastruttura di servizio": {
+   "magoh_key": "11",
+   "gna_key": "11",
+   "gna_value": "infrastruttura di servizio"
+  },
+  "infrastruttura idrica": {
+   "magoh_key": "12",
+   "gna_key": "12",
+   "gna_value": "infrastruttura idrica"
+  },
+  "infrastruttura portuale": {
+   "magoh_key": "13",
+   "gna_key": "13",
+   "gna_value": "infrastruttura portuale"
+  },
+  "infrastruttura viaria": {
+   "magoh_key": "14",
+   "gna_key": "14",
+   "gna_value": "infrastruttura viaria"
+  },
+  "insediamento": {
+   "magoh_key": "15",
+   "gna_key": "15",
+   "gna_value": "insediamento"
+  },
+  "luogo a uso pubblico": {
+   "magoh_key": "16",
+   "gna_key": "16",
+   "gna_value": "luogo a uso pubblico"
+  },
+  "luogo commemorativo": {
+   "magoh_key": "17",
+   "gna_key": "17",
+   "gna_value": "luogo commemorativo"
+  },
+  "luogo con deposizione di materiale": {
+   "magoh_key": "18",
+   "gna_key": "18",
+   "gna_value": "luogo con deposizione di materiale"
+  },
+  "elemento per la confinazione": {
+   "magoh_key": "19",
+   "gna_key": "19",
+   "gna_value": "elemento per la confinazione"
+  },
+  "ritrovamento sporadico": {
+   "magoh_key": "20",
+   "gna_key": "20",
+   "gna_value": "ritrovamento sporadico"
+  },
+  "luogo con evidenze di frequentazione": {
+   "magoh_key": "21",
+   "gna_key": "21",
+   "gna_value": "luogo con evidenze di frequentazione"
+  },
+  "luogo di attività produttiva": {
+   "magoh_key": "22",
+   "gna_key": "22",
+   "gna_value": "luogo di attività produttiva"
+  },
+  "sito non identificato": {
+   "magoh_key": "23",
+   "gna_key": "23",
+   "gna_value": "sito non identificato"
+  },
+  "sito pluristratificato": {
+   "magoh_key": "24",
+   "gna_key": "24",
+   "gna_value": "sito pluristratificato"
+  },
+  "struttura abitativa": {
+   "magoh_key": "25",
+   "gna_key": "25",
+   "gna_value": "struttura abitativa"
+  },
+  "struttura di fortificazione": {
+   "magoh_key": "26",
+   "gna_key": "26",
+   "gna_value": "struttura di fortificazione"
+  },
+  "strutture per il culto": {
+   "magoh_key": "27",
+   "gna_key": "27",
+   "gna_value": "strutture per il culto"
+  },
+  "anomalia rilevata sul terreno": {
+   "magoh_key": "28",
+   "gna_key": "28",
+   "gna_value": "anomalia rilevata sul terreno"
+  },
+  "elemento geomorfologico": {
+   "magoh_key": "29",
+   "gna_key": "29",
+   "gna_value": "elemento geomorfologico"
+  },
+  "area ad uso agrario": {
+   "magoh_key": "30",
+   "gna_key": "30",
+   "gna_value": "area ad uso agrario"
+  },
+  "non indicato": {
+   "magoh_key": "31",
+   "gna_key": "99",
+   "gna_value": "non indicato"
+  }
+ },
+ "II_livello_to_OGD": {
+  "Sistemazione agraria/Centuriazione": "infrastruttura agraria",
+  "Orto": "infrastruttura agraria",
+  "Complesso agricolo/villa": "insediamento",
+  "Lavorazione dei metalli": "luogo di attività produttiva",
+  "Lavorazione argilla": "luogo di attività produttiva",
+  "Lavorazione delle pelli/tessuti": "luogo di attività produttiva",
+  "Lavorazione della pietra": "luogo di attività produttiva",
+  "Lavorazione alimentare": "luogo di attività produttiva",
+  "Lavorazione del vetro": "luogo di attività produttiva",
+  "Lavorazione del legno": "luogo di attività produttiva",
+  "Lavorazione industriale": "luogo di attività produttiva",
+  "Lavorazione non identificata": "luogo di attività produttiva",
+  "Complesso abitativo": "insediamento",
+  "Edificio abitativo": "struttura abitativa",
+  "Aree non edificate": "struttura abitativa",
+  "Area cimiteriale": "area a uso funerario",
+  "Tomba/e": "area a uso funerario",
+  "Edificio ludico": "luogo a uso pubblico",
+  "Edificio politico/amministrativo": "luogo a uso pubblico",
+  "Edificio igienico/sanitario": "luogo a uso pubblico",
+  "Area non edificata": "luogo a uso pubblico",
+  "Edificio scolastico/didattico": "luogo a uso pubblico",
+  "Struttura celebrativa": "luogo a uso pubblico",
+  "Luogo di culto": "strutture per il culto",
+  "Infrastruttura di servizio": "infrastruttura di servizio",
+  "Infrastruttura di smaltimento": "infrastruttura di servizio",
+  "Infrastrutture di immagazzinamento": "infrastruttura di servizio",
+  "Infrastrutture di erogazione": "infrastruttura di servizio",
+  "Infrastruttura idraulica": "infrastruttura idrica",
+  "Infrastruttura portuale/navigazione": "infrastruttura portuale",
+  "Infrastruttura viaria": "infrastruttura viaria",
+  "Struttura difensiva": "struttura di fortificazione",
+  "Struttura di acquartieramento": "struttura di fortificazione",
+  "Non determinato": "non indicato",
+  "Frequentazione/presenza": "ritrovamento sporadico",
+  "Struttura di vendita": "luogo a uso pubblico",
+  "Struttura ricettiva": "luogo a uso pubblico",
+  "Ambiente marino/costiero": "elemento geomorfologico",
+  "Ambiente fluviale": "elemento geomorfologico",
+  "Ambiente eolico": "elemento geomorfologico",
+  "Ambiente lacustre": "elemento geomorfologico",
+  "Ambiente antropico": "elemento geomorfologico",
+  "Area defunzionalizzata": "non indicato"
+ },
+ "II_livello_meta": {
+  "Sistemazione agraria/Centuriazione": {
+   "i_livello": "Area agricola/ortiva",
+   "i_livello_key": "1",
+   "ii_livello_key": "100",
+   "ogd": "infrastruttura agraria",
+   "nota": ""
+  },
+  "Orto": {
+   "i_livello": "Area agricola/ortiva",
+   "i_livello_key": "1",
+   "ii_livello_key": "101",
+   "ogd": "infrastruttura agraria",
+   "nota": ""
+  },
+  "Complesso agricolo/villa": {
+   "i_livello": "Area agricola/ortiva",
+   "i_livello_key": "1",
+   "ii_livello_key": "102",
+   "ogd": "insediamento",
+   "nota": ""
+  },
+  "Lavorazione dei metalli": {
+   "i_livello": "Area produttiva",
+   "i_livello_key": "2",
+   "ii_livello_key": "200",
+   "ogd": "luogo di attività produttiva",
+   "nota": ""
+  },
+  "Lavorazione argilla": {
+   "i_livello": "Area produttiva",
+   "i_livello_key": "2",
+   "ii_livello_key": "201",
+   "ogd": "luogo di attività produttiva",
+   "nota": ""
+  },
+  "Lavorazione delle pelli/tessuti": {
+   "i_livello": "Area produttiva",
+   "i_livello_key": "2",
+   "ii_livello_key": "202",
+   "ogd": "luogo di attività produttiva",
+   "nota": ""
+  },
+  "Lavorazione della pietra": {
+   "i_livello": "Area produttiva",
+   "i_livello_key": "2",
+   "ii_livello_key": "203",
+   "ogd": "luogo di attività produttiva",
+   "nota": ""
+  },
+  "Lavorazione alimentare": {
+   "i_livello": "Area produttiva",
+   "i_livello_key": "2",
+   "ii_livello_key": "204",
+   "ogd": "luogo di attività produttiva",
+   "nota": ""
+  },
+  "Lavorazione del vetro": {
+   "i_livello": "Area produttiva",
+   "i_livello_key": "2",
+   "ii_livello_key": "205",
+   "ogd": "luogo di attività produttiva",
+   "nota": ""
+  },
+  "Lavorazione del legno": {
+   "i_livello": "Area produttiva",
+   "i_livello_key": "2",
+   "ii_livello_key": "206",
+   "ogd": "luogo di attività produttiva",
+   "nota": ""
+  },
+  "Lavorazione industriale": {
+   "i_livello": "Area produttiva",
+   "i_livello_key": "2",
+   "ii_livello_key": "207",
+   "ogd": "luogo di attività produttiva",
+   "nota": ""
+  },
+  "Lavorazione non identificata": {
+   "i_livello": "Area produttiva",
+   "i_livello_key": "2",
+   "ii_livello_key": "208",
+   "ogd": "luogo di attività produttiva",
+   "nota": ""
+  },
+  "Complesso abitativo": {
+   "i_livello": "Area ad uso privato",
+   "i_livello_key": "3",
+   "ii_livello_key": "300",
+   "ogd": "insediamento",
+   "nota": ""
+  },
+  "Edificio abitativo": {
+   "i_livello": "Area ad uso privato",
+   "i_livello_key": "3",
+   "ii_livello_key": "301",
+   "ogd": "struttura abitativa",
+   "nota": ""
+  },
+  "Aree non edificate": {
+   "i_livello": "Area ad uso privato",
+   "i_livello_key": "3",
+   "ii_livello_key": "302",
+   "ogd": "struttura abitativa",
+   "nota": "qui ho scelto di usare struttura abitativa per avere coerenza con il I livelli \"Area a uso privato\""
+  },
+  "Area cimiteriale": {
+   "i_livello": "Area funeraria",
+   "i_livello_key": "4",
+   "ii_livello_key": "400",
+   "ogd": "area a uso funerario",
+   "nota": ""
+  },
+  "Tomba/e": {
+   "i_livello": "Area funeraria",
+   "i_livello_key": "4",
+   "ii_livello_key": "401",
+   "ogd": "area a uso funerario",
+   "nota": ""
+  },
+  "Edificio ludico": {
+   "i_livello": "Area ad uso pubblico",
+   "i_livello_key": "5",
+   "ii_livello_key": "500",
+   "ogd": "luogo a uso pubblico",
+   "nota": ""
+  },
+  "Edificio politico/amministrativo": {
+   "i_livello": "Area ad uso pubblico",
+   "i_livello_key": "5",
+   "ii_livello_key": "501",
+   "ogd": "luogo a uso pubblico",
+   "nota": ""
+  },
+  "Edificio igienico/sanitario": {
+   "i_livello": "Area ad uso pubblico",
+   "i_livello_key": "5",
+   "ii_livello_key": "502",
+   "ogd": "luogo a uso pubblico",
+   "nota": ""
+  },
+  "Area non edificata": {
+   "i_livello": "Area ad uso pubblico",
+   "i_livello_key": "5",
+   "ii_livello_key": "504",
+   "ogd": "luogo a uso pubblico",
+   "nota": ""
+  },
+  "Edificio scolastico/didattico": {
+   "i_livello": "Area ad uso pubblico",
+   "i_livello_key": "5",
+   "ii_livello_key": "505",
+   "ogd": "luogo a uso pubblico",
+   "nota": ""
+  },
+  "Struttura celebrativa": {
+   "i_livello": "Area ad uso pubblico",
+   "i_livello_key": "5",
+   "ii_livello_key": "506",
+   "ogd": "luogo a uso pubblico",
+   "nota": ""
+  },
+  "Luogo di culto": {
+   "i_livello": "Area ad uso pubblico",
+   "i_livello_key": "5",
+   "ii_livello_key": "503",
+   "ogd": "strutture per il culto",
+   "nota": ""
+  },
+  "Infrastruttura di servizio": {
+   "i_livello": "Infrastrutture",
+   "i_livello_key": "6",
+   "ii_livello_key": "603",
+   "ogd": "infrastruttura di servizio",
+   "nota": ""
+  },
+  "Infrastruttura di smaltimento": {
+   "i_livello": "Infrastrutture",
+   "i_livello_key": "6",
+   "ii_livello_key": "604",
+   "ogd": "infrastruttura di servizio",
+   "nota": ""
+  },
+  "Infrastrutture di immagazzinamento": {
+   "i_livello": "Infrastrutture",
+   "i_livello_key": "6",
+   "ii_livello_key": "605",
+   "ogd": "infrastruttura di servizio",
+   "nota": ""
+  },
+  "Infrastrutture di erogazione": {
+   "i_livello": "Infrastrutture",
+   "i_livello_key": "6",
+   "ii_livello_key": "606",
+   "ogd": "infrastruttura di servizio",
+   "nota": ""
+  },
+  "Infrastruttura idraulica": {
+   "i_livello": "Infrastrutture",
+   "i_livello_key": "6",
+   "ii_livello_key": "600",
+   "ogd": "infrastruttura idrica",
+   "nota": ""
+  },
+  "Infrastruttura portuale/navigazione": {
+   "i_livello": "Infrastrutture",
+   "i_livello_key": "6",
+   "ii_livello_key": "602",
+   "ogd": "infrastruttura portuale",
+   "nota": ""
+  },
+  "Infrastruttura viaria": {
+   "i_livello": "Infrastrutture",
+   "i_livello_key": "6",
+   "ii_livello_key": "601",
+   "ogd": "infrastruttura viaria",
+   "nota": ""
+  },
+  "Struttura difensiva": {
+   "i_livello": "Area con funzione militare",
+   "i_livello_key": "7",
+   "ii_livello_key": "700",
+   "ogd": "struttura di fortificazione",
+   "nota": ""
+  },
+  "Struttura di acquartieramento": {
+   "i_livello": "Area con funzione militare",
+   "i_livello_key": "7",
+   "ii_livello_key": "701",
+   "ogd": "struttura di fortificazione",
+   "nota": ""
+  },
+  "Non determinato": {
+   "i_livello": "Struttura non determinata",
+   "i_livello_key": "8",
+   "ii_livello_key": "800",
+   "ogd": "non indicato",
+   "nota": ""
+  },
+  "Frequentazione/presenza": {
+   "i_livello": "Frequentazione",
+   "i_livello_key": "9",
+   "ii_livello_key": "900",
+   "ogd": "ritrovamento sporadico",
+   "nota": ""
+  },
+  "Struttura di vendita": {
+   "i_livello": "Area commerciale",
+   "i_livello_key": "11",
+   "ii_livello_key": "1100",
+   "ogd": "luogo a uso pubblico",
+   "nota": ""
+  },
+  "Struttura ricettiva": {
+   "i_livello": "Area commerciale",
+   "i_livello_key": "11",
+   "ii_livello_key": "1101",
+   "ogd": "luogo a uso pubblico",
+   "nota": ""
+  },
+  "Ambiente marino/costiero": {
+   "i_livello": "Contesto naturale",
+   "i_livello_key": "12",
+   "ii_livello_key": "1200",
+   "ogd": "elemento geomorfologico",
+   "nota": ""
+  },
+  "Ambiente fluviale": {
+   "i_livello": "Contesto naturale",
+   "i_livello_key": "12",
+   "ii_livello_key": "1201",
+   "ogd": "elemento geomorfologico",
+   "nota": ""
+  },
+  "Ambiente eolico": {
+   "i_livello": "Contesto naturale",
+   "i_livello_key": "12",
+   "ii_livello_key": "1202",
+   "ogd": "elemento geomorfologico",
+   "nota": ""
+  },
+  "Ambiente lacustre": {
+   "i_livello": "Contesto naturale",
+   "i_livello_key": "12",
+   "ii_livello_key": "1203",
+   "ogd": "elemento geomorfologico",
+   "nota": ""
+  },
+  "Ambiente antropico": {
+   "i_livello": "Contesto naturale",
+   "i_livello_key": "12",
+   "ii_livello_key": "1204",
+   "ogd": "elemento geomorfologico",
+   "nota": ""
+  }
+ },
+ "OGD_to_II_livello": {
+  "infrastruttura agraria": [
+   "Sistemazione agraria/Centuriazione",
+   "Orto"
+  ],
+  "insediamento": [
+   "Complesso agricolo/villa",
+   "Complesso abitativo"
+  ],
+  "luogo di attività produttiva": [
+   "Lavorazione dei metalli",
+   "Lavorazione argilla",
+   "Lavorazione delle pelli/tessuti",
+   "Lavorazione della pietra",
+   "Lavorazione alimentare",
+   "Lavorazione del vetro",
+   "Lavorazione del legno",
+   "Lavorazione industriale",
+   "Lavorazione non identificata"
+  ],
+  "struttura abitativa": [
+   "Edificio abitativo",
+   "Aree non edificate"
+  ],
+  "area a uso funerario": [
+   "Area cimiteriale",
+   "Tomba/e"
+  ],
+  "luogo a uso pubblico": [
+   "Edificio ludico",
+   "Edificio politico/amministrativo",
+   "Edificio igienico/sanitario",
+   "Area non edificata",
+   "Edificio scolastico/didattico",
+   "Struttura celebrativa",
+   "Struttura di vendita",
+   "Struttura ricettiva"
+  ],
+  "strutture per il culto": [
+   "Luogo di culto"
+  ],
+  "infrastruttura di servizio": [
+   "Infrastruttura di servizio",
+   "Infrastruttura di smaltimento",
+   "Infrastrutture di immagazzinamento",
+   "Infrastrutture di erogazione"
+  ],
+  "infrastruttura idrica": [
+   "Infrastruttura idraulica"
+  ],
+  "infrastruttura portuale": [
+   "Infrastruttura portuale/navigazione"
+  ],
+  "infrastruttura viaria": [
+   "Infrastruttura viaria"
+  ],
+  "struttura di fortificazione": [
+   "Struttura difensiva",
+   "Struttura di acquartieramento"
+  ],
+  "non indicato": [
+   "Non determinato"
+  ],
+  "ritrovamento sporadico": [
+   "Frequentazione/presenza"
+  ],
+  "elemento geomorfologico": [
+   "Ambiente marino/costiero",
+   "Ambiente fluviale",
+   "Ambiente eolico",
+   "Ambiente lacustre",
+   "Ambiente antropico"
+  ]
+ },
+ "crono_to_DTR": {
+  "Eta' preistorica": {
+   "dtr": "Paleolitico inferiore",
+   "dtr_key": "1",
+   "crono_id": "1"
+  },
+  "Eta' preistorica > Eta' paleolitica": {
+   "dtr": "Paleolitico inferiore",
+   "dtr_key": "1",
+   "crono_id": "2"
+  },
+  "Eta' preistorica > Eta' paleolitica > inferiore": {
+   "dtr": "Paleolitico inferiore",
+   "dtr_key": "1",
+   "crono_id": "3"
+  },
+  "Eta' preistorica > Eta' paleolitica > media": {
+   "dtr": "Paleolitico medio",
+   "dtr_key": "2",
+   "crono_id": "4"
+  },
+  "Eta' preistorica > Eta' paleolitica > superiore": {
+   "dtr": "Paleolitico superiore",
+   "dtr_key": "3",
+   "crono_id": "5"
+  },
+  "Eta' preistorica > Eta' mesolitica": {
+   "dtr": "Mesolitico",
+   "dtr_key": "4",
+   "crono_id": "6"
+  },
+  "Eta' preistorica > Eta' neolitica": {
+   "dtr": "Neolitico",
+   "dtr_key": "5",
+   "crono_id": "7"
+  },
+  "Eta' preistorica > Eta' eneolitica (= del Rame)": {
+   "dtr": "Età del Rame",
+   "dtr_key": "7",
+   "crono_id": "8"
+  },
+  "Eta' protostorica": {
+   "dtr": "Età dei Metalli",
+   "dtr_key": "6",
+   "crono_id": "9"
+  },
+  "Eta' protostorica > Eta' del Bronzo": {
+   "dtr": "Età del Bronzo",
+   "dtr_key": "8",
+   "crono_id": "10"
+  },
+  "Eta' protostorica > Eta' del Bronzo > antica": {
+   "dtr": "Età del Bronzo",
+   "dtr_key": "8",
+   "crono_id": "11"
+  },
+  "Eta' protostorica > Eta' del Bronzo > media": {
+   "dtr": "Età del Bronzo",
+   "dtr_key": "8",
+   "crono_id": "12"
+  },
+  "Eta' protostorica > Eta' del Bronzo > recente": {
+   "dtr": "Età del Bronzo",
+   "dtr_key": "8",
+   "crono_id": "13"
+  },
+  "Eta' protostorica > Eta' del Bronzo > finale": {
+   "dtr": "Età del Bronzo",
+   "dtr_key": "8",
+   "crono_id": "14"
+  },
+  "Eta' protostorica > Eta' del Ferro": {
+   "dtr": "Età del Ferro",
+   "dtr_key": "9",
+   "crono_id": "15"
+  },
+  "Eta' etrusca": {
+   "dtr": "Età Arcaica",
+   "dtr_key": "10",
+   "crono_id": "16"
+  },
+  "Eta' etrusca > Eta' orientalizzante": {
+   "dtr": "Età Arcaica",
+   "dtr_key": "10",
+   "crono_id": "17"
+  },
+  "Eta' etrusca > Eta' orientalizzante > antica": {
+   "dtr": "Età Arcaica",
+   "dtr_key": "10",
+   "crono_id": "18"
+  },
+  "Eta' etrusca > Eta' orientalizzante > media": {
+   "dtr": "Età Arcaica",
+   "dtr_key": "10",
+   "crono_id": "19"
+  },
+  "Eta' etrusca > Eta' orientalizzante > recente": {
+   "dtr": "Età Arcaica",
+   "dtr_key": "10",
+   "crono_id": "20"
+  },
+  "Eta' etrusca > Eta' arcaica": {
+   "dtr": "Età Arcaica",
+   "dtr_key": "10",
+   "crono_id": "21"
+  },
+  "Eta' etrusca > Eta' classica": {
+   "dtr": "Età Romana",
+   "dtr_key": "11",
+   "crono_id": "22"
+  },
+  "Eta' etrusca > Eta' ellenistica": {
+   "dtr": "Età Romana",
+   "dtr_key": "11",
+   "crono_id": "23"
+  },
+  "Eta' romana": {
+   "dtr": "Età Romana",
+   "dtr_key": "11",
+   "crono_id": "24"
+  },
+  "Eta' romana > Eta' tardorepubblicana": {
+   "dtr": "Età Romano repubblicana",
+   "dtr_key": "12",
+   "crono_id": "25"
+  },
+  "Eta' romana > Prima Eta' imperiale": {
+   "dtr": "Età Romano imperiale",
+   "dtr_key": "13",
+   "crono_id": "26"
+  },
+  "Eta' romana > Prima Eta' imperiale > Eta' giulio-claudia": {
+   "dtr": "Età Romano imperiale",
+   "dtr_key": "13",
+   "crono_id": "27"
+  },
+  "Eta' romana > Media Eta' imperiale": {
+   "dtr": "Età Romano imperiale",
+   "dtr_key": "13",
+   "crono_id": "28"
+  },
+  "Eta' romana > Media Eta' imperiale > Eta' flavia": {
+   "dtr": "Età Romano imperiale",
+   "dtr_key": "13",
+   "crono_id": "29"
+  },
+  "Eta' romana > Media Eta' imperiale > Eta' antoniniana": {
+   "dtr": "Età Romano imperiale",
+   "dtr_key": "13",
+   "crono_id": "30"
+  },
+  "Eta' romana > Media Eta' imperiale > Eta' traiano-adrianea": {
+   "dtr": "Età Romano imperiale",
+   "dtr_key": "13",
+   "crono_id": "31"
+  },
+  "Eta' romana > Tarda Eta' imperiale": {
+   "dtr": "Età Romano imperiale",
+   "dtr_key": "13",
+   "crono_id": "32"
+  },
+  "Eta' romana > Tarda Eta' imperiale > Eta' severiana": {
+   "dtr": "Età Romano imperiale",
+   "dtr_key": "13",
+   "crono_id": "33"
+  },
+  "Eta' romana > Tarda Eta' imperiale > Eta' dell'anarchia militare": {
+   "dtr": "Età Romano imperiale",
+   "dtr_key": "13",
+   "crono_id": "34"
+  },
+  "Eta' romana > Tarda Eta' imperiale > Eta' tetrarchica": {
+   "dtr": "Età Romano imperiale",
+   "dtr_key": "13",
+   "crono_id": "35"
+  },
+  "Eta' romana > Tarda Eta' imperiale > Eta' costantiniana": {
+   "dtr": "Età Romano imperiale",
+   "dtr_key": "13",
+   "crono_id": "36"
+  },
+  "Eta' tardoantica": {
+   "dtr": "Età Tardoantica",
+   "dtr_key": "14",
+   "crono_id": "37"
+  },
+  "Eta' altomedievale": {
+   "dtr": "Età Altomedievale",
+   "dtr_key": "16",
+   "crono_id": "38"
+  },
+  "Eta' altomedievale > VII sec. d.C.": {
+   "dtr": "Età Altomedievale",
+   "dtr_key": "16",
+   "crono_id": "39"
+  },
+  "Eta' altomedievale > IX sec. d.C.": {
+   "dtr": "Età Altomedievale",
+   "dtr_key": "16",
+   "crono_id": "40"
+  },
+  "Eta' altomedievale > VIII sec. d.C.": {
+   "dtr": "Età Altomedievale",
+   "dtr_key": "16",
+   "crono_id": "41"
+  },
+  "Eta' altomedievale > X sec. d.C.": {
+   "dtr": "Età Altomedievale",
+   "dtr_key": "16",
+   "crono_id": "42"
+  },
+  "Eta' bassomedievale": {
+   "dtr": "Età Bassomedievale",
+   "dtr_key": "17",
+   "crono_id": "43"
+  },
+  "Eta' bassomedievale > XI sec. d.C.": {
+   "dtr": "Età Pienomedievale",
+   "dtr_key": "22",
+   "crono_id": "44"
+  },
+  "Eta' bassomedievale > XII sec. d.C.": {
+   "dtr": "Età Pienomedievale",
+   "dtr_key": "22",
+   "crono_id": "45"
+  },
+  "Eta' bassomedievale > XIII sec. d.C.": {
+   "dtr": "Età Pienomedievale",
+   "dtr_key": "22",
+   "crono_id": "46"
+  },
+  "Eta' bassomedievale > XIV sec. d.C.": {
+   "dtr": "Età Bassomedievale",
+   "dtr_key": "17",
+   "crono_id": "47"
+  },
+  "Eta' bassomedievale > XV sec. d.C.": {
+   "dtr": "Età Bassomedievale",
+   "dtr_key": "17",
+   "crono_id": "48"
+  },
+  "Eta' moderna": {
+   "dtr": "Età Moderna",
+   "dtr_key": "19",
+   "crono_id": "49"
+  },
+  "Eta' moderna > XVI sec. d.C.": {
+   "dtr": "Prima età moderna",
+   "dtr_key": "18",
+   "crono_id": "50"
+  },
+  "Eta' moderna > XVII sec. d.C.": {
+   "dtr": "Prima età moderna",
+   "dtr_key": "18",
+   "crono_id": "51"
+  },
+  "Eta' moderna > XVIII sec. d.C.": {
+   "dtr": "Età Moderna",
+   "dtr_key": "19",
+   "crono_id": "52"
+  },
+  "Eta' contemporanea": {
+   "dtr": "Età Contemporanea",
+   "dtr_key": "20",
+   "crono_id": "53"
+  },
+  "Eta' contemporanea > XIX sec. d.C.": {
+   "dtr": "Età Contemporanea",
+   "dtr_key": "20",
+   "crono_id": "54"
+  },
+  "Eta' contemporanea > XX sec. d.C.": {
+   "dtr": "Età Contemporanea",
+   "dtr_key": "20",
+   "crono_id": "55"
+  },
+  "Eta' contemporanea > XXI sec. d.C.": {
+   "dtr": "Età Contemporanea",
+   "dtr_key": "20",
+   "crono_id": "56"
+  },
+  "Eta' romana > Prima Eta' imperiale > Eta' giulio-claudia > Augusto": {
+   "dtr": "Età Romano imperiale",
+   "dtr_key": "13",
+   "crono_id": "57"
+  },
+  "Eta' romana > Prima Eta' imperiale > Eta' giulio-claudia > Tiberio": {
+   "dtr": "Età Romano imperiale",
+   "dtr_key": "13",
+   "crono_id": "58"
+  },
+  "Eta' romana > Prima Eta' imperiale > Eta' giulio-claudia > Caligola": {
+   "dtr": "Età Romano imperiale",
+   "dtr_key": "13",
+   "crono_id": "59"
+  },
+  "Eta' romana > Prima Eta' imperiale > Eta' giulio-claudia > Claudio": {
+   "dtr": "Età Romano imperiale",
+   "dtr_key": "13",
+   "crono_id": "60"
+  },
+  "Eta' romana > Prima Eta' imperiale > Eta' giulio-claudia > Nerone": {
+   "dtr": "Età Romano imperiale",
+   "dtr_key": "13",
+   "crono_id": "61"
+  },
+  "Eta' romana > Media Eta' imperiale > Eta' flavia > Vespasiano": {
+   "dtr": "Età Romano imperiale",
+   "dtr_key": "13",
+   "crono_id": "62"
+  },
+  "Eta' romana > Media Eta' imperiale > Eta' flavia > Tito": {
+   "dtr": "Età Romano imperiale",
+   "dtr_key": "13",
+   "crono_id": "63"
+  },
+  "Eta' romana > Media Eta' imperiale > Eta' flavia > Domiziano": {
+   "dtr": "Età Romano imperiale",
+   "dtr_key": "13",
+   "crono_id": "64"
+  },
+  "Eta' romana > Media Eta' imperiale > Eta' traiano-adrianea > Traiano": {
+   "dtr": "Età Romano imperiale",
+   "dtr_key": "13",
+   "crono_id": "65"
+  },
+  "Eta' romana > Media Eta' imperiale > Eta' traiano-adrianea > Adriano": {
+   "dtr": "Età Romano imperiale",
+   "dtr_key": "13",
+   "crono_id": "66"
+  },
+  "Eta' romana > Media Eta' imperiale > Eta' antoniniana > Antonino Pio": {
+   "dtr": "Età Romano imperiale",
+   "dtr_key": "13",
+   "crono_id": "67"
+  },
+  "Eta' romana > Media Eta' imperiale > Eta' antoniniana > Marco Aurelio": {
+   "dtr": "Età Romano imperiale",
+   "dtr_key": "13",
+   "crono_id": "68"
+  },
+  "Eta' romana > Media Eta' imperiale > Eta' antoniniana > Lucio Vero": {
+   "dtr": "Età Romano imperiale",
+   "dtr_key": "13",
+   "crono_id": "69"
+  },
+  "Eta' romana > Media Eta' imperiale > Eta' antoniniana > Commodo": {
+   "dtr": "Età Romano imperiale",
+   "dtr_key": "13",
+   "crono_id": "70"
+  },
+  "Eta' romana > Tarda Eta' imperiale > Eta' severiana > Settimio Severo": {
+   "dtr": "Età Romano imperiale",
+   "dtr_key": "13",
+   "crono_id": "71"
+  },
+  "Eta' romana > Tarda Eta' imperiale > Eta' severiana > Geta": {
+   "dtr": "Età Romano imperiale",
+   "dtr_key": "13",
+   "crono_id": "72"
+  },
+  "Eta' romana > Tarda Eta' imperiale > Eta' severiana > Caracalla": {
+   "dtr": "Età Romano imperiale",
+   "dtr_key": "13",
+   "crono_id": "73"
+  },
+  "Eta' romana > Tarda Eta' imperiale > Eta' severiana > Elagabalo": {
+   "dtr": "Età Romano imperiale",
+   "dtr_key": "13",
+   "crono_id": "74"
+  },
+  "Eta' romana > Tarda Eta' imperiale > Eta' severiana > Severo Alessandro": {
+   "dtr": "Età Romano imperiale",
+   "dtr_key": "13",
+   "crono_id": "75"
+  },
+  "Non determinato": {
+   "dtr": "non determinabile",
+   "dtr_key": "21",
+   "crono_id": "80"
+  }
+ },
+ "DTR_to_crono": {
+  "Paleolitico inferiore": {
+   "canonical": {
+    "crono_id": "1",
+    "name_full": "Eta' preistorica",
+    "depth": 0
+   },
+   "n_alternatives": 3,
+   "alternatives": [
+    "Eta' preistorica",
+    "Eta' preistorica > Eta' paleolitica",
+    "Eta' preistorica > Eta' paleolitica > inferiore"
+   ]
+  },
+  "Paleolitico medio": {
+   "canonical": {
+    "crono_id": "4",
+    "name_full": "Eta' preistorica > Eta' paleolitica > media",
+    "depth": 2
+   },
+   "n_alternatives": 1,
+   "alternatives": [
+    "Eta' preistorica > Eta' paleolitica > media"
+   ]
+  },
+  "Paleolitico superiore": {
+   "canonical": {
+    "crono_id": "5",
+    "name_full": "Eta' preistorica > Eta' paleolitica > superiore",
+    "depth": 2
+   },
+   "n_alternatives": 1,
+   "alternatives": [
+    "Eta' preistorica > Eta' paleolitica > superiore"
+   ]
+  },
+  "Mesolitico": {
+   "canonical": {
+    "crono_id": "6",
+    "name_full": "Eta' preistorica > Eta' mesolitica",
+    "depth": 1
+   },
+   "n_alternatives": 1,
+   "alternatives": [
+    "Eta' preistorica > Eta' mesolitica"
+   ]
+  },
+  "Neolitico": {
+   "canonical": {
+    "crono_id": "7",
+    "name_full": "Eta' preistorica > Eta' neolitica",
+    "depth": 1
+   },
+   "n_alternatives": 1,
+   "alternatives": [
+    "Eta' preistorica > Eta' neolitica"
+   ]
+  },
+  "Età del Rame": {
+   "canonical": {
+    "crono_id": "8",
+    "name_full": "Eta' preistorica > Eta' eneolitica (= del Rame)",
+    "depth": 1
+   },
+   "n_alternatives": 1,
+   "alternatives": [
+    "Eta' preistorica > Eta' eneolitica (= del Rame)"
+   ]
+  },
+  "Età dei Metalli": {
+   "canonical": {
+    "crono_id": "9",
+    "name_full": "Eta' protostorica",
+    "depth": 0
+   },
+   "n_alternatives": 1,
+   "alternatives": [
+    "Eta' protostorica"
+   ]
+  },
+  "Età del Bronzo": {
+   "canonical": {
+    "crono_id": "10",
+    "name_full": "Eta' protostorica > Eta' del Bronzo",
+    "depth": 1
+   },
+   "n_alternatives": 5,
+   "alternatives": [
+    "Eta' protostorica > Eta' del Bronzo",
+    "Eta' protostorica > Eta' del Bronzo > antica",
+    "Eta' protostorica > Eta' del Bronzo > media",
+    "Eta' protostorica > Eta' del Bronzo > recente",
+    "Eta' protostorica > Eta' del Bronzo > finale"
+   ]
+  },
+  "Età del Ferro": {
+   "canonical": {
+    "crono_id": "15",
+    "name_full": "Eta' protostorica > Eta' del Ferro",
+    "depth": 1
+   },
+   "n_alternatives": 1,
+   "alternatives": [
+    "Eta' protostorica > Eta' del Ferro"
+   ]
+  },
+  "Età Arcaica": {
+   "canonical": {
+    "crono_id": "16",
+    "name_full": "Eta' etrusca",
+    "depth": 0
+   },
+   "n_alternatives": 6,
+   "alternatives": [
+    "Eta' etrusca",
+    "Eta' etrusca > Eta' orientalizzante",
+    "Eta' etrusca > Eta' arcaica",
+    "Eta' etrusca > Eta' orientalizzante > antica",
+    "Eta' etrusca > Eta' orientalizzante > media",
+    "Eta' etrusca > Eta' orientalizzante > recente"
+   ]
+  },
+  "Età Romana": {
+   "canonical": {
+    "crono_id": "24",
+    "name_full": "Eta' romana",
+    "depth": 0
+   },
+   "n_alternatives": 3,
+   "alternatives": [
+    "Eta' romana",
+    "Eta' etrusca > Eta' classica",
+    "Eta' etrusca > Eta' ellenistica"
+   ]
+  },
+  "Età Romano repubblicana": {
+   "canonical": {
+    "crono_id": "25",
+    "name_full": "Eta' romana > Eta' tardorepubblicana",
+    "depth": 1
+   },
+   "n_alternatives": 1,
+   "alternatives": [
+    "Eta' romana > Eta' tardorepubblicana"
+   ]
+  },
+  "Età Romano imperiale": {
+   "canonical": {
+    "crono_id": "26",
+    "name_full": "Eta' romana > Prima Eta' imperiale",
+    "depth": 1
+   },
+   "n_alternatives": 30,
+   "alternatives": [
+    "Eta' romana > Prima Eta' imperiale",
+    "Eta' romana > Media Eta' imperiale",
+    "Eta' romana > Tarda Eta' imperiale",
+    "Eta' romana > Prima Eta' imperiale > Eta' giulio-claudia",
+    "Eta' romana > Media Eta' imperiale > Eta' flavia",
+    "Eta' romana > Media Eta' imperiale > Eta' antoniniana",
+    "Eta' romana > Media Eta' imperiale > Eta' traiano-adrianea",
+    "Eta' romana > Tarda Eta' imperiale > Eta' severiana",
+    "Eta' romana > Tarda Eta' imperiale > Eta' dell'anarchia militare",
+    "Eta' romana > Tarda Eta' imperiale > Eta' tetrarchica",
+    "Eta' romana > Tarda Eta' imperiale > Eta' costantiniana",
+    "Eta' romana > Prima Eta' imperiale > Eta' giulio-claudia > Augusto",
+    "Eta' romana > Prima Eta' imperiale > Eta' giulio-claudia > Tiberio",
+    "Eta' romana > Prima Eta' imperiale > Eta' giulio-claudia > Caligola",
+    "Eta' romana > Prima Eta' imperiale > Eta' giulio-claudia > Claudio",
+    "Eta' romana > Prima Eta' imperiale > Eta' giulio-claudia > Nerone",
+    "Eta' romana > Media Eta' imperiale > Eta' flavia > Vespasiano",
+    "Eta' romana > Media Eta' imperiale > Eta' flavia > Tito",
+    "Eta' romana > Media Eta' imperiale > Eta' flavia > Domiziano",
+    "Eta' romana > Media Eta' imperiale > Eta' traiano-adrianea > Traiano",
+    "Eta' romana > Media Eta' imperiale > Eta' traiano-adrianea > Adriano",
+    "Eta' romana > Media Eta' imperiale > Eta' antoniniana > Antonino Pio",
+    "Eta' romana > Media Eta' imperiale > Eta' antoniniana > Marco Aurelio",
+    "Eta' romana > Media Eta' imperiale > Eta' antoniniana > Lucio Vero",
+    "Eta' romana > Media Eta' imperiale > Eta' antoniniana > Commodo",
+    "Eta' romana > Tarda Eta' imperiale > Eta' severiana > Settimio Severo",
+    "Eta' romana > Tarda Eta' imperiale > Eta' severiana > Geta",
+    "Eta' romana > Tarda Eta' imperiale > Eta' severiana > Caracalla",
+    "Eta' romana > Tarda Eta' imperiale > Eta' severiana > Elagabalo",
+    "Eta' romana > Tarda Eta' imperiale > Eta' severiana > Severo Alessandro"
+   ]
+  },
+  "Età Tardoantica": {
+   "canonical": {
+    "crono_id": "37",
+    "name_full": "Eta' tardoantica",
+    "depth": 0
+   },
+   "n_alternatives": 1,
+   "alternatives": [
+    "Eta' tardoantica"
+   ]
+  },
+  "Età Altomedievale": {
+   "canonical": {
+    "crono_id": "38",
+    "name_full": "Eta' altomedievale",
+    "depth": 0
+   },
+   "n_alternatives": 5,
+   "alternatives": [
+    "Eta' altomedievale",
+    "Eta' altomedievale > VII sec. d.C.",
+    "Eta' altomedievale > IX sec. d.C.",
+    "Eta' altomedievale > VIII sec. d.C.",
+    "Eta' altomedievale > X sec. d.C."
+   ]
+  },
+  "Età Bassomedievale": {
+   "canonical": {
+    "crono_id": "43",
+    "name_full": "Eta' bassomedievale",
+    "depth": 0
+   },
+   "n_alternatives": 3,
+   "alternatives": [
+    "Eta' bassomedievale",
+    "Eta' bassomedievale > XIV sec. d.C.",
+    "Eta' bassomedievale > XV sec. d.C."
+   ]
+  },
+  "Età Pienomedievale": {
+   "canonical": {
+    "crono_id": "44",
+    "name_full": "Eta' bassomedievale > XI sec. d.C.",
+    "depth": 1
+   },
+   "n_alternatives": 3,
+   "alternatives": [
+    "Eta' bassomedievale > XI sec. d.C.",
+    "Eta' bassomedievale > XII sec. d.C.",
+    "Eta' bassomedievale > XIII sec. d.C."
+   ]
+  },
+  "Età Moderna": {
+   "canonical": {
+    "crono_id": "49",
+    "name_full": "Eta' moderna",
+    "depth": 0
+   },
+   "n_alternatives": 2,
+   "alternatives": [
+    "Eta' moderna",
+    "Eta' moderna > XVIII sec. d.C."
+   ]
+  },
+  "Prima età moderna": {
+   "canonical": {
+    "crono_id": "50",
+    "name_full": "Eta' moderna > XVI sec. d.C.",
+    "depth": 1
+   },
+   "n_alternatives": 2,
+   "alternatives": [
+    "Eta' moderna > XVI sec. d.C.",
+    "Eta' moderna > XVII sec. d.C."
+   ]
+  },
+  "Età Contemporanea": {
+   "canonical": {
+    "crono_id": "53",
+    "name_full": "Eta' contemporanea",
+    "depth": 0
+   },
+   "n_alternatives": 4,
+   "alternatives": [
+    "Eta' contemporanea",
+    "Eta' contemporanea > XIX sec. d.C.",
+    "Eta' contemporanea > XX sec. d.C.",
+    "Eta' contemporanea > XXI sec. d.C."
+   ]
+  },
+  "non determinabile": {
+   "canonical": {
+    "crono_id": "80",
+    "name_full": "Non determinato",
+    "depth": 0
+   },
+   "n_alternatives": 1,
+   "alternatives": [
+    "Non determinato"
+   ]
+  }
+ },
+ "crono_vocab": [
+  {
+   "id": 2,
+   "name": "Eta' paleolitica",
+   "name_full": "Eta' preistorica > Eta' paleolitica",
+   "from_year": -2500000,
+   "to_year": -12001,
+   "depth": 1
+  },
+  {
+   "id": 3,
+   "name": "inferiore",
+   "name_full": "Eta' preistorica > Eta' paleolitica > inferiore",
+   "from_year": -2500000,
+   "to_year": -120001,
+   "depth": 2
+  },
+  {
+   "id": 4,
+   "name": "media",
+   "name_full": "Eta' preistorica > Eta' paleolitica > media",
+   "from_year": -120000,
+   "to_year": -35001,
+   "depth": 2
+  },
+  {
+   "id": 5,
+   "name": "superiore",
+   "name_full": "Eta' preistorica > Eta' paleolitica > superiore",
+   "from_year": -35000,
+   "to_year": -12001,
+   "depth": 2
+  },
+  {
+   "id": 6,
+   "name": "Eta' mesolitica",
+   "name_full": "Eta' preistorica > Eta' mesolitica",
+   "from_year": -12000,
+   "to_year": -6001,
+   "depth": 1
+  },
+  {
+   "id": 7,
+   "name": "Eta' neolitica",
+   "name_full": "Eta' preistorica > Eta' neolitica",
+   "from_year": -6000,
+   "to_year": -3701,
+   "depth": 1
+  },
+  {
+   "id": 8,
+   "name": "Eta' eneolitica (= del Rame)",
+   "name_full": "Eta' preistorica > Eta' eneolitica (= del Rame)",
+   "from_year": -3700,
+   "to_year": -2101,
+   "depth": 1
+  },
+  {
+   "id": 9,
+   "name": "Eta' protostorica",
+   "name_full": "Eta' protostorica",
+   "from_year": -2100,
+   "to_year": -721,
+   "depth": 0
+  },
+  {
+   "id": 10,
+   "name": "Eta' del Bronzo",
+   "name_full": "Eta' protostorica > Eta' del Bronzo",
+   "from_year": -2100,
+   "to_year": -926,
+   "depth": 1
+  },
+  {
+   "id": 11,
+   "name": "antica",
+   "name_full": "Eta' protostorica > Eta' del Bronzo > antica",
+   "from_year": -2100,
+   "to_year": -1701,
+   "depth": 2
+  },
+  {
+   "id": 12,
+   "name": "media",
+   "name_full": "Eta' protostorica > Eta' del Bronzo > media",
+   "from_year": -1700,
+   "to_year": -1301,
+   "depth": 2
+  },
+  {
+   "id": 13,
+   "name": "recente",
+   "name_full": "Eta' protostorica > Eta' del Bronzo > recente",
+   "from_year": -1300,
+   "to_year": -1151,
+   "depth": 2
+  },
+  {
+   "id": 14,
+   "name": "finale",
+   "name_full": "Eta' protostorica > Eta' del Bronzo > finale",
+   "from_year": -1150,
+   "to_year": -926,
+   "depth": 2
+  },
+  {
+   "id": 15,
+   "name": "Eta' del Ferro",
+   "name_full": "Eta' protostorica > Eta' del Ferro",
+   "from_year": -925,
+   "to_year": -721,
+   "depth": 1
+  },
+  {
+   "id": 16,
+   "name": "Eta' etrusca",
+   "name_full": "Eta' etrusca",
+   "from_year": -720,
+   "to_year": -90,
+   "depth": 0
+  },
+  {
+   "id": 17,
+   "name": "Eta' (etrusca) orientalizzante",
+   "name_full": "Eta' etrusca > Eta' orientalizzante",
+   "from_year": -720,
+   "to_year": -581,
+   "depth": 1
+  },
+  {
+   "id": 18,
+   "name": "antica",
+   "name_full": "Eta' etrusca > Eta' orientalizzante > antica",
+   "from_year": -720,
+   "to_year": -681,
+   "depth": 2
+  },
+  {
+   "id": 19,
+   "name": "media",
+   "name_full": "Eta' etrusca > Eta' orientalizzante > media",
+   "from_year": -680,
+   "to_year": -631,
+   "depth": 2
+  },
+  {
+   "id": 20,
+   "name": "recente",
+   "name_full": "Eta' etrusca > Eta' orientalizzante > recente",
+   "from_year": -630,
+   "to_year": -581,
+   "depth": 2
+  },
+  {
+   "id": 21,
+   "name": "Eta' (etrusca) arcaica",
+   "name_full": "Eta' etrusca > Eta' arcaica",
+   "from_year": -580,
+   "to_year": -481,
+   "depth": 1
+  },
+  {
+   "id": 22,
+   "name": "Eta' (etrusca) classica",
+   "name_full": "Eta' etrusca > Eta' classica",
+   "from_year": -480,
+   "to_year": -324,
+   "depth": 1
+  },
+  {
+   "id": 23,
+   "name": "Eta' (etrusca) ellenistica",
+   "name_full": "Eta' etrusca > Eta' ellenistica",
+   "from_year": -323,
+   "to_year": -90,
+   "depth": 1
+  },
+  {
+   "id": 24,
+   "name": "Eta' romana",
+   "name_full": "Eta' romana",
+   "from_year": -89,
+   "to_year": 337,
+   "depth": 0
+  },
+  {
+   "id": 25,
+   "name": "Eta' tardorepubblicana",
+   "name_full": "Eta' romana > Eta' tardorepubblicana",
+   "from_year": -89,
+   "to_year": -32,
+   "depth": 1
+  },
+  {
+   "id": 26,
+   "name": "Prima Eta' imperiale",
+   "name_full": "Eta' romana > Prima Eta' imperiale",
+   "from_year": -31,
+   "to_year": 68,
+   "depth": 1
+  },
+  {
+   "id": 27,
+   "name": "Eta' giulio-claudia",
+   "name_full": "Eta' romana > Prima Eta' imperiale > Eta' giulio-claudia",
+   "from_year": -27,
+   "to_year": 68,
+   "depth": 2
+  },
+  {
+   "id": 28,
+   "name": "Media Eta' imperiale",
+   "name_full": "Eta' romana > Media Eta' imperiale",
+   "from_year": 69,
+   "to_year": 192,
+   "depth": 1
+  },
+  {
+   "id": 29,
+   "name": "Eta' flavia",
+   "name_full": "Eta' romana > Media Eta' imperiale > Eta' flavia",
+   "from_year": 69,
+   "to_year": 97,
+   "depth": 2
+  },
+  {
+   "id": 30,
+   "name": "Eta' antoniniana",
+   "name_full": "Eta' romana > Media Eta' imperiale > Eta' antoniniana",
+   "from_year": 138,
+   "to_year": 192,
+   "depth": 2
+  },
+  {
+   "id": 31,
+   "name": "Eta' traiano-adrianea",
+   "name_full": "Eta' romana > Media Eta' imperiale > Eta' traiano-adrianea",
+   "from_year": 98,
+   "to_year": 137,
+   "depth": 2
+  },
+  {
+   "id": 32,
+   "name": "Tarda Eta' imperiale",
+   "name_full": "Eta' romana > Tarda Eta' imperiale",
+   "from_year": 193,
+   "to_year": 337,
+   "depth": 1
+  },
+  {
+   "id": 33,
+   "name": "Eta' severiana",
+   "name_full": "Eta' romana > Tarda Eta' imperiale > Eta' severiana",
+   "from_year": 193,
+   "to_year": 235,
+   "depth": 2
+  },
+  {
+   "id": 34,
+   "name": "Eta' dell'anarchia militare",
+   "name_full": "Eta' romana > Tarda Eta' imperiale > Eta' dell'anarchia militare",
+   "from_year": 236,
+   "to_year": 284,
+   "depth": 2
+  },
+  {
+   "id": 35,
+   "name": "Eta' tetrarchica",
+   "name_full": "Eta' romana > Tarda Eta' imperiale > Eta' tetrarchica",
+   "from_year": 284,
+   "to_year": 311,
+   "depth": 2
+  },
+  {
+   "id": 36,
+   "name": "Eta' costantiniana",
+   "name_full": "Eta' romana > Tarda Eta' imperiale > Eta' costantiniana",
+   "from_year": 306,
+   "to_year": 337,
+   "depth": 2
+  },
+  {
+   "id": 37,
+   "name": "Eta' tardoantica",
+   "name_full": "Eta' tardoantica",
+   "from_year": 338,
+   "to_year": 600,
+   "depth": 0
+  },
+  {
+   "id": 38,
+   "name": "Eta' altomedievale",
+   "name_full": "Eta' altomedievale",
+   "from_year": 601,
+   "to_year": 1000,
+   "depth": 0
+  },
+  {
+   "id": 39,
+   "name": "VII sec. d.C.",
+   "name_full": "Eta' altomedievale > VII sec. d.C.",
+   "from_year": 601,
+   "to_year": 700,
+   "depth": 1
+  },
+  {
+   "id": 40,
+   "name": "IX sec. d.C.",
+   "name_full": "Eta' altomedievale > IX sec. d.C.",
+   "from_year": 801,
+   "to_year": 900,
+   "depth": 1
+  },
+  {
+   "id": 41,
+   "name": "VIII sec. d.C.",
+   "name_full": "Eta' altomedievale > VIII sec. d.C.",
+   "from_year": 701,
+   "to_year": 800,
+   "depth": 1
+  },
+  {
+   "id": 42,
+   "name": "X sec. d.C.",
+   "name_full": "Eta' altomedievale > X sec. d.C.",
+   "from_year": 901,
+   "to_year": 1000,
+   "depth": 1
+  },
+  {
+   "id": 43,
+   "name": "Eta' bassomedievale",
+   "name_full": "Eta' bassomedievale",
+   "from_year": 1001,
+   "to_year": 1500,
+   "depth": 0
+  },
+  {
+   "id": 44,
+   "name": "XI sec. d.C.",
+   "name_full": "Eta' bassomedievale > XI sec. d.C.",
+   "from_year": 1001,
+   "to_year": 1100,
+   "depth": 1
+  },
+  {
+   "id": 45,
+   "name": "XII sec. d.C.",
+   "name_full": "Eta' bassomedievale > XII sec. d.C.",
+   "from_year": 1101,
+   "to_year": 1200,
+   "depth": 1
+  },
+  {
+   "id": 46,
+   "name": "XIII sec. d.C.",
+   "name_full": "Eta' bassomedievale > XIII sec. d.C.",
+   "from_year": 1201,
+   "to_year": 1300,
+   "depth": 1
+  },
+  {
+   "id": 47,
+   "name": "XIV sec. d.C.",
+   "name_full": "Eta' bassomedievale > XIV sec. d.C.",
+   "from_year": 1301,
+   "to_year": 1400,
+   "depth": 1
+  },
+  {
+   "id": 48,
+   "name": "XV sec. d.C.",
+   "name_full": "Eta' bassomedievale > XV sec. d.C.",
+   "from_year": 1401,
+   "to_year": 1500,
+   "depth": 1
+  },
+  {
+   "id": 49,
+   "name": "Eta' moderna",
+   "name_full": "Eta' moderna",
+   "from_year": 1501,
+   "to_year": 1800,
+   "depth": 0
+  },
+  {
+   "id": 50,
+   "name": "XVI sec. d.C.",
+   "name_full": "Eta' moderna > XVI sec. d.C.",
+   "from_year": 1501,
+   "to_year": 1600,
+   "depth": 1
+  },
+  {
+   "id": 51,
+   "name": "XVII sec. d.C.",
+   "name_full": "Eta' moderna > XVII sec. d.C.",
+   "from_year": 1601,
+   "to_year": 1700,
+   "depth": 1
+  },
+  {
+   "id": 52,
+   "name": "XVIII sec. d.C.",
+   "name_full": "Eta' moderna > XVIII sec. d.C.",
+   "from_year": 1701,
+   "to_year": 1800,
+   "depth": 1
+  },
+  {
+   "id": 53,
+   "name": "Eta' contemporanea",
+   "name_full": "Eta' contemporanea",
+   "from_year": 1801,
+   "to_year": 2050,
+   "depth": 0
+  },
+  {
+   "id": 54,
+   "name": "XIX sec. d.C.",
+   "name_full": "Eta' contemporanea > XIX sec. d.C.",
+   "from_year": 1801,
+   "to_year": 1900,
+   "depth": 1
+  },
+  {
+   "id": 55,
+   "name": "XX sec. d.C.",
+   "name_full": "Eta' contemporanea > XX sec. d.C.",
+   "from_year": 1901,
+   "to_year": 2000,
+   "depth": 1
+  },
+  {
+   "id": 56,
+   "name": "XXI sec. d.C.",
+   "name_full": "Eta' contemporanea > XXI sec. d.C.",
+   "from_year": 2001,
+   "to_year": 2100,
+   "depth": 1
+  },
+  {
+   "id": 57,
+   "name": "Augusto",
+   "name_full": "Eta' romana > Prima Eta' imperiale > Eta' giulio-claudia > Augusto",
+   "from_year": -27,
+   "to_year": 14,
+   "depth": 3
+  },
+  {
+   "id": 58,
+   "name": "Tiberio",
+   "name_full": "Eta' romana > Prima Eta' imperiale > Eta' giulio-claudia > Tiberio",
+   "from_year": 14,
+   "to_year": 37,
+   "depth": 3
+  },
+  {
+   "id": 59,
+   "name": "Caligola",
+   "name_full": "Eta' romana > Prima Eta' imperiale > Eta' giulio-claudia > Caligola",
+   "from_year": 37,
+   "to_year": 41,
+   "depth": 3
+  },
+  {
+   "id": 60,
+   "name": "Claudio",
+   "name_full": "Eta' romana > Prima Eta' imperiale > Eta' giulio-claudia > Claudio",
+   "from_year": 41,
+   "to_year": 54,
+   "depth": 3
+  },
+  {
+   "id": 61,
+   "name": "Nerone",
+   "name_full": "Eta' romana > Prima Eta' imperiale > Eta' giulio-claudia > Nerone",
+   "from_year": 54,
+   "to_year": 68,
+   "depth": 3
+  },
+  {
+   "id": 62,
+   "name": "Vespasiano",
+   "name_full": "Eta' romana > Media Eta' imperiale > Eta' flavia > Vespasiano",
+   "from_year": 69,
+   "to_year": 79,
+   "depth": 3
+  },
+  {
+   "id": 63,
+   "name": "Tito",
+   "name_full": "Eta' romana > Media Eta' imperiale > Eta' flavia > Tito",
+   "from_year": 79,
+   "to_year": 81,
+   "depth": 3
+  },
+  {
+   "id": 64,
+   "name": "Domiziano",
+   "name_full": "Eta' romana > Media Eta' imperiale > Eta' flavia > Domiziano",
+   "from_year": 81,
+   "to_year": 97,
+   "depth": 3
+  },
+  {
+   "id": 65,
+   "name": "Traiano",
+   "name_full": "Eta' romana > Media Eta' imperiale > Eta' traiano-adrianea > Traiano",
+   "from_year": 98,
+   "to_year": 117,
+   "depth": 3
+  },
+  {
+   "id": 66,
+   "name": "Adriano",
+   "name_full": "Eta' romana > Media Eta' imperiale > Eta' traiano-adrianea > Adriano",
+   "from_year": 117,
+   "to_year": 138,
+   "depth": 3
+  },
+  {
+   "id": 67,
+   "name": "Antonino Pio",
+   "name_full": "Eta' romana > Media Eta' imperiale > Eta' antoniniana > Antonino Pio",
+   "from_year": 138,
+   "to_year": 161,
+   "depth": 3
+  },
+  {
+   "id": 68,
+   "name": "Marco Aurelio",
+   "name_full": "Eta' romana > Media Eta' imperiale > Eta' antoniniana > Marco Aurelio",
+   "from_year": 161,
+   "to_year": 180,
+   "depth": 3
+  },
+  {
+   "id": 69,
+   "name": "Lucio Vero",
+   "name_full": "Eta' romana > Media Eta' imperiale > Eta' antoniniana > Lucio Vero",
+   "from_year": 161,
+   "to_year": 169,
+   "depth": 3
+  },
+  {
+   "id": 70,
+   "name": "Commodo",
+   "name_full": "Eta' romana > Media Eta' imperiale > Eta' antoniniana > Commodo",
+   "from_year": 180,
+   "to_year": 192,
+   "depth": 3
+  },
+  {
+   "id": 71,
+   "name": "Settimio Severo",
+   "name_full": "Eta' romana > Tarda Eta' imperiale > Eta' severiana > Settimio Severo",
+   "from_year": 193,
+   "to_year": 211,
+   "depth": 3
+  },
+  {
+   "id": 72,
+   "name": "Geta",
+   "name_full": "Eta' romana > Tarda Eta' imperiale > Eta' severiana > Geta",
+   "from_year": 211,
+   "to_year": 212,
+   "depth": 3
+  },
+  {
+   "id": 73,
+   "name": "Caracalla",
+   "name_full": "Eta' romana > Tarda Eta' imperiale > Eta' severiana > Caracalla",
+   "from_year": 211,
+   "to_year": 217,
+   "depth": 3
+  },
+  {
+   "id": 74,
+   "name": "Elagabalo",
+   "name_full": "Eta' romana > Tarda Eta' imperiale > Eta' severiana > Elagabalo",
+   "from_year": 218,
+   "to_year": 222,
+   "depth": 3
+  },
+  {
+   "id": 75,
+   "name": "Severo Alessandro",
+   "name_full": "Eta' romana > Tarda Eta' imperiale > Eta' severiana > Severo Alessandro",
+   "from_year": 222,
+   "to_year": 235,
+   "depth": 3
+  },
+  {
+   "id": 80,
+   "name": "Non determinato",
+   "name_full": "Non determinato",
+   "from_year": -3000000,
+   "to_year": 5000,
+   "depth": 0
+  }
+ ],
+ "comuni_sigla": {
+  "Aulla": "MS",
+  "Bagnone": "MS",
+  "Carrara": "MS",
+  "Casola in Lunigiana": "MS",
+  "Comano": "MS",
+  "Filattiera": "MS",
+  "Fivizzano": "MS",
+  "Fosdinovo": "MS",
+  "Licciana Nardi": "MS",
+  "Massa": "MS",
+  "Montignoso": "MS",
+  "Mulazzo": "MS",
+  "Villa Collemandina": "LU",
+  "Fabbriche di Vergemoli": "LU",
+  "Sillano Giuncugnano": "LU",
+  "Agliana": "PT",
+  "Buggiano": "PT",
+  "Lamporecchio": "PT",
+  "Larciano": "PT",
+  "Marliana": "PT",
+  "Massa e Cozzile": "PT",
+  "Monsummano Terme": "PT",
+  "Montale": "PT",
+  "Montecatini-Terme": "PT",
+  "Pescia": "PT",
+  "Pieve a Nievole": "PT",
+  "Pistoia": "PT",
+  "Ponte Buggianese": "PT",
+  "Quarrata": "PT",
+  "Sambuca Pistoiese": "PT",
+  "Serravalle Pistoiese": "PT",
+  "Uzzano": "PT",
+  "Chiesina Uzzanese": "PT",
+  "Abetone Cutigliano": "PT",
+  "San Marcello Piteglio": "PT",
+  "Bagno a Ripoli": "FI",
+  "Barberino di Mugello": "FI",
+  "Borgo San Lorenzo": "FI",
+  "Calenzano": "FI",
+  "Campi Bisenzio": "FI",
+  "Capraia e Limite": "FI",
+  "Castelfiorentino": "FI",
+  "Cerreto Guidi": "FI",
+  "Certaldo": "FI",
+  "Dicomano": "FI",
+  "Empoli": "FI",
+  "Podenzana": "MS",
+  "Pontremoli": "MS",
+  "Tresana": "MS",
+  "Villafranca in Lunigiana": "MS",
+  "Zeri": "MS",
+  "Altopascio": "LU",
+  "Bagni di Lucca": "LU",
+  "Barga": "LU",
+  "Borgo a Mozzano": "LU",
+  "Camaiore": "LU",
+  "Camporgiano": "LU",
+  "Capannori": "LU",
+  "Careggine": "LU",
+  "Castelnuovo di Garfagnana": "LU",
+  "Castiglione di Garfagnana": "LU",
+  "Coreglia Antelminelli": "LU",
+  "Forte dei Marmi": "LU",
+  "Fosciandora": "LU",
+  "Gallicano": "LU",
+  "Lucca": "LU",
+  "Massarosa": "LU",
+  "Minucciano": "LU",
+  "Molazzana": "LU",
+  "Montecarlo": "LU",
+  "Pescaglia": "LU",
+  "Piazza al Serchio": "LU",
+  "Pietrasanta": "LU",
+  "Pieve Fosciana": "LU",
+  "Porcari": "LU",
+  "San Romano in Garfagnana": "LU",
+  "Seravezza": "LU",
+  "Stazzema": "LU",
+  "Vagli Sotto": "LU",
+  "Viareggio": "LU",
+  "Villa Basilica": "LU",
+  "Fiesole": "FI",
+  "Firenze": "FI",
+  "Firenzuola": "FI",
+  "Fucecchio": "FI",
+  "Gambassi Terme": "FI",
+  "Greve in Chianti": "FI",
+  "Impruneta": "FI",
+  "Lastra a Signa": "FI",
+  "Londa": "FI",
+  "Marradi": "FI",
+  "Montaione": "FI",
+  "Montelupo Fiorentino": "FI",
+  "Montespertoli": "FI",
+  "Palazzuolo sul Senio": "FI",
+  "Pelago": "FI",
+  "Pontassieve": "FI",
+  "Reggello": "FI",
+  "Rignano sull'Arno": "FI",
+  "Rufina": "FI",
+  "San Casciano in Val di Pesa": "FI",
+  "San Godenzo": "FI",
+  "Scandicci": "FI",
+  "Sesto Fiorentino": "FI",
+  "Signa": "FI",
+  "Vaglia": "FI",
+  "Vicchio": "FI",
+  "Vinci": "FI",
+  "Figline e Incisa Valdarno": "FI",
+  "Scarperia e San Piero": "FI",
+  "Barberino Tavarnelle": "FI",
+  "Bibbona": "LI",
+  "Campiglia Marittima": "LI",
+  "Campo nell'Elba": "LI",
+  "Capoliveri": "LI",
+  "Capraia Isola": "LI",
+  "Castagneto Carducci": "LI",
+  "Cecina": "LI",
+  "Collesalvetti": "LI",
+  "Livorno": "LI",
+  "Marciana": "LI",
+  "Marciana Marina": "LI",
+  "Piombino": "LI",
+  "Porto Azzurro": "LI",
+  "Portoferraio": "LI",
+  "Rosignano Marittimo": "LI",
+  "San Vincenzo": "LI",
+  "Sassetta": "LI",
+  "Suvereto": "LI",
+  "Rio": "LI",
+  "Bientina": "PI",
+  "Buti": "PI",
+  "Calci": "PI",
+  "Calcinaia": "PI",
+  "Capannoli": "PI",
+  "Casale Marittimo": "PI",
+  "Cascina": "PI",
+  "Castelfranco di Sotto": "PI",
+  "Castellina Marittima": "PI",
+  "Castelnuovo di Val di Cecina": "PI",
+  "Chianni": "PI",
+  "Fauglia": "PI",
+  "Guardistallo": "PI",
+  "Lajatico": "PI",
+  "Montecatini Val di Cecina": "PI",
+  "Montescudaio": "PI",
+  "Monteverdi Marittimo": "PI",
+  "Montopoli in Val d'Arno": "PI",
+  "Orciano Pisano": "PI",
+  "Palaia": "PI",
+  "Peccioli": "PI",
+  "Pisa": "PI",
+  "Pomarance": "PI",
+  "Ponsacco": "PI",
+  "Pontedera": "PI",
+  "Riparbella": "PI",
+  "San Giuliano Terme": "PI",
+  "San Miniato": "PI",
+  "Santa Croce sull'Arno": "PI",
+  "Santa Luce": "PI",
+  "Santa Maria a Monte": "PI",
+  "Terricciola": "PI",
+  "Vecchiano": "PI",
+  "Vicopisano": "PI",
+  "Volterra": "PI",
+  "Casciana Terme Lari": "PI",
+  "Crespina Lorenzana": "PI",
+  "Anghiari": "AR",
+  "Arezzo": "AR",
+  "Badia Tedalda": "AR",
+  "Bibbiena": "AR",
+  "Bucine": "AR",
+  "Capolona": "AR",
+  "Caprese Michelangelo": "AR",
+  "Castel Focognano": "AR",
+  "Castel San Niccolò": "AR",
+  "Castiglion Fibocchi": "AR",
+  "Castiglion Fiorentino": "AR",
+  "Cavriglia": "AR",
+  "Chitignano": "AR",
+  "Chiusi della Verna": "AR",
+  "Civitella in Val di Chiana": "AR",
+  "Cortona": "AR",
+  "Foiano della Chiana": "AR",
+  "Loro Ciuffenna": "AR",
+  "Lucignano": "AR",
+  "Marciano della Chiana": "AR",
+  "Montemignaio": "AR",
+  "Monterchi": "AR",
+  "Monte San Savino": "AR",
+  "Montevarchi": "AR",
+  "Ortignano Raggiolo": "AR",
+  "Pieve Santo Stefano": "AR",
+  "Poppi": "AR",
+  "San Giovanni Valdarno": "AR",
+  "Sansepolcro": "AR",
+  "Sestino": "AR",
+  "Subbiano": "AR",
+  "Talla": "AR",
+  "Terranuova Bracciolini": "AR",
+  "Castelfranco Piandiscò": "AR",
+  "Pratovecchio Stia": "AR",
+  "Laterina Pergine Valdarno": "AR",
+  "Abbadia San Salvatore": "SI",
+  "Asciano": "SI",
+  "Buonconvento": "SI",
+  "Casole d'Elsa": "SI",
+  "Castellina in Chianti": "SI",
+  "Castelnuovo Berardenga": "SI",
+  "Castiglione d'Orcia": "SI",
+  "Cetona": "SI",
+  "Chianciano Terme": "SI",
+  "Chiusdino": "SI",
+  "Chiusi": "SI",
+  "Colle di Val d'Elsa": "SI",
+  "Gaiole in Chianti": "SI",
+  "Montepulciano": "SI",
+  "Monteriggioni": "SI",
+  "Monteroni d'Arbia": "SI",
+  "Monticiano": "SI",
+  "Murlo": "SI",
+  "Piancastagnaio": "SI",
+  "Pienza": "SI",
+  "Poggibonsi": "SI",
+  "Radda in Chianti": "SI",
+  "Radicofani": "SI",
+  "Radicondoli": "SI",
+  "Rapolano Terme": "SI",
+  "San Casciano dei Bagni": "SI",
+  "San Gimignano": "SI",
+  "San Quirico d'Orcia": "SI",
+  "Sarteano": "SI",
+  "Siena": "SI",
+  "Sinalunga": "SI",
+  "Sovicille": "SI",
+  "Torrita di Siena": "SI",
+  "Trequanda": "SI",
+  "Montalcino": "SI",
+  "Arcidosso": "GR",
+  "Campagnatico": "GR",
+  "Capalbio": "GR",
+  "Castel del Piano": "GR",
+  "Castell'Azzara": "GR",
+  "Castiglione della Pescaia": "GR",
+  "Cinigiano": "GR",
+  "Civitella Paganico": "GR",
+  "Follonica": "GR",
+  "Gavorrano": "GR",
+  "Grosseto": "GR",
+  "Isola del Giglio": "GR",
+  "Magliano in Toscana": "GR",
+  "Manciano": "GR",
+  "Massa Marittima": "GR",
+  "Monte Argentario": "GR",
+  "Montieri": "GR",
+  "Orbetello": "GR",
+  "Pitigliano": "GR",
+  "Roccalbegna": "GR",
+  "Roccastrada": "GR",
+  "Santa Fiora": "GR",
+  "Scansano": "GR",
+  "Scarlino": "GR",
+  "Seggiano": "GR",
+  "Sorano": "GR",
+  "Monterotondo Marittimo": "GR",
+  "Semproniano": "GR",
+  "Cantagallo": "PO",
+  "Carmignano": "PO",
+  "Montemurlo": "PO",
+  "Poggio a Caiano": "PO",
+  "Prato": "PO",
+  "Vaiano": "PO",
+  "Vernio": "PO"
+ },
+ "_meta": {
+  "generato_da": "extract_mapping.py",
+  "fonti": [
+   "mappatura_DSC_Interventi.xlsx",
+   "mappatura_MOSI_III_livelli.xlsx",
+   "STRUTTURA DATI E VOCABOLARI"
+  ]
+ },
+ "gna_vocabolari": {
+  "GPBB": [
+   "Carta Tecnica Comunale (CTC)",
+   "Carta Tecnica Regionale (CTR)",
+   "altro (specificare nelle note)",
+   "cartografia catastale WMS",
+   "cartografia catastale vettoriale",
+   "rilievo sul campo"
+  ],
+  "DSCT": [
+   "assistenza ai lavori",
+   "indagine geognostica/ geofisica/ geochimica",
+   "recupero occasionale/ segnalazione",
+   "ricognizione archeologica/ sopralluogo",
+   "scavo d'emergenza",
+   "scavo preventivo",
+   "scavo/ indagine programmata"
+  ],
+  "PVZ": [
+   "contesto periurbano",
+   "contesto rurale",
+   "contesto subacqueo",
+   "contesto suburbano",
+   "contesto territoriale",
+   "contesto urbano"
+  ],
+  "GPM": [
+   "posizionamento approssimato",
+   "posizionamento con rappresentazione simbolica",
+   "posizionamento esatto"
+  ],
+  "GPT": [
+   "dati da bibliografia/ cartografia storica/ fonti d'archivio",
+   "rilievo da cartografia con sopralluogo",
+   "rilievo da cartografia senza sopralluogo",
+   "rilievo da foto aerea con sopralluogo",
+   "rilievo da foto aerea senza sopralluogo",
+   "rilievo da satellite",
+   "rilievo tradizionale",
+   "rilievo tramite GPS",
+   "rilievo tramite punti di appoggio fiduciali o trigonometrici",
+   "stereofotogrammetria"
+  ],
+  "DSCEX": [
+   "negativo",
+   "positivo"
+  ],
+  "DSCM": [
+   "recupero",
+   "scavo non stratigrafico con documentazione",
+   "scavo per approfondimenti successivi",
+   "scavo stratigrafico",
+   "sterro"
+  ],
+  "VRRO": [
+   "0-10",
+   "10-20",
+   "100-200",
+   "20-50",
+   "200-500",
+   "50-100",
+   "500-1000",
+   ">1000"
+  ],
+  "VRRS": [
+   "rischio alto",
+   "rischio basso",
+   "rischio medio",
+   "rischio nullo"
+  ],
+  "AMA": [
+   "archeologia preventiva ex art. 25, c. 1 DLgs 50/2016",
+   "archeologia preventiva ex art. 25, c. 8 sgg. DLgs 50/2016",
+   "assistenza archeologica in corso d'opera",
+   "redazione ai sensi del DPCM 14 febbraio 2022",
+   "ricerche e scavi archeologici in concessione",
+   "ricognizione bibliografica e d'archivio",
+   "scavo archeologico di emergenza",
+   "scavo archeologico programmato MiBACT",
+   "studio/ ricerca"
+  ],
+  "DTR": [
+   "Ere geologiche",
+   "Età Altomedievale",
+   "Età Arcaica",
+   "Età Bassomedievale",
+   "Età Contemporanea",
+   "Età Medievale",
+   "Età Moderna",
+   "Età Pienomedievale",
+   "Età Romana",
+   "Età Romano imperiale",
+   "Età Romano repubblicana",
+   "Età Tardoantica",
+   "Età dei Metalli",
+   "Età del Bronzo",
+   "Età del Ferro",
+   "Età del Rame",
+   "Mesolitico",
+   "Neolitico",
+   "Paleolitico inferiore",
+   "Paleolitico medio",
+   "Paleolitico superiore",
+   "Prima età moderna",
+   "non determinabile",
+   "non rilevabile per assenza di tracce archeologiche"
+  ],
+  "OGM": [
+   "cartografia storica",
+   "dati bibliografici",
+   "dati di archivio",
+   "documentazione di indagini archeologiche",
+   "fonti orali",
+   "fotointerpretazione/foto restituzione",
+   "indagini geomorfologiche (carotaggi etc.)",
+   "prospezioni geofisiche",
+   "resti materiali visibili nell'area",
+   "ricognizione archeologica/survey",
+   "riprese da drone"
+  ],
+  "SSK": [
+   "Non validata",
+   "Validata"
+  ],
+  "OGD": [
+   "anomalia rilevata sul terreno",
+   "area a uso funerario",
+   "area ad uso agrario",
+   "area di materiale mobile",
+   "area priva di tracce archeologiche",
+   "elemento geomorfologico",
+   "elemento per la confinazione",
+   "elemento toponomastico",
+   "giacimento in cavità naturale",
+   "giacimento paleontologico",
+   "giacimento subacqueo",
+   "infrastruttura agraria",
+   "infrastruttura assistenziale",
+   "infrastruttura di consolidamento",
+   "infrastruttura di servizio",
+   "infrastruttura idrica",
+   "infrastruttura portuale",
+   "infrastruttura viaria",
+   "insediamento",
+   "luogo a uso pubblico",
+   "luogo commemorativo",
+   "luogo con deposizione di materiale",
+   "luogo con evidenze di frequentazione",
+   "luogo di attività produttiva",
+   "non indicato",
+   "ritrovamento sporadico",
+   "sito non identificato",
+   "sito pluristratificato",
+   "struttura abitativa",
+   "struttura di fortificazione",
+   "strutture per il culto"
+  ],
+  "OGB": [
+   "conservato in situ",
+   "dato non disponibile",
+   "non più esistente/delocalizzato"
+  ],
+  "CDGG": [
+   "condizione giuridica mista",
+   "dato non disponibile",
+   "detenzione Ente pubblico non territoriale",
+   "detenzione Ente pubblico territoriale",
+   "detenzione Ente religioso cattolico",
+   "detenzione Ente religioso non cattolico",
+   "detenzione Ente straniero in Italia",
+   "detenzione Stato",
+   "detenzione mista privata/ ecclesiastica",
+   "detenzione mista pubblica/ ecclesiastica",
+   "detenzione mista pubblica/ privata",
+   "detenzione persona giuridica senza scopo di lucro",
+   "detenzione privata",
+   "proprietà Ente pubblico non territoriale",
+   "proprietà Ente pubblico territoriale",
+   "proprietà Ente religioso cattolico",
+   "proprietà Ente religioso non cattolico",
+   "proprietà Ente straniero in Italia",
+   "proprietà Stato",
+   "proprietà mista privata/ecclesiastica",
+   "proprietà mista pubblica/ecclesiastica",
+   "proprietà mista pubblica/privata",
+   "proprietà persona giuridica senza scopo di lucro",
+   "proprietà privata"
+  ],
+  "VRPA": [
+   "buona",
+   "dato non disponibile",
+   "discreta",
+   "ottima",
+   "scarsa"
+  ],
+  "BPT": [
+   "dato non disponibile",
+   "no",
+   "sì"
+  ],
+  "NVCT": [
+   "D.Lgs. 42/2004",
+   "D.Lgs. 490/1999",
+   "L. 1089/1939",
+   "L. 1497/1939",
+   "L. 364/1909",
+   "L. 778/1922"
+  ]
+ },
+ "thesaurus_ogm": {
+  "1": "cartografia storica",
+  "2": "dati bibliografici",
+  "3": "dati di archivio",
+  "4": "documentazione di indagini archeologiche",
+  "5": "fonti orali",
+  "6": "fotointerpretazione/foto restituzione",
+  "7": "indagini geomorfologiche [carotaggi etc.]",
+  "8": "prospezioni geofisiche",
+  "9": "riprese da drone",
+  "10": "ricognizione archeologica-survey"
+ },
+ "thesaurus_ogd": {
+  "1": "area a uso funerario",
+  "2": "area di materiale mobile",
+  "3": "area priva di tracce archeologiche",
+  "4": "elemento toponomastico",
+  "5": "giacimento in cavità naturale",
+  "6": "giacimento paleontologico",
+  "7": "giacimento subacqueo",
+  "8": "infrastruttura agraria",
+  "9": "infrastruttura assistenziale",
+  "10": "infrastruttura di consolidamento",
+  "11": "infrastruttura di servizio",
+  "12": "infrastruttura idrica",
+  "13": "infrastruttura portuale",
+  "14": "infrastruttura viaria",
+  "15": "insediamento",
+  "16": "luogo a uso pubblico",
+  "17": "luogo commemorativo",
+  "18": "luogo con deposizione di materiale",
+  "19": "elemento per la confinazione",
+  "20": "ritrovamento sporadico",
+  "21": "luogo con evidenze di frequentazione",
+  "22": "luogo di attività produttiva",
+  "23": "sito non identificato",
+  "24": "sito pluristratificato",
+  "25": "struttura abitativa",
+  "26": "struttura di fortificazione",
+  "27": "strutture per il culto",
+  "28": "anomalia rilevata sul terreno",
+  "29": "elemento geomorfologico",
+  "30": "area ad uso agrario",
+  "31": "non indicato"
+ },
+ "II_livello_alias": {
+  "Infrastruttura di immagazzinamento": "Infrastrutture di immagazzinamento"
+ },
+ "II_livello_to_OGD_estensioni": {
+  "Area defunzionalizzata": "non indicato"
+ },
+ "gna_lunghezze": {
+  "dscv": 250,
+  "dsch": 100,
+  "dscd": 100,
+  "dscm": 100,
+  "dsct": 100,
+  "dscf": 250,
+  "dscr": 250,
+  "dsca": 250,
+  "nsc": 5000,
+  "pvcr": 25,
+  "pvcp": 2,
+  "pvcc": 100,
+  "pvcl": 100,
+  "pvci": 250,
+  "pvcv": 2000,
+  "pvz": 100,
+  "gpt": 100,
+  "gpm": 100,
+  "gpbb": 500,
+  "gen": 2000,
+  "mtam": 12,
+  "mtar": 12,
+  "mtas": 2000,
+  "bibr": 100,
+  "bibm": 1000,
+  "cmpd": 4,
+  "cmpn": 250,
+  "rsr": 250,
+  "fur": 250,
+  "oss": 5000,
+  "vrrp": 150,
+  "id": 10,
+  "ama": 50,
+  "accc": 150,
+  "accs": 2000,
+  "ogd": 150,
+  "ogt": 100,
+  "ogn": 250,
+  "ogb": 50,
+  "ogz": 500,
+  "dbo_id": 100,
+  "cco": 40,
+  "cce": 40,
+  "cbc": 40,
+  "lcr": 25,
+  "lcp": 2,
+  "lcc": 100,
+  "lci": 250,
+  "lcv": 2000,
+  "pvl": 250,
+  "gel": 100,
+  "acba": 25,
+  "acbs": 2000,
+  "mtax": 12,
+  "des": 10000,
+  "ogm": 250,
+  "matp": 2,
+  "matn": 2000,
+  "dtr": 250,
+  "dtsi": 50,
+  "dtsv": 4,
+  "dtsf": 50,
+  "dtsl": 4,
+  "dtt": 2000,
+  "cdgg": 250,
+  "bpt": 25,
+  "stue": 250,
+  "stut": 250,
+  "stus": 2000,
+  "nvct": 25,
+  "nvcm": 50,
+  "nvce": 10,
+  "nvcp": 500,
+  "nvcn": 2000,
+  "foit": 100,
+  "foir": 100,
+  "foia": 100,
+  "foiq": 100,
+  "foio": 100,
+  "foif": 100,
+  "foin": 5000,
+  "doz": 500,
+  "cma": 4,
+  "cmc": 250,
+  "cmr": 250,
+  "cml": 200,
+  "adp": 1,
+  "gna": 100,
+  "dcma": 250,
+  "dcme": 250,
+  "dcmr": 100,
+  "dcmm": 500,
+  "dcml": 15,
+  "dcmw": 500,
+  "dcmt": 1000,
+  "dcmk": 250,
+  "vrpi": 10000,
+  "vrpa": 25,
+  "vrpv": 5000,
+  "vrps": 25,
+  "vrpn": 2000,
+  "vrro": 2000,
+  "vrrr": 5000,
+  "vrrs": 25,
+  "vrrn": 2000
+ },
+ "gna_schema": {
+  "DSC": [
+   {
+    "campo": "DSCEX",
+    "obbligatorio": true,
+    "caratteri": null
+   },
+   {
+    "campo": "MATS",
+    "obbligatorio": false,
+    "caratteri": null
+   },
+   {
+    "campo": "DSCV",
+    "obbligatorio": true,
+    "caratteri": 250
+   },
+   {
+    "campo": "DSCH",
+    "obbligatorio": true,
+    "caratteri": 100
+   },
+   {
+    "campo": "DSCD",
+    "obbligatorio": true,
+    "caratteri": 100
+   },
+   {
+    "campo": "DSCM",
+    "obbligatorio": true,
+    "caratteri": 100
+   },
+   {
+    "campo": "DSCT",
+    "obbligatorio": false,
+    "caratteri": 100
+   },
+   {
+    "campo": "DSCF",
+    "obbligatorio": false,
+    "caratteri": 250
+   },
+   {
+    "campo": "DSCR",
+    "obbligatorio": false,
+    "caratteri": 250
+   },
+   {
+    "campo": "DSCA",
+    "obbligatorio": false,
+    "caratteri": 250
+   },
+   {
+    "campo": "NSC",
+    "obbligatorio": false,
+    "caratteri": 5000
+   },
+   {
+    "campo": "PVCR",
+    "obbligatorio": true,
+    "caratteri": 25
+   },
+   {
+    "campo": "PVCP",
+    "obbligatorio": true,
+    "caratteri": 2
+   },
+   {
+    "campo": "PVCC",
+    "obbligatorio": true,
+    "caratteri": 100
+   },
+   {
+    "campo": "PVCL",
+    "obbligatorio": false,
+    "caratteri": 100
+   },
+   {
+    "campo": "PVCI",
+    "obbligatorio": false,
+    "caratteri": 250
+   },
+   {
+    "campo": "PVCV",
+    "obbligatorio": false,
+    "caratteri": 2000
+   },
+   {
+    "campo": "PVZ",
+    "obbligatorio": false,
+    "caratteri": 100
+   },
+   {
+    "campo": "GPT",
+    "obbligatorio": true,
+    "caratteri": 100
+   },
+   {
+    "campo": "GPM",
+    "obbligatorio": true,
+    "caratteri": 100
+   },
+   {
+    "campo": "GPBB",
+    "obbligatorio": true,
+    "caratteri": 500
+   },
+   {
+    "campo": "GEN",
+    "obbligatorio": false,
+    "caratteri": 2000
+   },
+   {
+    "campo": "MTAM",
+    "obbligatorio": false,
+    "caratteri": 12
+   },
+   {
+    "campo": "MTAR",
+    "obbligatorio": false,
+    "caratteri": 12
+   },
+   {
+    "campo": "MTAS",
+    "obbligatorio": false,
+    "caratteri": 2000
+   },
+   {
+    "campo": "BIBR",
+    "obbligatorio": false,
+    "caratteri": 100
+   },
+   {
+    "campo": "BIBM",
+    "obbligatorio": false,
+    "caratteri": 1000
+   },
+   {
+    "campo": "CMPD",
+    "obbligatorio": true,
+    "caratteri": 4
+   },
+   {
+    "campo": "CMPN",
+    "obbligatorio": true,
+    "caratteri": 250
+   },
+   {
+    "campo": "RSR",
+    "obbligatorio": true,
+    "caratteri": 250
+   },
+   {
+    "campo": "FUR",
+    "obbligatorio": true,
+    "caratteri": 250
+   },
+   {
+    "campo": "OSS",
+    "obbligatorio": false,
+    "caratteri": 5000
+   }
+  ],
+  "MOSI": [
+   {
+    "campo": "gid",
+    "obbligatorio": true,
+    "caratteri": null
+   },
+   {
+    "campo": "VRRP",
+    "obbligatorio": true,
+    "caratteri": 150
+   },
+   {
+    "campo": "ID",
+    "obbligatorio": true,
+    "caratteri": 10
+   },
+   {
+    "campo": "AMA",
+    "obbligatorio": true,
+    "caratteri": 50
+   },
+   {
+    "campo": "ACCC",
+    "obbligatorio": true,
+    "caratteri": 150
+   },
+   {
+    "campo": "ACCS",
+    "obbligatorio": false,
+    "caratteri": 2000
+   },
+   {
+    "campo": "OGD",
+    "obbligatorio": true,
+    "caratteri": 150
+   },
+   {
+    "campo": "OGT",
+    "obbligatorio": false,
+    "caratteri": 100
+   },
+   {
+    "campo": "OGN",
+    "obbligatorio": true,
+    "caratteri": 250
+   },
+   {
+    "campo": "OGB",
+    "obbligatorio": true,
+    "caratteri": 50
+   },
+   {
+    "campo": "OGZ",
+    "obbligatorio": false,
+    "caratteri": 500
+   },
+   {
+    "campo": "DBO",
+    "obbligatorio": false,
+    "caratteri": null
+   },
+   {
+    "campo": "DBO_ID",
+    "obbligatorio": false,
+    "caratteri": 100
+   },
+   {
+    "campo": "CCO",
+    "obbligatorio": false,
+    "caratteri": 40
+   },
+   {
+    "campo": "CCE",
+    "obbligatorio": false,
+    "caratteri": 40
+   },
+   {
+    "campo": "CBC",
+    "obbligatorio": false,
+    "caratteri": 40
+   },
+   {
+    "campo": "LCR",
+    "obbligatorio": true,
+    "caratteri": 25
+   },
+   {
+    "campo": "LCP",
+    "obbligatorio": true,
+    "caratteri": 2
+   },
+   {
+    "campo": "LCC",
+    "obbligatorio": true,
+    "caratteri": 100
+   },
+   {
+    "campo": "LCI",
+    "obbligatorio": false,
+    "caratteri": 250
+   },
+   {
+    "campo": "LCV",
+    "obbligatorio": false,
+    "caratteri": 2000
+   },
+   {
+    "campo": "PVL",
+    "obbligatorio": false,
+    "caratteri": 250
+   },
+   {
+    "campo": "PVZ",
+    "obbligatorio": false,
+    "caratteri": 100
+   },
+   {
+    "campo": "GEL",
+    "obbligatorio": true,
+    "caratteri": 100
+   },
+   {
+    "campo": "GPT",
+    "obbligatorio": true,
+    "caratteri": 100
+   },
+   {
+    "campo": "GPM",
+    "obbligatorio": true,
+    "caratteri": 100
+   },
+   {
+    "campo": "GPBB",
+    "obbligatorio": true,
+    "caratteri": 500
+   },
+   {
+    "campo": "GEN",
+    "obbligatorio": false,
+    "caratteri": 2000
+   },
+   {
+    "campo": "ACBA",
+    "obbligatorio": false,
+    "caratteri": 25
+   },
+   {
+    "campo": "ACBS",
+    "obbligatorio": false,
+    "caratteri": 2000
+   },
+   {
+    "campo": "MTAM",
+    "obbligatorio": false,
+    "caratteri": 12
+   },
+   {
+    "campo": "MTAX",
+    "obbligatorio": false,
+    "caratteri": 12
+   },
+   {
+    "campo": "MTAR",
+    "obbligatorio": false,
+    "caratteri": 12
+   },
+   {
+    "campo": "MTAS",
+    "obbligatorio": false,
+    "caratteri": 2000
+   },
+   {
+    "campo": "DES",
+    "obbligatorio": true,
+    "caratteri": 10000
+   },
+   {
+    "campo": "OGM",
+    "obbligatorio": true,
+    "caratteri": 250
+   },
+   {
+    "campo": "MATP",
+    "obbligatorio": false,
+    "caratteri": 2
+   },
+   {
+    "campo": "MATN",
+    "obbligatorio": false,
+    "caratteri": 2000
+   },
+   {
+    "campo": "DTR",
+    "obbligatorio": false,
+    "caratteri": 250
+   },
+   {
+    "campo": "DTSI",
+    "obbligatorio": true,
+    "caratteri": 50
+   },
+   {
+    "campo": "DTSV",
+    "obbligatorio": false,
+    "caratteri": 4
+   },
+   {
+    "campo": "DTSF",
+    "obbligatorio": true,
+    "caratteri": 50
+   },
+   {
+    "campo": "DTSL",
+    "obbligatorio": false,
+    "caratteri": 4
+   },
+   {
+    "campo": "DTT",
+    "obbligatorio": false,
+    "caratteri": 2000
+   },
+   {
+    "campo": "CDGG",
+    "obbligatorio": true,
+    "caratteri": 250
+   },
+   {
+    "campo": "BPT",
+    "obbligatorio": true,
+    "caratteri": 25
+   },
+   {
+    "campo": "STUE",
+    "obbligatorio": false,
+    "caratteri": 250
+   },
+   {
+    "campo": "STUT",
+    "obbligatorio": false,
+    "caratteri": 250
+   },
+   {
+    "campo": "STUS",
+    "obbligatorio": false,
+    "caratteri": 2000
+   },
+   {
+    "campo": "NVCT",
+    "obbligatorio": true,
+    "caratteri": 25
+   },
+   {
+    "campo": "NVCM",
+    "obbligatorio": false,
+    "caratteri": 50
+   },
+   {
+    "campo": "NVCE",
+    "obbligatorio": false,
+    "caratteri": 10
+   },
+   {
+    "campo": "NVCP",
+    "obbligatorio": false,
+    "caratteri": 500
+   },
+   {
+    "campo": "NVCN",
+    "obbligatorio": false,
+    "caratteri": 2000
+   },
+   {
+    "campo": "FOIT",
+    "obbligatorio": false,
+    "caratteri": 100
+   },
+   {
+    "campo": "FOIR",
+    "obbligatorio": false,
+    "caratteri": 100
+   },
+   {
+    "campo": "FOIA",
+    "obbligatorio": false,
+    "caratteri": 100
+   },
+   {
+    "campo": "FOIQ",
+    "obbligatorio": false,
+    "caratteri": 100
+   },
+   {
+    "campo": "FOIO",
+    "obbligatorio": false,
+    "caratteri": 100
+   },
+   {
+    "campo": "FOIF",
+    "obbligatorio": false,
+    "caratteri": 100
+   },
+   {
+    "campo": "FOIN",
+    "obbligatorio": false,
+    "caratteri": 5000
+   },
+   {
+    "campo": "BIBR",
+    "obbligatorio": false,
+    "caratteri": 100
+   },
+   {
+    "campo": "BIBM",
+    "obbligatorio": false,
+    "caratteri": 1000
+   },
+   {
+    "campo": "DOZ",
+    "obbligatorio": false,
+    "caratteri": 500
+   },
+   {
+    "campo": "FUR",
+    "obbligatorio": true,
+    "caratteri": 250
+   },
+   {
+    "campo": "CMA",
+    "obbligatorio": true,
+    "caratteri": 4
+   },
+   {
+    "campo": "CMC",
+    "obbligatorio": true,
+    "caratteri": 250
+   },
+   {
+    "campo": "CMR",
+    "obbligatorio": true,
+    "caratteri": 250
+   },
+   {
+    "campo": "CML",
+    "obbligatorio": false,
+    "caratteri": 200
+   },
+   {
+    "campo": "ADP",
+    "obbligatorio": true,
+    "caratteri": 1
+   },
+   {
+    "campo": "GNA",
+    "obbligatorio": false,
+    "caratteri": 100
+   },
+   {
+    "campo": "SSK",
+    "obbligatorio": true,
+    "caratteri": null
+   },
+   {
+    "campo": "DCMA",
+    "obbligatorio": false,
+    "caratteri": 250
+   },
+   {
+    "campo": "DCME",
+    "obbligatorio": false,
+    "caratteri": 250
+   },
+   {
+    "campo": "DCMR",
+    "obbligatorio": false,
+    "caratteri": 100
+   },
+   {
+    "campo": "DCMM",
+    "obbligatorio": false,
+    "caratteri": 500
+   },
+   {
+    "campo": "DCML",
+    "obbligatorio": false,
+    "caratteri": 15
+   },
+   {
+    "campo": "DCMW",
+    "obbligatorio": false,
+    "caratteri": 500
+   },
+   {
+    "campo": "DCMT",
+    "obbligatorio": false,
+    "caratteri": 1000
+   },
+   {
+    "campo": "DCMK",
+    "obbligatorio": true,
+    "caratteri": 250
+   },
+   {
+    "campo": "VRPI",
+    "obbligatorio": false,
+    "caratteri": 10000
+   },
+   {
+    "campo": "VRPA",
+    "obbligatorio": true,
+    "caratteri": 25
+   },
+   {
+    "campo": "VRPV",
+    "obbligatorio": false,
+    "caratteri": 5000
+   },
+   {
+    "campo": "VRPS",
+    "obbligatorio": false,
+    "caratteri": 25
+   },
+   {
+    "campo": "VRPN",
+    "obbligatorio": false,
+    "caratteri": 2000
+   },
+   {
+    "campo": "VRRO",
+    "obbligatorio": true,
+    "caratteri": 2000
+   },
+   {
+    "campo": "VRRR",
+    "obbligatorio": false,
+    "caratteri": 5000
+   },
+   {
+    "campo": "VRRS",
+    "obbligatorio": true,
+    "caratteri": 25
+   },
+   {
+    "campo": "VRRN",
+    "obbligatorio": false,
+    "caratteri": 2000
+   }
+  ]
+ },
+ "campi_con_sorgente": {
+  "DSC": [
+   "BIBM",
+   "CMPD",
+   "CMPN",
+   "DSCD",
+   "DSCEX",
+   "DSCH",
+   "DSCM",
+   "DSCT",
+   "DSCV",
+   "FUR",
+   "GPBB",
+   "GPM",
+   "GPT",
+   "MTAR",
+   "NSC",
+   "PVCC",
+   "PVCI",
+   "PVCL",
+   "PVCP",
+   "PVCR",
+   "RSR"
+  ],
+  "MOSI": [
+   "ACCC",
+   "ADP",
+   "AMA",
+   "BIBM",
+   "BPT",
+   "CDGG",
+   "CMA",
+   "CMC",
+   "CMR",
+   "DES",
+   "DTR",
+   "DTSF",
+   "DTSI",
+   "FUR",
+   "GEL",
+   "GPBB",
+   "GPM",
+   "GPT",
+   "ID",
+   "LCC",
+   "LCP",
+   "LCR",
+   "MTAM",
+   "MTAR",
+   "OGB",
+   "OGD",
+   "OGM",
+   "OGN",
+   "SSK",
+   "VRRP"
+  ]
+ },
+ "magoh_schema": {
+  "INTERVENTO": [
+   "idscheda",
+   "id",
+   "ubicazione",
+   "indirizzo",
+   "sigla",
+   "data_intervento",
+   "anno",
+   "durata_intervento",
+   "esecutore",
+   "tipologia_intervento",
+   "numero_saggi",
+   "direzione_scientifica",
+   "estensione",
+   "profondita_massima",
+   "profondita_falda",
+   "preistoria",
+   "eta_protostorica",
+   "eta_etrusca",
+   "eta_romana",
+   "eta_tardo_antica",
+   "altomedioevo",
+   "bassomedievo",
+   "eta_moderna",
+   "eta_contemporanea",
+   "non_identificati",
+   "data_di_redazione",
+   "data_ultimo_aggiornamento",
+   "motivazione_aggiornamento",
+   "compilatore_scheda",
+   "collocazione_materiali",
+   "materiali_dispersi",
+   "note",
+   "fonte_informazione",
+   "numero_protocollo",
+   "data_protocollo",
+   "tipo_documento",
+   "funzionario_competente",
+   "titolo",
+   "contenuto_in",
+   "luogo_data_pubblicazione",
+   "autore",
+   "pagina",
+   "foto",
+   "matrix",
+   "id_mod",
+   "url_mod",
+   "geojson",
+   "centroid",
+   "area",
+   "perimeter",
+   "geom_edit",
+   "raster_wms",
+   "deleted",
+   "documentazione_grafica",
+   "documentazione_fotografica",
+   "documentazione_compilativa",
+   "id_comune",
+   "toponimo",
+   "numero_civico",
+   "geologico",
+   "ogd",
+   "ogm",
+   "published"
+  ],
+  "III_LIVELLI": [
+   "id",
+   "idperiodo",
+   "idscheda",
+   "i_livello",
+   "ii_livello",
+   "iii_livello",
+   "tipologia",
+   "cronologia_iniziale",
+   "cronologia_finale",
+   "datazione",
+   "datazione_finale",
+   "profondit",
+   "q_p",
+   "q_pr",
+   "q_et",
+   "q_rm",
+   "q_ta",
+   "q_am",
+   "q_bm",
+   "q_mo",
+   "q_c",
+   "q_nd",
+   "affidabilita",
+   "affidabilita_2",
+   "altri_id",
+   "id_i_livello",
+   "id_ii_livello",
+   "id_iii_livello",
+   "id_tipologia",
+   "geojson",
+   "geom_edit",
+   "id_affidabilita",
+   "crono_iniziale",
+   "crono_finale"
+  ],
+  "EVIDENZA": [
+   "id",
+   "idiii_livello",
+   "idintervento",
+   "id_sepoltura",
+   "idperiodo",
+   "iv_livello",
+   "cronologia",
+   "datazione_iniziale",
+   "datazione_finale",
+   "affidabilita",
+   "val_cron",
+   "quota",
+   "iv_liv_orig",
+   "dat_ini_orig",
+   "dat_fin_orig",
+   "note",
+   "geojson",
+   "centroid",
+   "area",
+   "perimeter",
+   "geom_edit",
+   "raster_wms",
+   "id_iv_livello",
+   "crono_iniziale",
+   "crono_finale",
+   "scheda_di_ritrovamento_iii_livello",
+   "crono_iniziale_testo",
+   "crono_finale_testo"
+  ]
+ }
+}

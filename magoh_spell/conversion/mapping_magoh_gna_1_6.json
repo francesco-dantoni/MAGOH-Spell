@@ -1,0 +1,119 @@
+{
+ "_nota": "Corrispondenze fra i valori MAGOH e i lemmi del Template GNA 1.6.0. Il codice non deve contenere catene di if/elif sui valori: tutto ciò che è una corrispondenza di vocabolario sta qui. Le chiavi sono confrontate senza distinzione di maiuscole, accenti e spazi.",
+ "_versione": "1.1",
+ "FNTP": {
+  "_nota": "Fonte (obbligatorio nel MOSI 1.6). Si ricava da fonte_informazione e tipo_documento della scheda Intervento MAGOH. Le corrispondenze sono deliberatamente prudenti: dove il dato MAGOH non è univoco il campo resta vuoto e il validatore produce un avviso, invece di scegliere al posto dell'operatore.",
+  "da_fonte_informazione": {
+   "Edito": "dati bibliografici",
+   "Pisa - Università": "dati bibliografici",
+   "Firenze - SBAT": "dato di archivio",
+   "Pisa - SBAPSAE": "dato di archivio",
+   "SABAP - LU": "dato di archivio",
+   "Pisa Archivio di Stato - ASP": "dato di archivio",
+   "Archivio storico - Comune di Lucca": "dato di archivio"
+  },
+  "da_tipo_documento": {
+   "_nota": "Un documento di scavo redatto da chi ha condotto l'intervento è osservazione diretta; una comunicazione o una segnalazione no.",
+   "Relazione di scavo": "osservazione diretta",
+   "Relazione di missione": "osservazione diretta",
+   "Relazione stato lavori": "osservazione diretta",
+   "Relazione indagine": "osservazione diretta",
+   "Giornale di scavo": "osservazione diretta"
+  },
+  "da_ogm": {
+   "_nota": "Ripiego finale: la modalità di individuazione del ritrovamento, quando le prime due non bastano.",
+   "dati bibliografici": "dati bibliografici",
+   "cartografia storica": "dati bibliografici",
+   "dati di archivio": "dato di archivio",
+   "ricognizione archeologica/sopralluogo": "osservazione diretta",
+   "prospezioni geofisiche": "osservazione diretta",
+   "indagini geomorfologiche (carotaggi etc.)": "osservazione diretta"
+  }
+ },
+ "OGM": {
+  "_nota": "Modalità di individuazione: dalle grafie MAGOH ai lemmi ufficiali del vocabolario OGM 1.6.0 (etichette identiche a quelle del Template, così lo scrittore trova sempre la chiave). «riprese da drone» non ha un lemma corrispondente: resta senza corrispondenza e il report lo segnala, la scelta spetta all'operatore. V1.19: le corrispondenze di «documentazione di indagini archeologiche», «ricognizione archeologica/survey» e «resti materiali visibili nell'area» sono quelle già previste in mapping_template_1_6.json, che però lo scrittore non applicava.",
+  "cartografia storica": "cartografia storica",
+  "dati bibliografici": "dati bibliografici",
+  "dati di archivio": "dati di archivio",
+  "documentazione di indagini archeologiche": "dati di archivio",
+  "documentazione di indagini archeologiche pregresse": "dati di archivio",
+  "fonti orali": "fonti orali/notizia",
+  "fonti orali/notizia": "fonti orali/notizia",
+  "fotointerpretazione/foto restituzione": "fotointerpretazione/fotorestituzione",
+  "fotointerpretazione-fotorestituzione": "fotointerpretazione/fotorestituzione",
+  "fotointerpretazione/fotorestituzione": "fotointerpretazione/fotorestituzione",
+  "indagini geomorfologiche (carotaggi etc.)": "indagini geomorfologiche (carotaggi etc.)",
+  "indagini geomorfologiche [carotaggi etc.]": "indagini geomorfologiche (carotaggi etc.)",
+  "prospezioni geofisiche": "prospezioni geofisiche",
+  "ricognizione archeologica/survey": "ricognizione archeologica/sopralluogo",
+  "ricognizione archeologica-survey": "ricognizione archeologica/sopralluogo",
+  "ricognizione archeologica/sopralluogo": "ricognizione archeologica/sopralluogo",
+  "resti materiali visibili nell'area": "ricognizione archeologica/sopralluogo",
+  "scavo archeologico": "scavo archeologico"
+ },
+ "OGB": {
+  "_nota": "Situazione attuale. MAGOH non registra lo stato di conservazione del ritrovamento, quindi il valore resta «dato non disponibile», che è il lemma previsto proprio per questo caso. Se in futuro una colonna MAGOH lo esprimerà, le corrispondenze vanno qui.",
+  "_predefinito": "dato non disponibile",
+  "conservato in situ": "conservato in situ",
+  "in situ": "conservato in situ",
+  "non più esistente": "non più esistente/delocalizzato",
+  "delocalizzato": "non più esistente/delocalizzato",
+  "non più esistente/delocalizzato": "non più esistente/delocalizzato"
+ },
+ "DSCT": {
+  "_nota": "Motivo dell'intervento, a partire da tipologia_intervento MAGOH. Il blocco struttura_ufficiale usa il vocabolario della struttura GNA verificata; handover_1_6 usa l'elenco dell'handover. Quale dei due sia attivo lo decide dsct_vocabolario_attivo in gna_vocabularies_1_6.json.",
+  "struttura_ufficiale": {
+   "Assistenza": "assistenza ai lavori",
+   "Carotaggio": "indagine geognostica/ geofisica/ geochimica",
+   "Indagine geofisica/geochimica": "indagine geognostica/ geofisica/ geochimica",
+   "Recupero occasionale": "recupero occasionale/ segnalazione",
+   "Scavo clandestino": "recupero occasionale/ segnalazione",
+   "Ricognizione": "ricognizione archeologica/ sopralluogo",
+   "Sopralluogo": "ricognizione archeologica/ sopralluogo",
+   "Scavo d'emergenza": "scavo d'emergenza",
+   "Scavo preventivo": "scavo preventivo",
+   "Scavo programmato": "scavo/ indagine programmata",
+   "Lettura elevati": "scavo/ indagine programmata"
+  },
+  "handover_1_6": {
+   "Assistenza": "assistenza archeologica in corso d'opera",
+   "Scavo d'emergenza": "scavo archeologico di emergenza",
+   "Scavo preventivo": "archeologia preventiva: saggi, sondaggi e scavi",
+   "Scavo programmato": "scavo archeologico programmato MiC",
+   "Ricognizione": "studio/ricerca",
+   "Sopralluogo": "studio/ricerca",
+   "Lettura elevati": "studio/ricerca"
+  },
+  "_ambigui": {
+   "_nota": "Tipologie MAGOH per cui nessuna delle due liste dà una corrispondenza sicura. Restano vuote e generano un avviso: il valore lo decide l'operatore nel Template GNA.",
+   "Telerilevamento": "il telerilevamento non ha un lemma corrispondente né in DSCT né nella lista dell'handover",
+   "Non specificato": "la tipologia non è determinata nel dato MAGOH",
+   "Carotaggio_handover": "nell'elenco dell'handover manca una voce per le indagini geognostiche"
+  }
+ },
+ "DSCM": {
+  "_nota": "Metodo dello scavo, dal vocabolario DSCM a cinque occorrenze.",
+  "Assistenza": "scavo stratigrafico",
+  "Carotaggio": "scavo stratigrafico",
+  "Indagine geofisica/geochimica": "scavo stratigrafico",
+  "Lettura elevati": "scavo stratigrafico",
+  "Ricognizione": "scavo stratigrafico",
+  "Scavo d'emergenza": "scavo stratigrafico",
+  "Scavo preventivo": "scavo stratigrafico",
+  "Scavo programmato": "scavo stratigrafico",
+  "Sopralluogo": "scavo stratigrafico",
+  "Telerilevamento": "scavo stratigrafico",
+  "Non specificato": "scavo stratigrafico",
+  "Recupero occasionale": "recupero",
+  "Scavo clandestino": "sterro"
+ },
+ "GPM": {
+  "_nota": "Metodo di posizionamento. Deriva dalla precisione di georeferenziazione, esattamente come vuole la tabella di mappatura ufficiale (PRECISO → posizionamento esatto, NON PRECISO/NON LOCALIZZABILE → posizionamento approssimato). Qui stanno le grafie che quella tabella non prevede ma che il dato usa davvero: nel layer di lavoro il valore è scritto \"Non Preciso\". Senza questa corrispondenza il campo resta vuoto e il valore predefinito della finestra dichiara \"posizionamento esatto\" anche per un intervento che non è stato possibile georeferenziare.",
+  "Preciso": "posizionamento esatto",
+  "Non Preciso": "posizionamento approssimato",
+  "Non preciso": "posizionamento approssimato",
+  "Non localizzabile": "posizionamento approssimato",
+  "Poco preciso": "posizionamento approssimato",
+  "_alternativa": "Se per i non georeferenziati si preferisce dichiarare una posizione simbolica invece che approssimata, sostituire \"posizionamento approssimato\" con \"posizionamento con rappresentazione simbolica\" (GPM 3)."
+ }
+}

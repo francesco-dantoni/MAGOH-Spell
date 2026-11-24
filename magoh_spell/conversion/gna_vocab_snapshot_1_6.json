@@ -1,0 +1,210 @@
+{
+  "_nota": "Copia locale dei vocabolari controllati del Template GNA 1.6.0, presi dalle stesse sorgenti che il progetto QGZ ufficiale dichiara (https://gna.cultura.gov.it/data/<SIGLA>.json). Serve a una cosa sola: permettere di costruire il pacchetto GNA senza connessione. Se c'è rete, il convertitore preferisce la sorgente ufficiale e usa questa copia solo come ripiego, segnalandolo. Le chiavi sono quelle che il Template scrive davvero nelle colonne ValueRelation: nei layer MOSI e nella DSC si scrive la CHIAVE, non l'etichetta (lo si vede dai valori predefiniti del Template: MOSI.GEL = 1, MOSI.GET = 3, DSC.GEL = 'localizzazione fisica' che invece non è un ValueRelation).",
+  "_versione": "1.6.0",
+  "_acquisito": "2026-09-02",
+  "_sorgente": "https://gna.cultura.gov.it/data/",
+
+  "DSCEX": {"1": "negativo", "2": "positivo"},
+
+  "DSCM": {
+    "1": "scavo stratigrafico",
+    "2": "scavo non stratigrafico con documentazione",
+    "3": "scavo per approfondimenti successivi",
+    "4": "sterro",
+    "5": "recupero"
+  },
+
+  "DSCT": {
+    "1": "assistenza ai lavori",
+    "2": "indagine geognostica/ geofisica/ geochimica",
+    "3": "recupero occasionale/ segnalazione",
+    "4": "ricognizione archeologica/ sopralluogo",
+    "5": "scavo d'emergenza",
+    "6": "scavo preventivo",
+    "7": "scavo/ indagine programmata",
+    "_nota": "Vocabolario proprio di DSCT. ATTENZIONE: nel Template 1.6.0 il campo DSCT del layer DSC_multipolygon NON è collegato a questo vocabolario ma ad AMA (Key = AMA_key). Il convertitore segue il Template, non questo elenco: vedi DSCT_via_AMA in mapping_template_1_6.json."
+  },
+
+  "AMA": {
+    "1": "archeologia preventiva: saggi, sondaggi e scavi",
+    "2": "assistenza archeologica in corso d'opera",
+    "3": "scavo archeologico di emergenza",
+    "4": "ricerche e scavi archeologici in concessione",
+    "5": "scavo archeologico programmato MiC",
+    "6": "ricognizione bibliografica e d'archivio",
+    "7": "archeologia preventiva: indagini preliminari o relazione di assoggettabilità",
+    "9": "studio/ricerca"
+  },
+
+  "CTG": {"1": "OPERA PUNTUALE", "2": "OPERA LINEARE - A RETE", "3": "INDAGINE TERRITORIALE"},
+
+  "GPT": {
+    "2": "rilievo da cartografia senza sopralluogo",
+    "3": "rilievo tramite GPS",
+    "4": "rilievo tramite punti di appoggio fiduciali o trigonometrici",
+    "5": "rilievo da foto aerea con sopralluogo",
+    "6": "rilievo da foto aerea senza sopralluogo",
+    "7": "rilievo da immagine satellitare",
+    "8": "rilievo diretto/strumentale sul campo",
+    "10": "dati da bibliografia/cartografia storica/fonti d'archivio",
+    "_nota": "La voce 1 (rilievo da cartografia con sopralluogo) non è più attiva nel 1.6.0."
+  },
+
+  "GPM": {
+    "1": "posizionamento esatto",
+    "2": "posizionamento approssimato",
+    "3": "posizionamento con rappresentazione simbolica"
+  },
+
+  "GPBB": {
+    "1": "Carta Tecnica Comunale (CTC)",
+    "2": "Carta Tecnica Regionale (CTR)",
+    "3": "cartografia catastale vettoriale",
+    "4": "cartografia catastale WMS",
+    "5": "rilievo sul campo",
+    "6": "altro (specificare nelle note)",
+    "7": "cartografia IGM 1:25.000"
+  },
+
+  "GEL": {
+    "1": "localizzazione fisica",
+    "2": "localizzazione fisica sommersa",
+    "3": "localizzazione fisica sovracomunale"
+  },
+
+  "GET": {
+    "1": "georeferenziazione puntuale",
+    "2": "georeferenziazione lineare",
+    "3": "georeferenziazione areale"
+  },
+
+  "OGD": {
+    "1": "area a uso funerario",
+    "2": "area di materiale mobile",
+    "3": "area priva di tracce archeologiche",
+    "4": "elemento toponomastico",
+    "5": "giacimento in cavità naturale",
+    "6": "giacimento paleontologico",
+    "7": "giacimento subacqueo",
+    "8": "infrastruttura agraria",
+    "9": "infrastruttura assistenziale",
+    "10": "infrastruttura di consolidamento",
+    "11": "infrastruttura di servizio",
+    "12": "infrastruttura idrica",
+    "13": "infrastruttura portuale",
+    "14": "infrastruttura viaria",
+    "15": "insediamento",
+    "16": "luogo a uso pubblico",
+    "17": "luogo commemorativo",
+    "18": "luogo con deposizione di materiale",
+    "19": "elemento per la confinazione",
+    "20": "ritrovamento sporadico",
+    "21": "luogo con evidenze di frequentazione",
+    "22": "luogo di attività produttiva",
+    "23": "sito non identificato",
+    "24": "sito pluristratificato",
+    "25": "struttura abitativa",
+    "26": "struttura di fortificazione",
+    "27": "strutture per il culto",
+    "28": "anomalia rilevata sul terreno",
+    "29": "elemento geomorfologico",
+    "30": "area ad uso agrario",
+    "99": "non indicato"
+  },
+
+  "OGM": {
+    "1": "cartografia storica",
+    "2": "dati bibliografici",
+    "3": "dati di archivio",
+    "4": "fonti orali/notizia",
+    "5": "fotointerpretazione/fotorestituzione",
+    "7": "indagini geomorfologiche (carotaggi etc.)",
+    "8": "prospezioni geofisiche",
+    "9": "ricognizione archeologica/sopralluogo",
+    "12": "scavo archeologico"
+  },
+
+  "OGB": {
+    "1": "conservato in situ",
+    "2": "non più esistente/delocalizzato",
+    "3": "dato non disponibile"
+  },
+
+  "CDGG": {
+    "1": "dato non disponibile",
+    "2": "pubblica (ente statale)",
+    "3": "pubblica (ente locale)",
+    "5": "privata",
+    "6": "religiosa"
+  },
+
+  "BPT": {"1": "sì", "2": "no", "3": "dato non disponibile"},
+
+  "NVCT": {
+    "1": "L. 364/1909",
+    "2": "L. 778/1922",
+    "3": "L. 1089/1939",
+    "4": "L. 1497/1939",
+    "5": "D.Lgs. 490/1999",
+    "6": "D.Lgs. 42/2004"
+  },
+
+  "SSK": {"1": "Validata", "2": "Non validata"},
+
+  "FNTP": {
+    "1": "osservazione diretta",
+    "2": "dati bibliografici",
+    "3": "dato di archivio",
+    "_nota": "Attenzione alla grafia ufficiale: \"dato di archivio\" al singolare, diversamente da OGM che ha \"dati di archivio\". Nel Template 1.6.0 FNTP è una ValueRelation su FNTP_key: dalla V1.20 si scrive la chiave."
+  },
+
+  "DTR": {
+    "_tipo": "etichetta",
+    "_nota": "In DTR il Template scrive l'etichetta (Key = DTR_value), non un numero. Gli anni servono a completare DTSI/DTSF quando il dato MAGOH non li ha.",
+    "voci": {
+      "Ere geologiche": [-2000000000, -2000000],
+      "Paleolitico inferiore": [-2000000, -200000],
+      "Paleolitico medio": [-300000, -35000],
+      "Paleolitico superiore": [-43000, -8000],
+      "Mesolitico": [-10000, -6000],
+      "Neolitico": [-7000, -3400],
+      "Età dei Metalli": [-3600, -900],
+      "Età del Rame": [-3600, -2200],
+      "Età del Bronzo": [-2300, -900],
+      "Età del Ferro": [-1000, -100],
+      "Età Arcaica": [-800, -509],
+      "Età Romana": [-753, 476],
+      "Età Romano repubblicana": [-508, -28],
+      "Età Romano imperiale": [-27, 476],
+      "Età Tardoantica": [300, 568],
+      "Età Medievale": [569, 1492],
+      "Età Altomedievale": [569, 1000],
+      "Età Pienomedievale": [1001, 1300],
+      "Età Bassomedievale": [1301, 1492],
+      "Prima età moderna": [1493, 1789],
+      "Età Moderna": [1493, 1799],
+      "Età Contemporanea": [1800, 2026],
+      "non determinabile": [null, null],
+      "non rilevabile per assenza di tracce archeologiche": [null, null]
+    }
+  },
+
+  "Regioni_tb": {
+    "1": "Piemonte", "2": "Valle d'Aosta", "3": "Lombardia", "4": "Trentino-Alto Adige",
+    "5": "Veneto", "6": "Friuli-Venezia Giulia", "7": "Liguria", "8": "Emilia-Romagna",
+    "9": "Toscana", "10": "Umbria", "11": "Marche", "12": "Lazio", "13": "Abruzzo",
+    "14": "Molise", "15": "Campania", "16": "Puglia", "17": "Basilicata", "18": "Calabria",
+    "19": "Sicilia", "20": "Sardegna"
+  },
+
+  "Province_tb": {
+    "_nota": "Copia parziale: le province della Toscana, l'unica regione presente nel dataset di riferimento. Per altre regioni il convertitore interroga la sorgente ufficiale e memorizza il risultato accanto al plugin.",
+    "_cod_reg": {"45": 9, "46": 9, "47": 9, "48": 9, "49": 9, "50": 9, "51": 9, "52": 9, "53": 9, "100": 9},
+    "voci": {"45": "MS", "46": "LU", "47": "PT", "48": "FI", "49": "LI", "50": "PI", "51": "AR", "52": "SI", "53": "GR", "100": "PO"}
+  },
+
+  "Comuni_tb": {
+    "_nota": "Copia minima: la tabella ufficiale dei comuni ha migliaia di righe e non viene incorporata. Qui stanno solo i comuni verificati uno per uno. Per gli altri il convertitore interroga la sorgente ufficiale (serve rete una volta sola: il risultato viene memorizzato accanto al plugin). Il codice è il pro_com ISTAT senza zeri iniziali.",
+    "voci": {"46017": {"nome": "Lucca", "cod_prov": 46, "cod_reg": 9}}
+  }
+}

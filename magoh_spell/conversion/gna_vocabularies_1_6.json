@@ -1,0 +1,178 @@
+{
+  "_nota": "Vocabolari controllati e regole del Template GNA 1.6.0. Questo file è la sola fonte autoritativa dei lemmi ammessi: il codice non deve contenere elenchi di valori. Per aggiornare il convertitore a una release successiva del Template si modifica questo file, non i moduli Python.",
+  "_versione_template": "1.6.0",
+  "_data_rilascio_template": "2026-07-01",
+  "_impostazioni": {
+    "_nota": "Le due voci qui sotto governano i due punti su cui la documentazione pubblica del GNA e l'handover non concordano. Cambiare il valore è sufficiente per ribaltare il comportamento: non serve toccare il codice.",
+    "dsc_campo_anno": "DSCY",
+    "_dsc_campo_anno_nota": "L'handover chiede di sostituire DSCD con DSCY (anno dell'intervento). Il wiki ufficiale del GNA, alla data di questa build, documenta ancora DSCD e non riporta DSCY. Qui si segue l'handover; per tornare al campo documentato basta scrivere \"DSCD\".",
+    "dsct_vocabolario_attivo": "struttura_ufficiale",
+    "_dsct_vocabolario_nota": "L'handover elenca per DSCT sette lemmi che coincidono esattamente con il vocabolario AMA della struttura GNA (ambito di applicazione), non con quello di DSCT (motivo dello scavo), che il wiki conferma avere sette occorrenze diverse. Finché la cosa non è verificata sul Template 1.6 reale, si usa il vocabolario della struttura ufficiale. Scrivere \"handover_1_6\" per adottare l'elenco dell'handover.",
+    "id_mosi_lunghezza_massima": 10,
+    "cdgg_obbligatorio": false,
+    "dsc_ammissibilita": {
+      "_nota": "Condizione perché una scheda Intervento diventi una DSC. Chi non la soddisfa non è un dato sbagliato: è un dato valido che non ha i requisiti per essere trasferito, e il validatore lo classifica INADMISSIBLE. I suoi ritrovamenti ed evidenze continuano a essere convertiti in MOSI: la regola riguarda la sola DSC. Per disattivare il filtro basta mettere \"attiva\": false o svuotare \"lemmi_ammessi\".",
+      "attiva": true,
+      "regola": "precisione_georeferenziazione",
+      "campi": [
+        "prec_georef",
+        "precisione_di_georeferenziazione",
+        "localizzazione_precisione_di_georeferenziazione"
+      ],
+      "_campi_nota": "Nomi possibili del campo, letti in quest'ordine: vale il primo valorizzato. Ne servono più di uno perché il layer di lavoro QGIS e la tabella magoh_scheda_intervento del GeoPackage non lo chiamano allo stesso modo: il .qml della scheda intervento categorizza su \"prec_georef\", mentre nel GeoPackage la colonna si chiama \"precisione_di_georeferenziazione\".",
+      "lemmi_ammessi": [
+        "Preciso"
+      ],
+      "_lemmi_nota": "Confronto esatto, non per sottostringa: \"Poco preciso\" e \"Preciso al civico\" NON passano, a meno di elencarli qui. Il confronto ignora spazi iniziali e finali e la differenza fra maiuscole e minuscole, e tratta il valore nullo di QGIS come vuoto.",
+      "messaggio_escluso": "precisione di georeferenziazione \"%(valore)s\": la DSC non viene prodotta (ammesso soltanto: %(ammessi)s)",
+      "messaggio_vuoto": "precisione di georeferenziazione non indicata: la DSC non viene prodotta (ammesso soltanto: %(ammessi)s)"
+    }
+  },
+  "DSCEX": [
+    "negativo",
+    "positivo"
+  ],
+  "DSCM": [
+    "scavo stratigrafico",
+    "scavo non stratigrafico con documentazione",
+    "scavo per approfondimenti successivi",
+    "sterro",
+    "recupero"
+  ],
+  "DSCT": {
+    "struttura_ufficiale": [
+      "assistenza ai lavori",
+      "indagine geognostica/ geofisica/ geochimica",
+      "recupero occasionale/ segnalazione",
+      "ricognizione archeologica/ sopralluogo",
+      "scavo d'emergenza",
+      "scavo preventivo",
+      "scavo/ indagine programmata"
+    ],
+    "handover_1_6": [
+      "archeologia preventiva: indagini preliminari o relazione di assoggettabilità",
+      "archeologia preventiva: saggi, sondaggi e scavi",
+      "assistenza archeologica in corso d'opera",
+      "ricerche e scavi archeologici in concessione",
+      "scavo archeologico di emergenza",
+      "scavo archeologico programmato MiC",
+      "studio/ricerca"
+    ]
+  },
+  "FNTP": [
+    "osservazione diretta",
+    "dati bibliografici",
+    "dato di archivio"
+  ],
+  "OGB": [
+    "conservato in situ",
+    "non più esistente/delocalizzato",
+    "dato non disponibile"
+  ],
+  "OGM": [
+    "cartografia storica",
+    "dati bibliografici",
+    "dati di archivio",
+    "fonti orali/notizia",
+    "fotointerpretazione/fotorestituzione",
+    "indagini geomorfologiche (carotaggi etc.)",
+    "prospezioni geofisiche",
+    "ricognizione archeologica/sopralluogo",
+    "scavo archeologico"
+  ],
+  "NVCT": [
+    "L. 364/1909",
+    "L. 778/1922",
+    "L. 1089/1939",
+    "L. 1497/1939",
+    "D.Lgs. 490/1999",
+    "D.Lgs. 42/2004"
+  ],
+  "GEL": [
+    "localizzazione fisica",
+    "localizzazione fisica sommersa",
+    "localizzazione fisica sovracomunale"
+  ],
+  "_schema_1_6": {
+    "_nota": "Differenze fra la struttura GNA usata finora (1.5) e il Template 1.6.0. Il convertitore parte dallo schema di mapping.json e applica queste operazioni in memoria: mapping.json non viene modificato, così la struttura precedente resta disponibile e verificabile. Ogni voce di 'aggiungi' indica il campo e dopo quale campo esistente inserirlo; 'rinomina' cambia il nome conservando la posizione.",
+    "DSC": {
+      "rinomina": {
+        "DSCD": "DSCY"
+      },
+      "_rinomina_nota": "DSCD (data dell'intervento) diventa DSCY (anno dell'intervento). Se in _impostazioni si riporta dsc_campo_anno a \"DSCD\" la rinomina non viene applicata.",
+      "aggiungi": [
+        {
+          "campo": "CPR_MOPR",
+          "dopo": "",
+          "nota": "codice del progetto, prima colonna della scheda nel Template 1.6; il convertitore lo lascia vuoto (DEFERRED_GNA)"
+        }
+      ]
+    },
+    "MOSI": {
+      "rinomina": {},
+      "aggiungi": [
+        {
+          "campo": "FNTP",
+          "dopo": "OGM",
+          "nota": "fonte del dato, nuovo obbligatorio del Template 1.6; si affianca a OGM (modalità di individuazione) perché le due informazioni si leggono insieme"
+        }
+      ]
+    }
+  },
+  "_campi_differiti": {
+    "_nota": "Campi obbligatori nel Template 1.6 che il convertitore non deve compilare: o dipendono dal Modulo di Progetto (MOPR) e nel Template si autocompilano dal codice progetto, o richiedono una scelta amministrativa che non sta nel dato MAGOH. Il validatore li classifica DEFERRED_GNA: non fanno fallire la conversione e non compaiono fra gli obbligatori mancanti, perché non sono un difetto del dato di partenza. Vanno valorizzati nel Template GNA ufficiale prima del conferimento.",
+    "DSC": {
+      "CPR_MOPR": "codice progetto: assegnato dal MOPR",
+      "DSCH": "identificativo univoco (UUID): lo genera il sistema GNA all'inserimento nel Template; si conserva solo se deriva da un authority file DSC/SIGECweb preesistente"
+    },
+    "MOSI": {
+      "VRRP": "codice progetto di riferimento: si autocompila dal MOPR",
+      "ACCC": "codice identificativo: si autocompila da codice progetto + ID",
+      "AMA": "ambito di applicazione: dipende dall'ambito del progetto, va ereditato o deciso nel MOPR",
+      "NVCT": "riferimento normativo: MAGOH non registra questa informazione e non è deducibile dagli altri campi. Va scelta nel Template GNA fra i lemmi ammessi, in base al procedimento amministrativo del progetto"
+    }
+  },
+  "_obbligatori": {
+    "_nota": "Obbligatori del Template 1.6 che il convertitore deve poter alimentare dal dato MAGOH. I campi differiti non compaiono qui: sono trattati a parte.",
+    "DSC": [
+      "DSCEX",
+      "DSCV",
+      "DSCM",
+      "DSCT",
+      "PVCR",
+      "PVCP",
+      "PVCC",
+      "GPT",
+      "GPM",
+      "GPBB",
+      "CMPD",
+      "CMPN",
+      "RSR",
+      "FUR"
+    ],
+    "MOSI": [
+      "ID",
+      "OGD",
+      "OGN",
+      "OGB",
+      "LCR",
+      "LCP",
+      "LCC",
+      "GEL",
+      "GPT",
+      "GPM",
+      "GPBB",
+      "FNTP",
+      "OGM",
+      "DES",
+      "DTSI",
+      "DTSF",
+      "NVCT",
+      "FUR",
+      "CMA",
+      "CMC",
+      "CMR",
+      "ADP"
+    ]
+  }
+}
