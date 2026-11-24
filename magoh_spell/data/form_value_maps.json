@@ -1,0 +1,194 @@
+{
+  "magoh_evidenza_archeologica": {
+    "val_cron": {
+      "1": "1",
+      "2": "2",
+      "3": "3"
+    }
+  },
+  "magoh_evidenza_archeologica_no_geom": {
+    "val_cron": {
+      "1": "1",
+      "2": "2",
+      "3": "3"
+    }
+  },
+  "magoh_ritrovamenti": {
+    "affidabilita_2": {
+      "1": "1",
+      "2": "2",
+      "3": "3",
+      "4": "4",
+      "5": "5",
+      "6": "6",
+      "7": "7",
+      "8": "8",
+      "9": "9",
+      "10": "10",
+      "11": "11",
+      "12": "12"
+    }
+  },
+  "magoh_scheda_intervento": {
+    "tipologia_intervento": {
+      "Assistenza": "Assistenza",
+      "Carotaggio": "Carotaggio",
+      "Indagine geofisica/geochimica": "Indagine geofisica/geochimica",
+      "Lettura elevati": "Lettura elevati",
+      "Recupero occasionale": "Recupero occasionale",
+      "Ricognizione": "Ricognizione",
+      "Scavo d'emergenza": "Scavo d'emergenza",
+      "Scavo preventivo": "Scavo preventivo",
+      "Scavo programmato": "Scavo programmato",
+      "Telerilevamento": "Telerilevamento",
+      "Sopralluogo": "Sopralluogo",
+      "Non specificato": "Non specificato",
+      "Scavo clandestino": "Scavo clandestino"
+    },
+    "preistoria": {
+      "si": "si",
+      "no": "no"
+    },
+    "eta_protostorica": {
+      "si": "si",
+      "no": "no"
+    },
+    "eta_etrusca": {
+      "si": "si",
+      "no": "no"
+    },
+    "eta_romana": {
+      "si": "si",
+      "no": "no"
+    },
+    "eta_tardo_antica": {
+      "si": "si",
+      "no": "no"
+    },
+    "altomedioevo": {
+      "si": "si",
+      "no": "no"
+    },
+    "bassomedievo": {
+      "si": "si",
+      "no": "no"
+    },
+    "eta_moderna": {
+      "si": "si",
+      "no": "no"
+    },
+    "eta_contemporanea": {
+      "si": "si",
+      "no": "no"
+    },
+    "non_identificati": {
+      "si": "si",
+      "no": "no"
+    },
+    "fonte_informazione": {
+      "Firenze - SBAT": "Firenze - SBAT",
+      "Pisa - SBAPSAE": "Pisa - SBAPSAE",
+      "Pisa - Università": "Pisa - Università",
+      "Edito": "Edito",
+      "Pisa Archivio di Stato - ASP": "Pisa Archivio di Stato - ASP",
+      "Pisa Archivio Opera Primaziale": "Pisa Archivio Opera Primaziale",
+      "SABAP - PILI": "SABAP - PILI",
+      "Pisa - Soprintendenza ai Monumenti e Gallerie": "Pisa - Soprintendenza ai Monumenti e Gallerie",
+      "Altro": "Altro",
+      "SABAP - LU": "SABAP - LU",
+      "SABAP-FI": "SABAP-FI"
+    },
+    "tipo_documento": {
+      "Relazione di missione": "Relazione di missione",
+      "Relazione di scavo": "Relazione di scavo",
+      "Relazione stato lavori": "Relazione stato lavori",
+      "Informativa/segnalazione": "Informativa/segnalazione",
+      "Verbale di ritiro": "Verbale di ritiro",
+      "Richiesta autorizzazione": "Richiesta autorizzazione",
+      "Comunicazione": "Comunicazione",
+      "Immagini fotografiche": "Immagini fotografiche",
+      "Scheda dati minimi": "Scheda dati minimi",
+      "Altro": "Altro",
+      "Relazione indagine": "Relazione indagine",
+      "Piante/Disegni": "Piante/Disegni"
+    },
+    "geologico": {
+      "si": "si",
+      "no": "no",
+      "dato non disponibile": "dato non disponibile"
+    },
+    "ogd": {
+      "area a uso funerario": "1",
+      "area di materiale mobile": "2",
+      "area priva di tracce archeologiche": "3",
+      "elemento toponomastico": "4",
+      "giacimento in cavit naturale": "5",
+      "giacimento paleontologico": "6",
+      "giacimento subacqueo": "7",
+      "infrastruttura agraria": "8",
+      "infrastruttura assistenziale": "9",
+      "infrastruttura di consolidamento": "10",
+      "infrastruttura di servizio": "11",
+      "infrastruttura idrica": "12",
+      "infrastruttura portuale": "13",
+      "infrastruttura viaria": "14",
+      "insediamento": "15",
+      "luogo ad uso pubblico": "16",
+      "luogo commemorativo": "17",
+      "luogo con deposizione di materiale": "18",
+      "luogo con elemento per la confinazione": "19",
+      "luogo con ritrovamento sporadico": "20",
+      "luogo con tracce di frequentazione": "21",
+      "luogo di attivit produttiva": "22",
+      "sito non identificato": "23",
+      "sito pluristratificato": "24",
+      "struttura abitativa": "25",
+      "struttura di fortificazione": "26",
+      "strutture per il culto": "27"
+    },
+    "ogm": {
+      "cartografia storica": "1",
+      "dati bibliografici": "2",
+      "dati di archivio": "3",
+      "documentazione di indagini archeologiche pregresse": "4",
+      "fonti orali": "5",
+      "fotointerpretazione-fotorestituzione": "6",
+      "indagini geomorfologiche [carotaggi etc.]": "7",
+      "prospezioni geofisiche": "8",
+      "riprese da drone": "9",
+      "ricognizione archeologica-survey": "10"
+    },
+    "sistema_di_rilevazione": {
+      "RD": "RD",
+      "GPS": "GPS",
+      "CAR": "CAR"
+    },
+    "tipo_cartografico_di_riferimento": {
+      "CTR": "CTR",
+      "OFC": "OFC",
+      "CAT": "CAT",
+      "IGM": "IGM",
+      "IIM": "IIM"
+    },
+    "scala_cartografica": {
+      "S0K": "S0K",
+      "S1K": "S1K",
+      "S2K": "S2K",
+      "S5K": "S5K",
+      "S10K": "S10K",
+      "S25K": "S25K",
+      "S50K": "S50K",
+      "S100K": "S100K"
+    },
+    "precisione_di_georeferenziazione": {
+      "Preciso": "Preciso",
+      "Non Preciso": "Non Preciso",
+      "Non localizzabile": "Non localizzabile"
+    },
+    "tag": {
+      "Documentazione compilativa": "Documentazione compilativa",
+      "Documentazione fotografica": "Documentazione fotografica",
+      "Documentazione grafica": "Documentazione grafica"
+    }
+  }
+}
