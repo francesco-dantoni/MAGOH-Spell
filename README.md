@@ -1,4 +1,12 @@
-# MAGOH Spell
+<p align="center">
+  <img src="magoh_spell/icons/hat_m.png" width="160" alt="Cappello di MAGOH Spell">
+</p>
+
+<h1 align="center">MAGOH Spell</h1>
+
+<p align="center">
+  <a href="https://github.com/francesco-dantoni/MAGOH-Spell/releases/latest"><img src="https://img.shields.io/badge/Scarica_il_plugin-MAGOH__Spell__V1.0.zip-1e78b4?style=for-the-badge" alt="Scarica il plugin: MAGOH_Spell_V1.0.zip"></a>
+</p>
 
 MAGOH Spell è un plugin QGIS per documentare e consultare interventi, ritrovamenti ed evidenze archeologiche secondo il modello MAGOH. Consente di lavorare in un GeoPackage locale, importare dati dalle API MAGOH, produrre schede PDF e convertire i dati nel Template GNA 1.6.0.
 
@@ -6,7 +14,9 @@ Sviluppato da **Francesco D’Antoni** e **Lorena Bravi**.
 
 ## Installazione in QGIS
 
-1. Apri la sezione **Releases** del repository e scarica l’allegato della versione 1.0 denominato `MAGOH_Spell_V1.0.zip`.
+> **Attenzione:** per installare il plugin usa lo ZIP della release, non il pulsante verde **Code → Download ZIP** né «Source code». Quegli archivi contengono il codice sorgente dell’intero repository e QGIS non li riconosce come plugin.
+
+1. Clicca **Scarica il plugin** qui sopra, oppure apri la sezione **Releases**, e scarica l’allegato `MAGOH_Spell_V1.0.zip`.
 2. In QGIS apri **Plugin → Gestisci e installa plugin → Installa da ZIP** e seleziona l’archivio ancora compresso.
 3. Attiva **MAGOH Spell** e apri **Plugin → MAGOH Spell**. Da **Progetto e dati** puoi creare un progetto o aprirne uno esistente.
 
