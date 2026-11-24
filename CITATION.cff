@@ -1,0 +1,21 @@
+cff-version: 1.2.0
+message: "Se usi MAGOH Spell nel tuo lavoro, citalo come indicato qui."
+title: "MAGOH Spell"
+type: software
+version: "1.0"
+date-released: "2026-11-24"
+license: GPL-2.0-or-later
+repository-code: "https://github.com/francesco-dantoni/MAGOH-Spell"
+url: "https://magoh.cfs.unipi.it/web/guest"
+abstract: "Plugin QGIS per la gestione, la consultazione e l'interoperabilità dei dati archeologici MAGOH e GNA."
+keywords:
+  - QGIS
+  - archaeology
+  - MAGOH
+  - GNA
+  - GeoPackage
+authors:
+  - family-names: "D'Antoni"
+    given-names: "Francesco"
+  - family-names: "Bravi"
+    given-names: "Lorena"
