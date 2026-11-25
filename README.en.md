@@ -12,7 +12,7 @@
 
 MAGOH Spell is a QGIS plugin for recording and consulting archaeological interventions, finds and evidence according to the MAGOH data model. It lets you work in a local GeoPackage, import data from the MAGOH APIs, produce PDF record sheets and convert the data into the GNA 1.6.0 Template of the Italian National Geoportal for Archaeology (Geoportale Nazionale per l’Archeologia).
 
-Developed by **Francesco D’Antoni** and **Lorena Bravi**.
+Developed by **Francesco D’Antoni** and **Lorena Bravi** with [MAPPA Lab](https://www.mappalab.eu/en/home-eng/), University of Pisa ([@mappaLab](https://github.com/mappaLab)).
 
 ## MAGOH and MAGOH Wiki
 
