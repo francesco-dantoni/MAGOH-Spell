@@ -6,4 +6,4 @@ Le schede create nel progetto ricevono un codice leggibile distinto per interven
 
 **Installazione** — Scarica l’allegato `MAGOH_Spell_V1.0.zip` e selezionalo in QGIS da **Plugin → Gestisci e installa plugin → Installa da ZIP**.
 
-Sviluppato da **Francesco D’Antoni** e **Lorena Bravi**. Il codice è distribuito con licenza GPL-2.0-or-later. Il template proviene dal [Geoportale Nazionale per l’Archeologia](https://gna.cultura.gov.it/download.html).
+Sviluppato da **Francesco D’Antoni** e **Lorena Bravi** con il MAPPA Lab dell’Università di Pisa. Il codice è distribuito con licenza GPL-2.0-or-later. Il template proviene dal [Geoportale Nazionale per l’Archeologia](https://gna.cultura.gov.it/download.html).
