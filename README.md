@@ -19,7 +19,7 @@ Sviluppato da **Francesco D’Antoni** e **Lorena Bravi** con il [MAPPA Lab](htt
 - **[MAGOH](https://magoh.cfs.unipi.it/web/guest)** (*Managing Archaeological data for a sustainable Governance of Heritage*) è il portale web per la consultazione dei dati archeologici sviluppato dal MAPPA Lab del Dipartimento di Civiltà e Forme del Sapere dell’Università di Pisa. MAGOH Spell ne importa le schede tramite le API.
 - **[MAGOH Wiki](https://magoh-wiki.cfs.unipi.it/index.html)** è la documentazione tecnica del modello dati: Scheda di Intervento, Ritrovamento (III livello), Evidenza archeologica (IV livello), sepolture e thesauri. Le maschere del plugin aprono direttamente la pagina della Wiki relativa alla scheda. È disponibile anche [in inglese](https://magoh-wiki.cfs.unipi.it/en/index.html).
 
-## Installazione in QGIS
+## Installazione in QGIS :)
 
 > **Attenzione:** per installare il plugin usa lo ZIP della release, non il pulsante verde **Code → Download ZIP** né «Source code». Quegli archivi contengono il codice sorgente dell’intero repository e QGIS non li riconosce come plugin.
 
