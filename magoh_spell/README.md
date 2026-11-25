@@ -1,39 +1,43 @@
-# MAGOH Spell 1.0
+# MAGOH Spell 1.0 – Guida funzionale
 
-Sviluppato da **Francesco D’Antoni** e **Lorena Bravi**.
+Sviluppato da **Francesco D’Antoni** e **Lorena Bravi** con il [MAPPA Lab](https://www.mappalab.eu/en/home-eng/) dell’Università di Pisa.
 
-Versione **1.0**. Plugin QGIS libero per lavorare con il modello dati archeologico MAGOH: archivi locali in GeoPackage, schede e relazioni, importazione in sola lettura dalle API MAGOH, esportazione PDF e conversione verso il Template GNA 1.6.0.
-
-Le maschere Intervento, Ritrovamento ed Evidenza archeologica (anche senza geometria) includono un pulsante che apre la relativa pagina della MAGOH Wiki. I vecchi riquadri Info delle maschere non vengono più mostrati.
+MAGOH Spell è un plugin QGIS libero per lavorare con il modello dati archeologico MAGOH: archivi locali in GeoPackage, schede e relazioni, importazione in sola lettura dalle API MAGOH, esportazione PDF e conversione verso il Template GNA 1.6.0. Le maschere Intervento, Ritrovamento ed Evidenza archeologica (anche senza geometria) hanno un pulsante che apre la pagina corrispondente della [MAGOH Wiki](https://magoh-wiki.cfs.unipi.it/index.html).
 
 ## Requisiti e installazione
 
-Compatibilità dichiarata: QGIS 3.34–4.x, Qt5 e Qt6. Collaudo eseguito su QGIS 3.34 (Qt5). L'intervallo dei metadati non equivale al collaudo di ogni patch o sistema operativo.
+Il plugin è compatibile con QGIS 3.34–4.x, con Qt5 e Qt6, ed è stato provato su QGIS 3.34 con Qt5.
 
-1. Salvare il progetto QGIS e fare un backup dell'archivio MAGOH in uso.
-2. Togliere i filtri temporanei con **Mostra tutti**.
-3. **Plugin → Gestisci e installa plugin → Installa da ZIP**, scegliere lo ZIP senza estrarlo.
-4. Riavviare QGIS per caricare la nuova versione e ripristinare correttamente gli editor di campo.
+1. Salva il progetto QGIS e fai una copia dell’archivio MAGOH in uso.
+2. Rimuovi i filtri temporanei con **Mostra tutti**.
+3. Apri **Plugin → Gestisci e installa plugin → Installa da ZIP** e scegli lo ZIP senza estrarlo.
+4. Riavvia QGIS, così la nuova versione e gli editor di campo vengono caricati correttamente.
 
-Se dopo l'installazione i cappelli non compaiono:
+Se dopo l’installazione i cappelli non compaiono:
 
-1. **Plugin → Gestisci e installa plugin → Installati**: MAGOH Spell deve avere la spunta attiva e versione 1.0.
-2. Se esiste il menu **Plugin → MAGOH Spell**, il plugin è attivo: scegliere **Mostra barra MAGOH Spell**, oppure clic destro sulle barre degli strumenti e spuntare «MAGOH Spell».
-3. Se un passaggio dell'avvio non è riuscito, la barra messaggi lo segnala; il dettaglio è in **Visualizza → Pannelli → Registro messaggi**, scheda «MAGOH Spell».
+1. In **Plugin → Gestisci e installa plugin → Installati** controlla che MAGOH Spell sia attivo e in versione 1.0.
+2. Se il menu **Plugin → MAGOH Spell** è presente, il plugin è attivo: scegli **Mostra barra MAGOH Spell** oppure, con un clic destro sulle barre degli strumenti, attiva «MAGOH Spell».
+3. Eventuali errori all’avvio compaiono nella barra dei messaggi; i dettagli sono in **Visualizza → Pannelli → Registro messaggi**, scheda «MAGOH Spell».
 
 ## I due pulsanti
 
-**Cappello azzurro, Progetto e dati.** Crea o apre un progetto MAGOH, aggiunge o collega un archivio al progetto corrente, mostra lo stato della sessione, cambia lingua IT/EN, apre Info MAGOH.
+**Cappello azzurro – Progetto e dati.** Crea o apre un progetto MAGOH, aggiunge o collega un archivio al progetto corrente, mostra lo stato della sessione, cambia la lingua (IT/EN) e apre Info MAGOH.
 
-**Cappello viola, Funzioni e tool.** Pannello agganciabile con tre schede:
+**Cappello viola – Funzioni e tool.** Apre un pannello agganciabile con tre schede:
 
-- **Gestione**: *Schede e attributi* (ricerca su tutti gli attributi, su un campo o per ID esatto; albero di schede e collegamenti; zoom e apertura della maschera) e *Cronologia e categorie* (anno singolo o intervallo, categorie, inclusione dei record non datati). Ricerca e cronologia sono alternative; **Mostra tutti** ripristina i filtri preesistenti. Nei campi a elenco (thesauri, cronologie, vocabolari GNA) la ricerca trova sia il codice salvato sia l'etichetta mostrata nella scheda, senza distinguere maiuscole, accenti e punteggiatura: «altomedievale» o «VIII sec. d.C.» trovano i record con `crono_iniziale` = 41. I risultati di Schede di Intervento, DSC e MOSI compaiono in due colonne, **ID scheda** e **Ubicazione**: l'ID è quello MAGOH di provenienza (`idscheda` per Interventi e DSC, ID del Ritrovamento per i MOSI); se manca, si vede il codice GNA o il `fid` tecnico preceduto dal nome del campo.
-- **Dati e conversione**: importazione dalle API MAGOH (Provincia obbligatoria, Comune e area facoltativi) e convertitore MAGOH → GNA.
-- **Esportazioni**: schede PDF (metodo stabile o Atlas) e backup del GeoPackage.
+- **Gestione.** *Schede e attributi*: ricerca in tutti gli attributi, in un singolo campo o per ID esatto; albero delle schede e dei collegamenti; zoom e apertura della maschera. *Cronologia e categorie*: anno singolo o intervallo, categorie, inclusione dei record non datati. Ricerca e filtro cronologico si usano in alternativa; **Mostra tutti** ripristina i filtri preesistenti.
+- **Dati e conversione.** Importazione dalle API MAGOH (Provincia obbligatoria, Comune e area facoltativi) e convertitore MAGOH → GNA.
+- **Esportazioni.** Schede PDF (metodo stabile o Atlas) e backup del GeoPackage.
 
-Gli stessi comandi principali sono nel menu **Plugin → MAGOH Spell**.
+Gli stessi comandi principali sono anche nel menu **Plugin → MAGOH Spell**.
 
-## Struttura di un progetto
+### Ricerca nei campi a elenco
+
+Nei campi a elenco (thesauri, cronologie, vocabolari GNA) la ricerca trova sia il codice salvato sia l’etichetta mostrata nella scheda, senza distinguere maiuscole, accenti e punteggiatura: «altomedievale» o «VIII sec. d.C.» trovano i record con `crono_iniziale` = 41.
+
+Per Schede di Intervento, DSC e MOSI i risultati sono mostrati in due colonne, **ID scheda** e **Ubicazione**. L’ID è quello MAGOH di provenienza (`idscheda` per Interventi e DSC, ID del Ritrovamento per i MOSI); se manca, compare il codice GNA o il `fid` tecnico, preceduto dal nome del campo.
+
+## Progetti e archivi
 
 | Cartella | Contenuto |
 |---|---|
@@ -42,34 +46,55 @@ Gli stessi comandi principali sono nel menu **Plugin → MAGOH Spell**.
 | `exports/gna/` | pacchetti generati con il Template GNA |
 | `backups/`, `attachments/` | copie di sicurezza e allegati |
 
-Un solo archivio MAGOH operativo per progetto QGIS. Il backup copia il GeoPackage salvato, non allegati o file `.qgz`: per archiviare un progetto in modo riproducibile conservare insieme `.qgz`, GeoPackage, allegati e risorse esterne.
+Ogni progetto QGIS usa un solo archivio MAGOH operativo. Il backup copia il GeoPackage salvato, ma non gli allegati né il file `.qgz`: per archiviare un progetto in modo completo conserva insieme `.qgz`, GeoPackage, allegati e risorse esterne.
 
-La cancellazione di un Intervento, al salvataggio, coinvolge i Ritrovamenti e le Evidenze collegati anche se nascosti dai filtri; la cancellazione di un Ritrovamento coinvolge le sue Evidenze.
+Quando salvi la cancellazione di un Intervento vengono eliminati anche i Ritrovamenti e le Evidenze collegati, compresi quelli nascosti dai filtri; cancellando un Ritrovamento si eliminano le sue Evidenze.
+
+## Codici delle schede
+
+Quando salvi una nuova scheda, il progetto le assegna un codice leggibile, con sequenze distinte per Interventi, Ritrovamenti ed Evidenze. In un progetto con prefisso LSF (Lucca San Frediano) i primi codici sono `LSF-1`, `LSFR-1` e `LSFE-1`; le Evidenze con e senza geometria condividono la stessa sequenza.
+
+- Nelle maschere il campo ID mostra questo codice, oppure l’ID MAGOH per i record importati. L’identificativo tecnico che collega le schede resta nel campo originale e non viene mostrato.
+- Le schede già presenti mantengono i loro identificativi.
+- Sulla mappa ricevono etichette automatiche solo le Schede di Intervento.
+- Il prefisso si sceglie alla creazione del progetto e si può cambiare da **Plugin → MAGOH Spell**; rinominare il progetto non lo modifica.
+- Il registro dei codici è salvato nel GeoPackage: le operazioni annullate non consumano codici e i codici delle schede cancellate non vengono riassegnati.
+- **Confronta codici con una copia offline** elenca i codici in conflitto tra due archivi, da risolvere prima di unirli.
+
+Il campo Precisione usa tre categorie: Preciso, Non Preciso e Non localizzabile.
 
 ## Conversione MAGOH → GNA
 
-Una sola finestra in tre passaggi: **1 · MOPR**, **2 · Conversione**, **3 · Risultato**.
+La conversione si svolge in un’unica finestra in tre passaggi: **1 · MOPR**, **2 · Conversione**, **3 · Risultato**.
 
-1. Creare il MOPR scegliendo una geometria esistente o disegnandola (clic sinistro vertici, clic destro termina, Backspace annulla l'ultimo vertice, Esc annulla). Con una geometria esistente si usa l'intero layer; spuntando «Usa solo le geometrie selezionate» si usa solo la selezione QGIS, e senza selezione compare un avviso. Compilare la maschera: il codice professionista/ditta è vuoto al primo uso e non va inventato.
-2. Scegliere MOPR, Interventi, Ritrovamenti ed eventualmente Evidenze. I filtri QGIS attivi vengono rispettati; salvare o annullare le modifiche pendenti.
-3. Eseguire **Verifica conversione senza scrivere file**, poi **Genera il pacchetto completo GNA**.
-4. Aprire il `.qgz` autonomo del pacchetto e controllare DSC, MOSI e MOPR. Il report resta nella finestra del plugin; il filtro MOPR è registrato in `MAGOH_GNA_manifest.json` e il collegamento fra schede GNA e schede MAGOH di origine in `conversion_log.csv`, entrambi dentro il pacchetto.
+1. **MOPR.** Scegli una geometria esistente oppure disegnala: clic sinistro per i vertici, clic destro per chiudere, Backspace per annullare l’ultimo vertice, Esc per interrompere. Con una geometria esistente viene usato l’intero layer; attivando «Usa solo le geometrie selezionate» viene usata solo la selezione di QGIS, e se non c’è nessuna selezione compare un avviso. Compila la scheda: al primo uso il codice professionista/ditta è vuoto e va inserito quello assegnato. Nel selettore FUR scegli il funzionario per nominativo ed ente; nel GeoPackage viene salvata la chiave FUR.
+2. **Conversione.** Scegli MOPR, Interventi, Ritrovamenti ed eventualmente Evidenze. Il convertitore rispetta i filtri attivi in QGIS; salva o annulla prima le modifiche in sospeso. Esegui **Verifica conversione senza scrivere file**, poi **Genera il pacchetto completo GNA**.
+3. **Risultato.** Leggi il report nella finestra del plugin, poi apri il `.qgz` del pacchetto e controlla DSC, MOSI e MOPR.
 
-Le geometrie interamente dentro il perimetro MOPR (bordo compreso, tolleranza circa 1 cm) vengono trasferite; le altre sono escluse e documentate, senza ritagli. Il pacchetto è un template di lavoro: può contenere campi da completare e non certifica un conferimento. L'invio si fa con il plugin GNA ufficiale; MAGOH Spell non invia dati al Geoportale. Guida ministeriale: <https://gna.cultura.gov.it/wiki/index.php/Compilare_il_MOPR>.
+Vengono trasferite le geometrie interamente comprese nel perimetro MOPR, bordo incluso, con una tolleranza di circa 1 cm; quelle parzialmente esterne sono escluse per intero e documentate, senza ritagli.
 
-Nel progetto MAGOH di lavoro il pacchetto viene caricato con gli stessi identificativi dei layer e lo stesso gruppo «SITI ARCHEOLOGICI E GEO-PALEONTOLOGICI (MOSI)» del Template ufficiale, con tutti e tre i layer MOSI anche se vuoti: così l'importazione dei dati già presenti nel GNA con il plugin GNA ufficiale funziona anche qui, e i record scaricati finiscono nel GeoPackage del pacchetto. I layer GNA aggiunti dal plugin si possono togliere dalla legenda; MOSI, DSC e MOPR restano modificabili, le tabelle dei vocabolari restano in sola lettura. Il progetto `.qgz` autonomo del pacchetto mantiene le regole e gli stili del Template GNA 1.6.0.
+La conversione crea la cartella `<nome progetto>_GNA` e uno ZIP con lo stesso nome; al loro interno il progetto QGIS e il GeoPackage mantengono il nome del progetto MAGOH. Il pacchetto contiene anche:
+
+- `MAGOH_GNA_manifest.json`, con i conteggi e, nella sezione `filtro_MOPR`, le esclusioni spaziali;
+- `conversion_log.csv`, che collega ogni scheda GNA alla scheda MAGOH di origine e riporta `codice_locale` per Interventi e Ritrovamenti e `codici_evidenze` per le Evidenze collegate ai MOSI.
+
+Nel pacchetto GNA le schede create con MAGOH Spell non rimandano alla piattaforma MAGOH: OSS e DOZ indicano che il dato è stato creato con il plugin e ne riportano il codice.
+
+Il pacchetto è un template di lavoro: può contenere campi da completare e non costituisce un conferimento. L’invio dei dati si fa con il plugin GNA ufficiale, che si installa separatamente dal Geoportale; MAGOH Spell non invia dati al Geoportale. Per la compilazione del MOPR vedi la [guida ministeriale](https://gna.cultura.gov.it/wiki/index.php/Compilare_il_MOPR).
+
+Nel progetto MAGOH di lavoro il pacchetto viene caricato con gli stessi identificativi dei layer e lo stesso gruppo «SITI ARCHEOLOGICI E GEO-PALEONTOLOGICI (MOSI)» del Template ufficiale, con tutti e tre i layer MOSI anche se vuoti. In questo modo l’importazione dei dati già presenti nel GNA con il plugin ufficiale funziona anche qui, e i record scaricati finiscono nel GeoPackage del pacchetto. I layer GNA aggiunti dal plugin si possono togliere dalla legenda; MOSI, DSC e MOPR restano modificabili, mentre le tabelle dei vocabolari sono in sola lettura. Il progetto `.qgz` del pacchetto mantiene le regole e gli stili del Template GNA 1.6.0.
 
 ### Contenuto dei MOSI
 
-- `OGN`: III livello del Ritrovamento e Ubicazione dell'Intervento, separati da « – » (per esempio «Reperti mobili – Certosa di Calci»). Nessun altro campo.
-- `DES`: sintesi del Ritrovamento (ID e livelli I, II e III presenti), una riga vuota e la descrizione integrale della scheda Intervento. Nessun elenco del IV livello; il campo note dell'Intervento non sostituisce la descrizione.
-- `GEN`: nei MOSI puntuali e multipunto, nota fissa che dichiara la geometria puntuale come rappresentazione convenzionale; vuoto nei poligonali e lineari.
-- `DTT`: sempre vuoto. `DTSI` e `DTSF` non riportano gli estremi di «Non determinato» di MAGOH (-3000000 e 5000).
+- `OGN`: III livello del Ritrovamento e Ubicazione dell’Intervento, separati da « – » (per esempio «Reperti mobili – Certosa di Calci»), senza altri campi.
+- `DES`: sintesi del Ritrovamento (ID e livelli I, II e III presenti), una riga vuota e la descrizione integrale della scheda Intervento. Il IV livello non viene elencato e il campo note dell’Intervento non sostituisce la descrizione.
+- `GEN`: nei MOSI puntuali e multipunto contiene una nota fissa che dichiara la geometria puntuale una rappresentazione convenzionale; nei MOSI poligonali e lineari resta vuoto.
+- `DTT` resta sempre vuoto. `DTSI` e `DTSF` non riportano gli estremi convenzionali di «Non determinato» usati da MAGOH (-3000000 e 5000).
 - I punti coincidenti non vengono spostati né accorpati.
 
 ### Vocabolari
 
-Il convertitore lavora con le etichette ufficiali del Template GNA 1.6.0 (`conversion/gna_vocab_snapshot_1_6.json`); nel GeoPackage del pacchetto i campi collegati a un vocabolario (per esempio `OGM`, `OGD`, `FNTP`) ricevono la chiave del vocabolario, così QGIS mostra l'etichetta e non un valore tra parentesi. Le corrispondenze dai valori MAGOH stanno in `conversion/mapping_magoh_gna_1_6.json` e `conversion/mapping.json`; quando un valore MAGOH non ha un lemma corrispondente, il campo resta vuoto e il report lo segnala, invece di sceglierne uno al posto dell'operatore.
+Il convertitore usa le etichette ufficiali del Template GNA 1.6.0 (`conversion/gna_vocab_snapshot_1_6.json`). Nel GeoPackage del pacchetto i campi collegati a un vocabolario (per esempio `OGM`, `OGD`, `FNTP`) ricevono la chiave del vocabolario, così QGIS mostra l’etichetta e non un valore tra parentesi. Le corrispondenze con i valori MAGOH sono in `conversion/mapping_magoh_gna_1_6.json` e `conversion/mapping.json`. Se un valore MAGOH non ha un lemma corrispondente, il campo resta vuoto e il report lo segnala, così la scelta resta all’operatore.
 
 ## Struttura del codice
 
@@ -87,20 +112,8 @@ Il convertitore lavora con le etichette ufficiali del Template GNA 1.6.0 (`conve
 | `conversion/` | motore MAGOH → GNA, validatori, scrittura del Template |
 | `data/`, `resources/` | template GeoPackage, confini comunali, indici, Template GNA 1.6.0 |
 
-## Crediti
+## Crediti e licenze
 
-Illustrazioni dei cappelli: Vittoria Bellon (@icestorming), come indicato nella finestra dei crediti; provenienza e trattamento delle immagini in `icons/PROVENIENZA.txt`. Le illustrazioni non sono coperte dalla licenza del codice: i diritti restano ai titolari. Sito MAGOH: <https://magoh.cfs.unipi.it/web/guest>.
+Il codice originale è distribuito con licenza GPL-2.0-or-later. Le illustrazioni dei cappelli sono di Vittoria Bellon (@icestorming), come indicato nella finestra dei crediti; la loro provenienza è descritta in `icons/PROVENIENZA.txt`. Le illustrazioni non rientrano nella licenza del codice e i diritti restano ai titolari. Il template incorporato deriva dal Template GNA 1.6.0 distribuito dal Ministero della Cultura attraverso il [Geoportale Nazionale per l’Archeologia](https://gna.cultura.gov.it/download.html).
 
-Nel selettore FUR scegli il funzionario per nominativo e per ente. Il GeoPackage conserva la chiave FUR. Il plugin GNA per il conferimento si installa separatamente dal Geoportale. Il codice originale è rilasciato sotto GPL-2.0-or-later. [Licenze e attribuzioni](ATTRIBUZIONI.md).
-
-## Cartella e fonte del progetto GNA
-
-La conversione crea la cartella `<nome progetto>_GNA` e lo ZIP con lo stesso nome. Al loro interno il progetto QGIS e il GeoPackage mantengono il nome del progetto MAGOH. Il template incorporato deriva dal Template GNA 1.6.0 distribuito dal Ministero della Cultura attraverso il [Geoportale Nazionale per l’Archeologia](https://gna.cultura.gov.it/download.html).
-
-## Codici delle schede locali
-
-Al salvataggio di una nuova scheda il progetto assegna un codice leggibile, con una sequenza distinta per Interventi, Ritrovamenti ed Evidenze. Per Lucca San Frediano i primi codici sono LSF-1, LSFR-1 e LSFE-1. Le evidenze con e senza geometria condividono la serie E. Nelle maschere il campo ID della scheda mostra questo codice, oppure l'ID MAGOH per i record importati; l'identificativo tecnico che collega le schede resta nel campo originale ma non è visibile. Le schede già presenti mantengono i loro identificativi. Solo le Schede di Intervento ricevono etichette automatiche sulla mappa. Nel pacchetto GNA una scheda creata con MAGOH Spell non rimanda alla piattaforma MAGOH: OSS e DOZ indicano che il dato è stato creato con il plug-in e ne riportano il codice.
-
-Il campo Prefisso codici scheda è modificabile durante la creazione e dal menu Plugin → MAGOH Spell. Il registro è conservato nel GeoPackage. Cambiare il nome del progetto non modifica il prefisso. Gli annullamenti non consumano codici e i codici delle schede cancellate restano riservati. Il comando Confronta codici con una copia offline elenca i conflitti tra due archivi. La risoluzione precede una futura unione dei dati.
-
-Precisione usa le categorie Preciso, Non Preciso e Non localizzabile. Il CSV di conversione include codice_locale per Interventi e Ritrovamenti e codici_evidenze per le Evidenze collegate ai MOSI.
+[Licenze e attribuzioni](ATTRIBUZIONI.md) · [Portale MAGOH](https://magoh.cfs.unipi.it/web/guest) · [MAGOH Wiki](https://magoh-wiki.cfs.unipi.it/index.html)

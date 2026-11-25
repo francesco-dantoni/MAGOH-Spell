@@ -1,11 +1,11 @@
-# 1.0
+# 1.0 – 24 novembre 2026
 
-Il report di conversione si consulta nella finestra Risultato. Il pacchetto GNA include il collegamento tra schede di origine e destinazione in conversion_log.csv e le esclusioni spaziali nella sezione filtro_MOPR del manifesto. I vocabolari offline mostrano i nominativi dei funzionari associati agli enti e conservano le chiavi FUR. I recapiti e-mail sono esclusi.
+Prima versione pubblica di MAGOH Spell.
 
-Aggiunti codici per tipo di scheda e verifica dei conflitti offline. Uniformata la Precisione. Il pannello Cronologia recupera dal progetto i layer attivi dopo la loro sostituzione e ricalcola categorie e intervallo.
-
-Ogni scheda mostra un solo identificativo, nel campo ID del Template: il codice della scheda creata nel progetto (es. LUC-1) oppure l'ID MAGOH dei record importati. L'ID tecnico negativo non compare più; una scheda non ancora salvata indica che il codice sarà assegnato al salvataggio. Lo stesso identificativo compare nei collegamenti tra schede e nelle etichette delle Schede di Intervento; Ritrovamenti ed Evidenze non ricevono più etichette automatiche.
-
-Il III livello dei ritrovamenti importati da API si ricava all'interno del II livello della scheda: denominazioni presenti in più II livelli (es. «reperti mobili») non ricevono più il codice di un altro ramo. All'apertura del progetto i codici già importati vengono riallineati, senza modificare le denominazioni.
-
-Nel pacchetto GNA le schede create con MAGOH Spell non rimandano alla piattaforma MAGOH: OSS e DOZ riportano che il dato è stato creato con il plug-in, con il codice della scheda.
+- **Progetti MAGOH in QGIS.** Creazione e apertura di progetti con archivio GeoPackage locale; interfaccia in italiano e inglese.
+- **Schede e collegamenti.** Maschere per Interventi, Ritrovamenti ed Evidenze, con un pulsante che apre la pagina corrispondente della MAGOH Wiki, e navigazione dei collegamenti tra schede.
+- **Codici delle schede.** Al salvataggio ogni nuova scheda riceve un codice leggibile, con sequenze distinte per tipo (per esempio `LSF-1`, `LSFR-1`, `LSFE-1`); i record importati mantengono l’ID MAGOH. Il comando Confronta codici con una copia offline segnala i conflitti tra due archivi.
+- **Ricerca e filtri.** Ricerca per attributo, ID o voce di vocabolario; filtri per cronologia e categoria.
+- **Importazione dalle API MAGOH.** In sola lettura, per Provincia, Comune o area. Il III livello dei ritrovamenti viene ricavato all’interno del II livello della scheda, così le denominazioni presenti in più rami (per esempio «reperti mobili») ricevono il codice corretto.
+- **Esportazioni.** Schede PDF, con metodo stabile o Atlas, e backup del GeoPackage.
+- **Conversione nel Template GNA 1.6.0.** MOPR, DSC e MOSI in un pacchetto da controllare e completare. Il report si legge nella finestra Risultato; `conversion_log.csv` collega ogni scheda GNA alla scheda di origine e il manifesto riporta le esclusioni spaziali nella sezione `filtro_MOPR`. Le schede create con MAGOH Spell riportano in OSS e DOZ il proprio codice. Il vocabolario FUR mostra i funzionari per nominativo ed ente e conserva le chiavi; i recapiti e-mail non sono inclusi.

@@ -1,5 +1,5 @@
 [general]
-name=MAGOH SPELL
+name=MAGOH Spell
 qgisMinimumVersion=3.34
 qgisMaximumVersion=4.99
 supportsQt6=True
@@ -7,15 +7,14 @@ description=Gestione, consultazione e interoperabilità dei dati archeologici MA
 version=1.0
 license=GPL-2.0-or-later
 author=Francesco D'Antoni, Lorena Bravi
-email=
+email=fda.dantoni@gmail.com
 description[en]=Manage archaeological records, import MAGOH data and prepare GNA 1.6.0 projects in QGIS.
-about=MAGOH Spell è un plug-in QGIS per la creazione e gestione di progetti archeologici basati sul modello dati MAGOH. Consente di importare dati tramite API, consultare e filtrare le informazioni archeologiche, generare schede PDF e gestire l’interoperabilità con il Geoportale Nazionale per l’Archeologia attraverso l’importazione e la conversione dei dati nel Template GNA 1.6.0.
+about=MAGOH Spell è un plugin QGIS per la creazione e gestione di progetti archeologici basati sul modello dati MAGOH. Consente di importare dati tramite API, consultare e filtrare le informazioni archeologiche, generare schede PDF e gestire l’interoperabilità con il Geoportale Nazionale per l’Archeologia attraverso l’importazione e la conversione dei dati nel Template GNA 1.6.0.
 icon=icons/hat_m.png
-category=Plugin
 tags=geopackage,magoh,archaeology,gna,api
 homepage=https://magoh.cfs.unipi.it/web/guest
 tracker=https://github.com/francesco-dantoni/MAGOH-Spell/issues
 repository=https://github.com/francesco-dantoni/MAGOH-Spell
 experimental=False
 deprecated=False
-changelog=
+changelog=1.0 – Prima versione pubblica di MAGOH Spell.
