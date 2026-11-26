@@ -1,6 +1,5 @@
 {
  "_nota": "Corrispondenze fra i valori MAGOH e i lemmi del Template GNA 1.6.0. Il codice non deve contenere catene di if/elif sui valori: tutto ciò che è una corrispondenza di vocabolario sta qui. Le chiavi sono confrontate senza distinzione di maiuscole, accenti e spazi.",
- "_versione": "1.1",
  "FNTP": {
   "_nota": "Fonte (obbligatorio nel MOSI 1.6). Si ricava da fonte_informazione e tipo_documento della scheda Intervento MAGOH. Le corrispondenze sono deliberatamente prudenti: dove il dato MAGOH non è univoco il campo resta vuoto e il validatore produce un avviso, invece di scegliere al posto dell'operatore.",
   "da_fonte_informazione": {
@@ -31,7 +30,7 @@
   }
  },
  "OGM": {
-  "_nota": "Modalità di individuazione: dalle grafie MAGOH ai lemmi ufficiali del vocabolario OGM 1.6.0 (etichette identiche a quelle del Template, così lo scrittore trova sempre la chiave). «riprese da drone» non ha un lemma corrispondente: resta senza corrispondenza e il report lo segnala, la scelta spetta all'operatore. V1.19: le corrispondenze di «documentazione di indagini archeologiche», «ricognizione archeologica/survey» e «resti materiali visibili nell'area» sono quelle già previste in mapping_template_1_6.json, che però lo scrittore non applicava.",
+  "_nota": "Modalità di individuazione: dalle grafie MAGOH ai lemmi ufficiali del vocabolario OGM 1.6.0 (etichette identiche a quelle del Template, così lo scrittore trova sempre la chiave). «riprese da drone» non ha un lemma corrispondente: resta senza corrispondenza e il report lo segnala, la scelta spetta all'operatore. Le corrispondenze di «documentazione di indagini archeologiche», «ricognizione archeologica/survey» e «resti materiali visibili nell'area» seguono mapping_template_1_6.json.",
   "cartografia storica": "cartografia storica",
   "dati bibliografici": "dati bibliografici",
   "dati di archivio": "dati di archivio",
@@ -115,5 +114,18 @@
   "Non localizzabile": "posizionamento approssimato",
   "Poco preciso": "posizionamento approssimato",
   "_alternativa": "Se per i non georeferenziati si preferisce dichiarare una posizione simbolica invece che approssimata, sostituire \"posizionamento approssimato\" con \"posizionamento con rappresentazione simbolica\" (GPM 3)."
+ },
+ "OGM_new_da_tipologia": {
+  "_nota": "Modalità di individuazione (OGM_new) quando la modalità MAGOH è una fonte («dati di archivio», «dati bibliografici»), che il Template non accetta in OGM_new: la fonte resta in FNTP e la modalità si ricava dal tipo di intervento. I tipi senza una modalità certa non sono elencati: il campo resta vuoto e il report lo segnala.",
+  "Scavo preventivo": "scavo archeologico",
+  "Scavo programmato": "scavo archeologico",
+  "Scavo d'emergenza": "scavo archeologico",
+  "Assistenza": "scavo archeologico",
+  "Ricognizione": "ricognizione archeologica/sopralluogo",
+  "Sopralluogo": "ricognizione archeologica/sopralluogo",
+  "Lettura elevati": "ricognizione archeologica/sopralluogo",
+  "Carotaggio": "indagini geomorfologiche (carotaggi etc.)",
+  "Indagine geofisica/geochimica": "prospezioni geofisiche",
+  "Telerilevamento": "fotointerpretazione/fotorestituzione"
  }
 }

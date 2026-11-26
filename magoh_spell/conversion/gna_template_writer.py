@@ -10,8 +10,8 @@ server. L'unico modo di far arrivare i dati MAGOH sul Geoportale è quindi
 **riempire il Template_GNA.gpkg ufficiale**: nessun GeoJSON, per quanto
 conforme, potrà mai essere conferito.
 
-La versione precedente scriveva quel GeoPackage attraverso i layer PyQGIS. Qui
-si scrive direttamente in SQLite. Non è un dettaglio implementativo: significa
+Il GeoPackage non si scrive attraverso i layer PyQGIS ma direttamente in
+SQLite. Non è un dettaglio implementativo: significa
 che la generazione del pacchetto si può eseguire e collaudare **fuori da QGIS**,
 cioè che si può verificare che il file prodotto sia giusto invece di sperarlo.
 I trigger del GeoPackage (indice spaziale e conteggio) restano quelli del
@@ -50,6 +50,13 @@ def _nv(v):
     s = unicodedata.normalize("NFD", str(v))
     s = "".join(c for c in s if unicodedata.category(c) != "Mn")
     return re.sub(r"[^a-z0-9]+", "", s.lower())
+
+
+def _lunghezza_dichiarata(tipo_sql):
+    """Lunghezza massima di un campo di testo del Template, es. TEXT(5000) → 5000."""
+    m = re.fullmatch(r"\s*(?:TEXT|VARCHAR|CHARACTER VARYING|CHAR)\s*\(\s*(\d+)\s*\)\s*",
+                     str(tipo_sql or ""), re.I)
+    return int(m.group(1)) if m else 0
 
 
 def _vuoto(v):
@@ -192,9 +199,8 @@ class Vocabolari:
 
     Legge la copia locale incorporata nel plugin. Se è disponibile una sorgente
     ufficiale aggiornata (e c'è rete) la si può preferire con `aggiorna`, ma la
-    generazione del pacchetto **non dipende** dalla rete: era il difetto della
-    versione precedente, dove un vocabolario irraggiungibile impediva del tutto
-    di creare il progetto.
+    generazione del pacchetto **non dipende** dalla rete: un vocabolario
+    irraggiungibile non impedisce di creare il progetto.
     """
 
     def __init__(self, percorso_snapshot, percorso_cache=None):
@@ -270,9 +276,9 @@ class ScrittoreTemplate:
     #: (nome campo -> sigla del vocabolario da cui prendere la chiave)
     CHIAVI_DSC = {"DSCM": "DSCM", "DSCT": "AMA", "GPT": "GPT", "GPM": "GPM",
                   "GPBB": "GPBB", "DSCEX": "DSCEX"}
-    # V1.20: FNTP è una ValueRelation su FNTP_key nel Template 1.6.0: si scrive la chiave,
+    # FNTP è una ValueRelation su FNTP_key nel Template 1.6.0: si scrive la chiave,
     # altrimenti QGIS mostra l'etichetta tra parentesi, es. «(dato di archivio)».
-    CHIAVI_MOSI = {"OGD": "OGD", "OGM": "OGM", "OGB": "OGB", "GEL": "GEL", "FNTP": "FNTP",
+    CHIAVI_MOSI = {"OGD": "OGD", "OGM": "OGM", "OGM_new": "OGM", "OGB": "OGB", "GEL": "GEL", "FNTP": "FNTP",
                    "GET": "GET", "GPT": "GPT", "GPM": "GPM", "GPBB": "GPBB",
                    "CDGG": "CDGG", "BPT": "BPT", "NVCT": "NVCT", "SSK": "SSK",
                    "AMA": "AMA"}
@@ -335,7 +341,19 @@ class ScrittoreTemplate:
                 self.avvisi.append(
                     "%s.%s: %r non è un numero, campo lasciato vuoto" % (tabella, campo, valore))
                 return None
-        return str(valore)
+        testo = str(valore)
+        # barriera finale. Il GeoPackage accetta testi più lunghi della
+        # lunghezza dichiarata, il database del GNA no, e un solo record
+        # rifiutato fa scartare l'intero layer all'invio.
+        limite = _lunghezza_dichiarata(tipo_sql)
+        if limite and len(testo) > limite:
+            from ..text_cleaning import fit_with_references
+            ridotto = fit_with_references(testo, limite)
+            self.avvisi.append(
+                "%s.%s: testo di %d caratteri ridotto a %d per il limite di %d del Template; "
+                "riferimenti URL conservati" % (tabella, campo, len(testo), len(ridotto), limite))
+            testo = ridotto
+        return testo
 
     def _traduci(self, tabella, attrs, tabella_chiavi):
         """Sostituisce le etichette con le chiavi del vocabolario del Template."""

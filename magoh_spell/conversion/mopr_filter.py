@@ -3,7 +3,7 @@
 The perimeter never clips/changes a source geometry; partial intersections and
 null geometries are explicitly excluded and reported.
 
-V1.15.1
+
 - Tolerance of about 1 cm on the MOPR boundary. A MOPR copied from an
   intervention differs from it by fractions of a millimetre after coordinate
   transformations; without tolerance an evidence lying on the edge was

@@ -8,7 +8,7 @@ Il criterio che governa tutto: non si inventano valori per superare i controlli.
 Dove la corrispondenza non esiste o è incerta il campo resta vuoto e la ragione
 finisce nel report di validazione.
 
-Tre cose sono cambiate rispetto alla versione precedente e vale la pena dirle qui:
+Tre scelte di fondo, che vale la pena dire qui:
 
 * **Niente identificativi finti.** `DSCH`, `VRRP` e `ACCC` non vengono più
   costruiti da MAGOH (`magoh_<idscheda>`, `magoh_ritr`, `magoh_ritr_<id>`):
@@ -29,7 +29,7 @@ import re
 import unicodedata
 from dataclasses import dataclass, field
 from pathlib import Path
-from ..text_cleaning import is_magoh_id,scientific_description,with_provenance
+from ..text_cleaning import is_magoh_id,scientific_description,with_provenance,fit_with_references,magoh_provenance
 from ..street_lookups import street_names
 from ..geographic_lookups import municipality_names,toponym_names,readable_label
 
@@ -223,7 +223,7 @@ class ConversionResult:
     #: interventi validi ma esclusi dal trasferimento: non entrano in nessun
     #: layer, ma non spariscono — restano nel log e nel report di valutazione.
     dsc_inammissibili: list = field(default_factory=list)
-    #: V1.15.1: ritrovamenti con I livello «Non luogo» (nessun MOSI)
+    #: ritrovamenti con I livello «Non luogo» (nessun MOSI)
     mosi_esclusi_non_luogo: list = field(default_factory=list)
 
     @property
@@ -299,18 +299,18 @@ class MagohToGnaConverter:
     #: illeggibile: in condizioni normali gli elenchi arrivano da lì.
     #: DSCH e CPR_MOPR non compaiono fra gli obbligatori: sono differiti.
     REQUIRED_DSC = ["dscex", "dscv", "dscm", "dsct", "pvcr", "pvcp", "pvcc",
-                    "gpt", "gpm", "gpbb", "cmpd", "cmpn", "rsr", "fur"]
+                    "gpt", "gpm", "gpbb", "cmpd", "fur"]
     #: VRRP, ACCC, AMA e NVCT non ci sono: sono differiti. CDGG non è più obbligatorio.
     #: |year| at or above this value is MAGOH's placeholder for «non determinato»
     ANNO_SENTINELLA = 1000000
-    #: V1.21: upper bound of MAGOH «Non determinato» (-3000000/5000), never a real year
+    #: upper bound of MAGOH «Non determinato» (-3000000/5000), never a real year
     ANNO_FINE_NON_DETERMINATO = 5000
-    #: I livello values that describe events, not sites: no MOSI (V1.15.1)
+    #: I livello values that describe events, not sites: no MOSI
     I_LIVELLO_SENZA_MOSI = ("non luogo",)
 
     REQUIRED_MOSI = ["id", "ogd", "ogn", "ogb", "lcr", "lcp", "lcc", "gel",
-                     "gpt", "gpm", "gpbb", "fntp", "ogm", "des", "dtsi", "dtsf",
-                     "fur", "cma", "cmc", "cmr", "adp"]
+                     "gpt", "gpm", "gpbb", "fntp", "ogm", "ogm_new", "des", "dtsi", "dtsf",
+                     "fur", "cma", "adp"]
 
     #: campi che si compilano nel Template GNA, non qui
     DIFFERITI_DSC = {"cpr_mopr": "codice progetto assegnato dal MOPR",
@@ -326,7 +326,7 @@ class MagohToGnaConverter:
         req = ["DSCM_magoh_to_gna", "GPT_magoh_to_gna", "crono_to_DTR", "comuni_sigla", "gna_schema"]
         miss = [x for x in req if x not in self.mapping]
         if miss:
-            raise ValueError("mapping.json 2.0 incompleto: " + ", ".join(miss))
+            raise ValueError("mapping.json incompleto: " + ", ".join(miss))
 
         self.voc = self._carica(base / "gna_vocabularies_1_6.json")
         self.map16 = self._carica(base / "mapping_magoh_gna_1_6.json")
@@ -550,6 +550,98 @@ class MagohToGnaConverter:
             c.avviso("lunghezza_eccessiva",
                      "%s: %d caratteri, massimo GNA %d" % (k.upper(), n, lim), campo=k.upper())
 
+    #: Lemmi OGM che il Template non accetta in OGM_new: sono fonti, registrate in FNTP.
+    OGM_FONTI = ("dati bibliografici", "dati di archivio")
+
+    def _ogm_new(self, ogm, tipologia, c):
+        """Modalità di individuazione per OGM_new.
+
+        Una modalità vera passa così com'è; una fonte (archivio, bibliografia)
+        è sostituita dalla modalità che corrisponde al tipo di intervento.
+        """
+        if not blank(ogm) and ogm not in self.OGM_FONTI:
+            return ogm
+        esito = lookup(self.map16.get("OGM_new_da_tipologia") or {}, tipologia)
+        if esito and not str(esito).startswith("_"):
+            return esito
+        c.avviso("ogm_new_non_determinabile",
+                 "OGM_new non determinabile: la modalità MAGOH \"%s\" è una fonte e il tipo di "
+                 "intervento \"%s\" non indica una modalità di individuazione"
+                 % (ogm or "", tipologia or ""), campo="OGM_NEW")
+        return ""
+
+    def _periodi_dtr(self):
+        if getattr(self, "_dtr", None) is None:
+            from ..gna_template_resources import vocabulary_catalog
+            spec = vocabulary_catalog()["vocabularies"].get("DTR") or {}
+            self._dtr = [(p["DTR_key"], p["DTR_value"], num(p.get("DTSI")), num(p.get("DTSF")))
+                         for p in (f.get("properties") or {} for f in spec.get("data", {}).get("features", []))]
+        return self._dtr
+
+    def _cronologia_gna(self, o, c):
+        """DTR_new e anni coerenti con il vincolo del Template.
+
+        Il Template chiede DTSI non anteriore all'inizio del periodo DTR e DTSF
+        non successivo alla sua fine. Senza anni MAGOH si usano gli estremi del
+        periodo; con anni fuori dal periodo si sceglie il periodo più breve che
+        li comprende, e se nessun periodo li comprende DTR resta da scegliere.
+        """
+        periodi = self._periodi_dtr()
+        scelto = next((p for p in periodi if p[1] == o.get("dtr")), None)
+        o["dtr_new"] = None
+        if scelto and scelto[2] is None:
+            o["dtr_new"] = scelto[0]          # non determinabile / non rilevabile
+            return
+        di, df = num(o["dtsi"]), num(o["dtsf"])
+        if di is None or df is None:
+            if not scelto:
+                c.avviso("cronologia_incompleta",
+                         "DTSI o DTSF assenti e periodo DTR non disponibile: la cronologia "
+                         "specifica va completata nel Template", campo="DTSI")
+                return
+            if di is None:
+                di = scelto[2]
+                o["dtsi"] = int(di)
+            if df is None:
+                df = scelto[3]
+                o["dtsf"] = int(df)
+            c.avviso("cronologia_dal_periodo",
+                     "anni assenti nel dato MAGOH: DTSI e DTSF presi dagli estremi del periodo "
+                     "\"%s\" (%g / %g)" % (scelto[1], di, df), campo="DTSI")
+        if di > df:
+            return                            # già segnalata come cronologia invertita
+
+        def comprende(p):
+            return p[2] is not None and p[2] <= di and df <= p[3]
+
+        if scelto and comprende(scelto):
+            o["dtr_new"] = scelto[0]
+            return
+        candidati = sorted((p for p in periodi if comprende(p)), key=lambda p: p[3] - p[2])
+        if candidati:
+            nuovo = candidati[0]
+            c.note("anni %g–%g fuori dal periodo \"%s\": DTR impostato a \"%s\""
+                   % (di, df, o.get("dtr") or "", nuovo[1]))
+            o["dtr"], o["dtr_new"] = nuovo[1], nuovo[0]
+        else:
+            c.avviso("cronologia_multi_periodo",
+                     "gli anni %g–%g non rientrano in un solo periodo DTR del GNA: DTR va scelto "
+                     "nel Template" % (di, df), campo="DTR")
+            o["dtr"] = ""
+
+    def _entro_limite(self, o, campo, c, rimando=''):
+        """Porta o[campo] entro il limite GNA, conservando sempre i riferimenti URL."""
+        limite = int((self.mapping.get("gna_lunghezze") or {}).get(campo) or 0)
+        testo = o.get(campo)
+        if not limite or not testo or len(str(testo)) <= limite:
+            return
+        ridotto = fit_with_references(testo, limite, rimando)
+        c.avviso("testo_ridotto",
+                 "%s di %d caratteri ridotto a %d per il limite GNA di %d: i riferimenti URL "
+                 "sono conservati e il testo integrale resta nella scheda MAGOH"
+                 % (campo.upper(), len(str(testo)), len(ridotto), limite), campo=campo.upper())
+        o[campo] = ridotto
+
     def _nsc_e_oss(self, testo, c, appendice=""):
         """Distribuisce una descrizione lunga fra NSC e OSS.
 
@@ -703,6 +795,9 @@ class MagohToGnaConverter:
         notes=scientific_description(F(r,'note'))
         parts=[p for p in (o['oss'],notes if notes!=desc else '') if p]
         o['oss']=with_provenance('\n\n'.join(parts),mid,o["_source_codice_locale"])
+        # note e rimando MAGOH si aggiungono dopo la ripartizione NSC/OSS:
+        # il limite del campo si ricontrolla qui, conservando sempre il rimando.
+        self._entro_limite(o, 'oss', c)
         o["pvcr"] = F(r, "regione") or opts.regione
 
         com = F(r, "id_comune", "comune")
@@ -809,7 +904,7 @@ class MagohToGnaConverter:
         def pf(*n):
             return F(P, *n)
 
-        # V1.19 (MOD-02): only the Intervento narrative; the Note field is never
+        # MOD-02: only the Intervento narrative; the Note field is never
         # used as a substitute when the narrative is missing.
         o["des"] = scientific_description(pf("descrizione", "descrizione_sintetica"))
         # A find created in QGIS is not on MAGOH, even when its Intervento is.
@@ -825,6 +920,7 @@ class MagohToGnaConverter:
                      campo="OGM")
 
         o["fntp"] = self._fntp(r, parent, o["ogm"], c)
+        o["ogm_new"] = self._ogm_new(o["ogm"], pf("tipologia_intervento"), c)
 
         o["lcr"] = pf("regione") or opts.regione
         lc = pf("id_comune", "comune")
@@ -857,6 +953,14 @@ class MagohToGnaConverter:
         o["cmc"] = pf("compilatore_scheda")
         o["cmr"] = pf("esecutore")
         o["bibm"] = compose_bibm(parent) if parent else ""
+        # Il Template chiede BIBM quando la fonte è bibliografica e DOZ quando
+        # è un dato di archivio.
+        if o.get("fntp") == "dati bibliografici" and blank(o["bibm"]):
+            c.avviso("bibm_mancante", "fonte bibliografica senza riferimento bibliografico (BIBM)",
+                     campo="BIBM")
+        if o.get("fntp") == "dato di archivio" and blank(o.get("doz")):
+            c.avviso("doz_mancante", "dato di archivio senza riferimento al documento (DOZ)",
+                     campo="DOZ")
         if not parent:
             c.avviso("intervento_non_collegato",
                      "scheda Intervento collegata non trovata: i campi che la mappatura eredita "
@@ -901,8 +1005,8 @@ class MagohToGnaConverter:
             c.avviso("dtr_non_mappato", 'cronologia "%s" non mappata su DTR' % ci, campo="DTR")
         o["dtsi"] = F(r, "datazione")
         o["dtsf"] = F(r, "datazione_finale")
-        # V1.15.1: MAGOH stores «non determinato» as an extreme year
-        # (-3000000 … 5000): never export either bound as a real date (V1.21: also 5000).
+        # MAGOH stores «non determinato» as an extreme year
+        # (-3000000 … 5000): never export either bound as a real date (also 5000).
         for campo_data in ("dtsi", "dtsf"):
             valore = num(o[campo_data])
             if valore is not None and (abs(valore) >= self.ANNO_SENTINELLA
@@ -914,23 +1018,24 @@ class MagohToGnaConverter:
         if di is not None and df is not None and di > df:
             c.errore("cronologia_invertita",
                      "cronologia invertita: DTSI %g è successivo a DTSF %g" % (di, df), campo="DTSI")
-        if blank(o["dtsi"]) or blank(o["dtsf"]):
-            c.avviso("cronologia_incompleta",
-                     "DTSI o DTSF assenti: la cronologia specifica è obbligatoria", campo="DTSI")
+        self._cronologia_gna(o, c)
 
         from .entity_summary import build_summary, compose_des, safe_ogt
-        # V1.23: OGN = III livello + Ubicazione dell'Intervento, nessun altro campo.
+        # OGN = III livello + Ubicazione dell'Intervento, nessun altro campo.
         o['ogn'], summary, o['dtt'] = build_summary(r, parent, F)
-        # V1.19: DES = sintesi I–III livello + narrativa integrale (MOD-02); DTT vuoto (MOD-03).
+        # DES = sintesi I–III livello + narrativa integrale (MOD-02); DTT vuoto (MOD-03).
         o['des'] = compose_des(summary, o.get('des'), o['_source_intervento_id'])
         o['dtt'] = None
         o['ogt_key'] = safe_ogt(o.get('ogt'), o.get('ogd'))
         o['ogz'] = F(r, 'specifiche_situazione_attuale', 'note_stato_conservazione')
         if o.get('ogt') and not o['ogt_key']:
             c.avviso('ogt_non_univoco', 'III livello conservato in OGN/DES; nessuna corrispondenza OGT attiva, esatta e compatibile con OGD.', campo='OGT')
-        for name, limit in (('des', 10000),):
-            if len(o[name]) > limit:
-                c.avviso('sintesi_lunga', '%s supera %d caratteri: testo conservato integralmente, da revisionare nel template.' % (name.upper(), limit), campo=name.upper())
+        # il GNA rifiuta una DES oltre il limite del campo, e con essa
+        # l'intero layer. Il testo si riduce e rimanda alla scheda Intervento
+        # MAGOH, dove resta integrale.
+        intervento = o.get('_source_intervento_id')
+        self._entro_limite(o, 'des', c,
+                           magoh_provenance(intervento) if is_magoh_id(intervento) else '')
 
         # CDGG non è più obbligatorio: si compila solo se l'informazione esiste
         o["cdgg"] = ""
@@ -982,7 +1087,7 @@ class MagohToGnaConverter:
         gt = gtype(geom)
         o["_layer_gna"] = ("MOSI_multipolygon" if gt == "MultiPolygon"
                            else "MOSI_multilinea" if gt == "MultiLineString" else "MOSI_multipoint")
-        # V1.19 (MOD-01): nota fissa al posizionamento solo per i MOSI puntuali/multipunto.
+        # MOD-01: nota fissa al posizionamento solo per i MOSI puntuali/multipunto.
         from .entity_summary import GEN_MOSI_PUNTUALE
         o["gen"] = GEN_MOSI_PUNTUALE if o["_layer_gna"] == "MOSI_multipoint" else ""
         o["_geometry_output_type"] = gt
@@ -1070,7 +1175,7 @@ class MagohToGnaConverter:
         return res
 
     def _segnala_punti_coincidenti(self, res, report):
-        """V1.15.1: MOSI points sharing exactly the same position.
+        """MOSI points sharing exactly the same position.
 
         In MAGOH these are findings without a position of their own. The
         coordinates are kept (nothing is invented); the positioning method is

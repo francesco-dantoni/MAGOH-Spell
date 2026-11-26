@@ -10,7 +10,7 @@ def normalize(value):
     return re.sub(r'[^a-z0-9]+', ' ', ''.join(c for c in text.lower() if not unicodedata.combining(c))).strip()
 
 
-#: V1.19 (MOD-01): testo fisso del campo GEN per ogni MOSI puntuale o multipunto.
+#: MOD-01: testo fisso del campo GEN per ogni MOSI puntuale o multipunto.
 #: Va scritto esattamente così, senza identificativi o altre frasi.
 GEN_MOSI_PUNTUALE = (
     "La geometria puntuale costituisce una rappresentazione convenzionale dell'evidenza "
@@ -41,7 +41,7 @@ def safe_ogt(term, ogd):
 
 
 def compose_ogn(iii_livello, ubicazione):
-    """OGN del MOSI (V1.23): III livello del Ritrovamento e Ubicazione dell'Intervento.
+    """OGN del MOSI: III livello del Ritrovamento e Ubicazione dell'Intervento.
 
     Nessun altro campo: niente tipi di evidenza, cronologia o denominazione.
     Il III livello prende l'iniziale maiuscola; un valore mancante non lascia
@@ -57,7 +57,7 @@ def compose_ogn(iii_livello, ubicazione):
 def build_summary(record, parent, get):
     """Return OGN, the Ritrovamento summary that opens DES, and DTT.
 
-    V1.23: OGN = III livello + Ubicazione (compose_ogn). The DES summary holds
+    OGN = III livello + Ubicazione (compose_ogn). The DES summary holds
     only the Ritrovamento ID and its I, II and III level labels (MOD-02): no
     IV level block and no «Cronologia del ritrovamento» line. DTT is never
     filled (MOD-03).
@@ -67,7 +67,7 @@ def build_summary(record, parent, get):
     heading = compose_ogn(get(record, 'iii_livello'), get(parent or {}, 'ubicazione'))
     identifier = str(get(record, 'id') or '').strip()
     blocks = ['Sintesi dei dati MAGOH — Ritrovamento' + (' ' + identifier if identifier else '')]
-    # V1.20: i livelli seguono subito l'intestazione, senza riga vuota.
+    # i livelli seguono subito l'intestazione, senza riga vuota.
     blocks.extend('%s: %s' % pair for pair in levels if pair[1])
     return heading, '\n'.join(blocks), None
 

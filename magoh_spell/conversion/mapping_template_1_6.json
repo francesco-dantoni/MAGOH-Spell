@@ -30,5 +30,5 @@
     "dati bibliografici": "dati bibliografici",
     "osservazione diretta": "osservazione diretta"
   },
-  "_nota_v1_19": "Lo scrittore applica soltanto DSCT_via_AMA e FNTP. Le sezioni OGM e GPT non venivano lette: OGM ora è prodotto dal convertitore già con i lemmi ufficiali (mapping_magoh_gna_1_6.json); GPT usa GPT_magoh_to_gna di mapping.json, già allineato al vocabolario 1.6.0."
+  "_nota_scrittore": "Lo scrittore applica soltanto DSCT_via_AMA e FNTP. Le sezioni OGM e GPT non sono lette: OGM è prodotto dal convertitore già con i lemmi ufficiali (mapping_magoh_gna_1_6.json); GPT usa GPT_magoh_to_gna di mapping.json, già allineato al vocabolario 1.6.0."
 }

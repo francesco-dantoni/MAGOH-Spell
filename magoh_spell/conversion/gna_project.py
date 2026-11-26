@@ -21,7 +21,7 @@ from dataclasses import dataclass, field
 from pathlib import Path
 
 
-CPR_RE = re.compile(r"^[A-Z-]+_(19[0-9]{2}|20[0-9]{2})_[0-9]{5}-[A-Z]{2,4}_[0-9]{6,9}$")
+CPR_RE = re.compile(r"^[A-Z-]+_(19[0-9]{2}|20[0-9]{2})_[0-9]{5}-[A-Z]{2,4}_[0-9]{6,9}(_[0-9]{2})?$")
 PERSONAL_CODE_RE = re.compile(r"^[0-9]{5}-[A-Z]{2,4}$")
 
 
@@ -174,7 +174,7 @@ class GnaProjectBuilder:
             "ogm": "dati di archivio",
             "note": mopr.note, "presa_visione": mopr.presa_visione,
             "mopr_id": mopr.mopr_id, "geometria": mopr.geometry,
-            # V1.15: il pacchetto prende il nome del progetto MAGOH Spell.
+            # il pacchetto prende il nome del progetto MAGOH Spell.
             "nome_progetto": project_name or "",
         }
         pacchetto = PacchettoGNA(self.plugin_dir)

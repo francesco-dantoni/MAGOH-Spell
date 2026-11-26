@@ -1,10 +1,10 @@
 # -*- coding: utf-8 -*-
 """Costruisce il pacchetto GNA 1.6.0 conferibile a partire dai dati MAGOH.
 
-Il risultato è una copia del Template ufficiale — progetto QGIS, GeoPackage,
-stili e plugin GNA — con dentro il MOPR, le schede DSC e le schede MOSI. Da lì
-il conferimento si fa con il Plugin GNA ufficiale, come per un Template
-compilato a mano: MAGOH non parla mai col server del Geoportale.
+Il risultato è una copia del Template ufficiale — progetto QGIS e GeoPackage,
+con i vocabolari in locale — con dentro il MOPR, le schede DSC e le schede MOSI.
+Il conferimento si fa con il Plugin GNA ufficiale, installato a parte, come per
+un Template compilato a mano: MAGOH Spell non comunica con il server del Geoportale.
 
 Tutto quello che sta qui gira **senza QGIS**, e questo è il punto: il pacchetto
 si può generare e verificare in un collaudo automatico invece che soltanto a
@@ -29,11 +29,11 @@ from .gna_template_writer import (ErroreTemplate, ScrittoreTemplate, Vocabolari,
 
 # ---------------------------------------------------------------- MOPR
 
-CPR_REGEX = re.compile(r"^[A-Z-]+_(19[0-9]{2}|20[0-9]{2})_[0-9]{5}-[A-Z]{2,4}_[0-9]{6,9}$")
+CPR_REGEX = re.compile(r"^[A-Z-]+_(19[0-9]{2}|20[0-9]{2})_[0-9]{5}-[A-Z]{2,4}_[0-9]{6,9}(_[0-9]{2})?$")
 
 
 def nome_file_progetto(nome):
-    """Nome di file sicuro (Windows/macOS/Linux) per il pacchetto GNA (V1.15)."""
+    """Nome di file sicuro (Windows/macOS/Linux) per il pacchetto GNA."""
     testo = re.sub(r'[<>:"/\\|?*\x00-\x1f]+', '_', str(nome or '')).strip().strip('.')
     testo = re.sub(r'\s+', ' ', testo)
     testo = testo[:120].rstrip(' .') or 'Progetto_GNA'
@@ -93,7 +93,7 @@ class PacchettoGNA:
                 shutil.move(str(x), str(destinazione / x.name))
             gpkg = destinazione / gpkg.name
             qgz = destinazione / qgz.name
-        # V1.15: the project to open is the one next to the GeoPackage, not the
+        # the project to open is the one next to the GeoPackage, not the
         # reference copy kept in STILI/.
         accanto = gpkg.parent / "Template_GNA_1.6.qgz"
         if accanto.is_file():
@@ -101,7 +101,7 @@ class PacchettoGNA:
         return gpkg, qgz
 
     def _rinomina_pacchetto(self, gpkg: Path, qgz: Path, nome: str):
-        """V1.15: GeoPackage e progetto prendono il nome del progetto MAGOH Spell.
+        """GeoPackage e progetto prendono il nome del progetto MAGOH Spell.
 
         Il progetto ufficiale punta a ./Template_GNA.gpkg: i riferimenti nel .qgs
         vengono riscritti verso il nuovo nome. Stili e plugin GNA restano invariati.
@@ -147,7 +147,7 @@ class PacchettoGNA:
                     cod_prov = k
                     break
         pro_com = None
-        # V1.15.1: one index for all records instead of scanning ~8,000
+        # one index for all records instead of scanning ~8,000
         # municipalities (with text normalisation) for every DSC and MOSI.
         if getattr(self, '_indice_comuni', None) is None:
             self._indice_comuni = {}
@@ -220,7 +220,7 @@ class PacchettoGNA:
     # -- MOPR -------------------------------------------------------------
 
     def _chiave_multipla(self, scrittore, sigla, valore):
-        """V1.20: valore per una ValueRelation a scelta multipla, nella forma «{chiave}».
+        """valore per una ValueRelation a scelta multipla, nella forma «{chiave}».
 
         Un'etichetta scritta così com'è verrebbe mostrata da QGIS tra parentesi.
         """
@@ -320,7 +320,7 @@ class PacchettoGNA:
                 "MTAR": r.get("mtar"),
                 "ADSP": "1",
                 "CMPD": r.get("cmpd") or mopr.get("cma"),
-                "CMPN": r.get("cmpn") or mopr.get("cmc"),
+                "CMPN": mopr.get("cmc"),
                 "RSR": r.get("rsr") or mopr.get("cmr"),
                 "FUR": mopr.get("fur_key"),
                 "CPR_MOPR": cpr,
@@ -333,6 +333,9 @@ class PacchettoGNA:
                                         if k != "DSCT"})
             attrs["DSCT"] = valore_dsct
             righe.append((attrs, r.get("_geometry")))
+        if righe and _vuoto(mopr.get("cmc")):
+            self._segnala("CMPN", "il compilatore delle DSC è quello della scheda di progetto (MOPR), "
+                                  "che non lo indica")
         if righe and _vuoto(mopr.get("fur_key")):
             self._segnala("FUR", "il funzionario responsabile si sceglie nel Template "
                                  "dall'elenco ufficiale FUR del Ministero")
@@ -381,17 +384,19 @@ class PacchettoGNA:
                     "LCR": cod_reg, "LCP": cod_prov, "LCC": pro_com,
                     "PVL": r.get("pvl"),
                     "DTR": dtr,
-                    "DTT": None,  # V1.19 (MOD-03): mai compilato
+                    "DTT": None,  # MOD-03: mai compilato
                     "DTSI": dtsi, "DTSF": dtsf,
                     "DES": r.get("des"),
                     "DOZ": r.get("doz"),
                     "OGM": r.get("ogm"),
+                    "OGM_new": r.get("ogm_new"),
+                    "DTR_new": r.get("dtr_new"),
                     "FNTP": self.mappe.get("FNTP", {}).get(str(r.get("fntp")), r.get("fntp")),
                     "GEL": "localizzazione fisica",
                     "GET": get,
                     "GEP": "WGS84",
                     "GPT": r.get("gpt"), "GPM": r.get("gpm"), "GPBB": r.get("gpbb"),
-                    # V1.19 (MOD-01): la nota dipende dal layer effettivo di esportazione.
+                    # MOD-01: la nota dipende dal layer effettivo di esportazione.
                     "GEN": GEN_MOSI_PUNTUALE if tabella == "MOSI_multipoint" else None,
                     "CDGG": r.get("cdgg") or "dato non disponibile",
                     "BPT": "dato non disponibile",
@@ -400,8 +405,8 @@ class PacchettoGNA:
                     "MTAM": r.get("mtam"), "MTAR": r.get("mtar"),
                     "FUR": mopr.get("fur_key"),
                     "CMA": r.get("cma") or mopr.get("cma"),
-                    "CMC": r.get("cmc") or mopr.get("cmc"),
-                    "CMR": r.get("cmr") or mopr.get("cmr"),
+                    "CMC": mopr.get("cmc"),
+                    "CMR": mopr.get("cmr"),
                     "ADP": "1", "DCMP": "4",
                     "DCMN": str(uuid.uuid4()),
                     "RCGJ": "GNA", "DSCJ": "GNA",
@@ -415,6 +420,10 @@ class PacchettoGNA:
                                   "corrispondente certo nel vocabolario OGT del GNA: è stata "
                                   "conservata nella sintesi OGN/DES; OGT va scelto nel Template")
                 attrs = scrittore._traduci(tabella, attrs, scrittore.CHIAVI_MOSI)
+                if str(attrs.get("AMA") or "") == "7" and (_vuoto(attrs.get("VRRO")) or _vuoto(attrs.get("VRRS"))):
+                    self._segnala("VRRO / VRRS",
+                                  "con l'ambito «archeologia preventiva: indagini preliminari» il "
+                                  "Template chiede raggio e grado di rischio: vanno compilati nel Template")
                 righe.append((attrs, r.get("_geometry")))
             conteggi[tabella] = scrittore.inserisci(tabella, righe)
         return conteggi

@@ -155,7 +155,7 @@
     "1": "osservazione diretta",
     "2": "dati bibliografici",
     "3": "dato di archivio",
-    "_nota": "Attenzione alla grafia ufficiale: \"dato di archivio\" al singolare, diversamente da OGM che ha \"dati di archivio\". Nel Template 1.6.0 FNTP è una ValueRelation su FNTP_key: dalla V1.20 si scrive la chiave."
+    "_nota": "Attenzione alla grafia ufficiale: \"dato di archivio\" al singolare, diversamente da OGM che ha \"dati di archivio\". Nel Template 1.6.0 FNTP è una ValueRelation su FNTP_key: si scrive la chiave."
   },
 
   "DTR": {

@@ -133,7 +133,7 @@
     }
   },
   "_obbligatori": {
-    "_nota": "Obbligatori del Template 1.6 che il convertitore deve poter alimentare dal dato MAGOH. I campi differiti non compaiono qui: sono trattati a parte.",
+    "_nota": "Obbligatori del Template 1.6 che il convertitore deve poter alimentare dal dato MAGOH. I campi differiti non compaiono qui: sono trattati a parte. Compilatore e responsabile (CMPN, CMC, CMR) e RSR vengono dalla scheda di progetto (MOPR) al momento della scrittura del pacchetto, che li controlla.",
     "DSC": [
       "DSCEX",
       "DSCV",
@@ -146,8 +146,6 @@
       "GPM",
       "GPBB",
       "CMPD",
-      "CMPN",
-      "RSR",
       "FUR"
     ],
     "MOSI": [
@@ -164,14 +162,13 @@
       "GPBB",
       "FNTP",
       "OGM",
+      "OGM_new",
       "DES",
       "DTSI",
       "DTSF",
       "NVCT",
       "FUR",
       "CMA",
-      "CMC",
-      "CMR",
       "ADP"
     ]
   }
