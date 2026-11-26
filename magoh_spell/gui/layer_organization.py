@@ -4,7 +4,7 @@ from qgis.core import QgsProject, QgsLayerTreeGroup, QgsVectorLayer, QgsProvider
 
 MARK = 'magoh/tree_role'
 
-#: V1.23.2: same group names as the official Template. The official GNA plugin
+#: same group names as the official Template. The official GNA plugin
 #: looks for «SITI ARCHEOLOGICI E GEO-PALEONTOLOGICI (MOSI)» when it downloads.
 GROUP_NAMES = {'mosi': 'SITI ARCHEOLOGICI E GEO-PALEONTOLOGICI (MOSI)',
                'dsc': 'DATI DI SCAVO (DSC)',
@@ -35,7 +35,7 @@ def subgroup(parent, name):
 
 
 def role_group(group, role):
-    """Subgroup of the GNA group with the official name; renames the V1.23 one."""
+    """Subgroup of the GNA group with the official name; renames an older one."""
     name = GROUP_NAMES[role]
     found = next((n for n in group.children() if isinstance(n, QgsLayerTreeGroup) and n.name() == name), None)
     legacy = next((n for n in group.children() if isinstance(n, QgsLayerTreeGroup)
@@ -52,7 +52,7 @@ def role_group(group, role):
 
 
 def remove_gna_plugin_leftovers():
-    """V1.23.2: national-database layers left behind by an interrupted GNA download.
+    """national-database layers left behind by an interrupted GNA download.
 
     The official plugin adds them only while it downloads and removes them at
     the end. Only those exact names, read from the national schema, are
@@ -83,7 +83,7 @@ def normalize_gna():
     from .mopr_single import reconcile
     reconcile()
     group = move(group, root, 0)
-    # Workspace MOPR layers from earlier versions may sit directly in GNA.
+    # Workspace MOPR layers of older projects may sit directly in GNA.
     for node in list(group.findLayers()):
         layer = node.layer()
         if layer is None:
@@ -94,8 +94,8 @@ def normalize_gna():
         if layer.customProperty('magoh/gna_mopr_workspace', False) or working_file:
             unlock_workspace_layer(layer)
         elif layer.customProperty('magoh/gna_export_generated', False):
-            # V1.23: GNA layers added by the plugin, also in projects saved
-            # with earlier versions. User-added layers are left as they are.
+            # GNA layers added by the plugin, also in older projects.
+            # User-added layers are left as they are.
             if role in ('mosi', 'dsc', 'mopr'):
                 unlock_workspace_layer(layer)
             else:
@@ -151,7 +151,7 @@ def normalize_magoh(gpkg_path):
         if node is not None:
             move(node, evidence, index)
     # Empty legacy wrappers only; unrelated layers inside them are retained.
-    # V1.15: also the empty "thesuari" group (misspelt) and the old
+    # also the empty "thesuari" group (misspelt) and the old
     # "MAGOH_Spell"/"MAGOH Spell" wrappers left by the embedded template projects,
     # plus empty duplicates of the canonical subgroups outside the MAGOH group.
     wrappers = ('MAGOH – Offline', 'MAGOH-Offline', 'MAGOH_offline', 'MAGOH Spell', 'MAGOH – Spell')

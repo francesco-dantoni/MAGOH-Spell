@@ -1,9 +1,8 @@
 """Official GNA guide to MOPR compilation, reachable wherever a MOPR is filled in.
 
-V1.14. In V1.13 the link existed only once, above the tabs of the MAGOH-GNA
-converter. The MOPR is also compiled in the "1 · MOPR" page of the converter
-and in the native QGIS form of the "MOPR — compilazione" layer (identify,
-attribute table, edit form): neither showed any reference to the guide.
+The link sits above the tabs of the MAGOH-GNA converter, in the "1 · MOPR"
+page of the converter and in the native QGIS form of the "MOPR — compilazione"
+layer (identify, attribute table, edit form).
 
 The URL is opened only when the user clicks: nothing is fetched otherwise.
 """

@@ -9,7 +9,7 @@ from qgis.PyQt.QtWidgets import QComboBox
 from qgis.core import QgsProject, QgsFieldFormatter, QgsEditorWidgetSetup, QgsFeatureRequest
 from qgis.gui import QgsEditorWidgetFactory, QgsEditorWidgetWrapper
 from .geographic_editor import clean
-from .editor_registry import register_editor, register_formatter
+from .editor_registry import register_editor, register_formatter, config_widget, field_value
 from ..i18n import _tf as t
 
 ID = 'MAGOHEvidenceLevel'
@@ -108,7 +108,7 @@ class Wrapper(QgsEditorWidgetWrapper):
         index = feature.fields().lookupField('id_iv_livello')
         self.original_code = feature[index] if index >= 0 else None
         self.code = clean(self.original_code)
-        self.updateValues(feature.attribute(self.fieldIdx()))
+        self.updateValues(field_value(feature, self.fieldIdx()))
 
     def showIndeterminateState(self):
         self.code = ''
@@ -126,6 +126,9 @@ class Factory(QgsEditorWidgetFactory):
     def fieldScore(self, layer, index):
         return 0
 
+    def configWidget(self, layer, index, parent):
+        return config_widget(layer, index, parent)
+
 
 class Formatter(QgsFieldFormatter):
     def id(self):
@@ -140,7 +143,7 @@ class Formatter(QgsFieldFormatter):
 
 
 def register():
-    # V1.19: dopo un aggiornamento senza riavvio si usano le classi correnti.
+    # dopo un aggiornamento senza riavvio si usano le classi correnti.
     register_editor(ID, Factory, {'Wrapper': Wrapper}, _owners)
     register_formatter(ID, Formatter, _owners)
 

@@ -5,7 +5,7 @@ layout and label style; the key itself is shown to nobody and never changed.
 """
 from qgis.gui import QgsEditorWidgetFactory, QgsEditorWidgetWrapper
 from qgis.PyQt.QtWidgets import QLineEdit
-from .editor_registry import register_editor
+from .editor_registry import register_editor, config_widget, field_value
 from .geographic_editor import clean
 from ..local_codes import NEW_RECORD
 
@@ -15,7 +15,7 @@ _owners = []
 
 def shown(feature, value):
     fields = feature.fields()
-    code = clean(feature['codice_locale']) if fields.indexOf('codice_locale') >= 0 else ''
+    code = clean(field_value(feature, fields.indexOf('codice_locale')))
     if code:
         return code
     if not feature.isValid() or feature.id() < 0:
@@ -40,7 +40,7 @@ class Wrapper(QgsEditorWidgetWrapper):
         # Like the other MAGOH editors: load the feature directly, without
         # relying on the C++ base to dispatch updateValues() to Python.
         self.setFormFeature(feature)
-        self.updateValues(feature.attribute(self.fieldIdx()))
+        self.updateValues(field_value(feature, self.fieldIdx()))
 
     def showIndeterminateState(self):
         self.original = None
@@ -62,6 +62,9 @@ class Factory(QgsEditorWidgetFactory):
 
     def fieldScore(self, layer, index):
         return 0
+
+    def configWidget(self, layer, index, parent):
+        return config_widget(layer, index, parent)
 
 
 def register():

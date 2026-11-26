@@ -2,7 +2,7 @@ from qgis.core import QgsFieldFormatter
 from qgis.gui import QgsEditorWidgetWrapper, QgsEditorWidgetFactory
 from qgis.PyQt.QtWidgets import QComboBox
 from qgis.PyQt.QtCore import QSignalBlocker
-from .editor_registry import register_editor, register_formatter
+from .editor_registry import register_editor, register_formatter, config_widget, field_value
 from .geographic_editor import clean
 from ..precision import canonical, VALUES
 
@@ -37,6 +37,18 @@ class Wrapper(QgsEditorWidgetWrapper):
                 index = self.combo.count()-1
             self.combo.setCurrentIndex(index)
 
+    def setFeature(self,feature):
+        # Like the other MAGOH editors: load the stored value directly, without
+        # relying on the C++ base to dispatch updateValues() to Python.
+        try:
+            self.setFormFeature(feature)
+        except Exception:
+            pass
+        self.updateValues(field_value(feature,self.fieldIdx()))
+
+    def showIndeterminateState(self):
+        self.updateValues(None)
+
     def value(self):
         return self.original
 
@@ -52,6 +64,9 @@ class Factory(QgsEditorWidgetFactory):
 
     def fieldScore(self,layer,index):
         return 0
+
+    def configWidget(self,layer,index,parent):
+        return config_widget(layer,index,parent)
 
 class Formatter(QgsFieldFormatter):
     def id(self):

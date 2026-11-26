@@ -9,7 +9,7 @@ from qgis.PyQt.QtWidgets import QComboBox
 from qgis.gui import QgsEditorWidgetFactory, QgsEditorWidgetWrapper
 from qgis.core import QgsFieldFormatter, QgsEditorWidgetSetup
 from .geographic_editor import _attribute_form, clean
-from .editor_registry import register_editor, register_formatter
+from .editor_registry import register_editor, register_formatter, config_widget, field_value
 from ..conversion.entity_summary import normalize
 
 ID='MAGOHChronologyCode'
@@ -99,7 +99,7 @@ class Wrapper(QgsEditorWidgetWrapper):
         self.original=value;self._populate()
 
     def setFeature(self,feature):
-        self.updateValues(feature.attribute(self.fieldIdx()))
+        self.updateValues(field_value(feature,self.fieldIdx()))
 
     def showIndeterminateState(self):self.updateValues(None)
 
@@ -108,6 +108,7 @@ class Factory(QgsEditorWidgetFactory):
     def __init__(self):super().__init__('MAGOH — Periodo e cronologia')
     def create(self,layer,index,editor,parent):return Wrapper(layer,index,editor,parent)
     def fieldScore(self,layer,index):return 0
+    def configWidget(self,layer,index,parent):return config_widget(layer,index,parent)
 
 
 class Formatter(QgsFieldFormatter):
@@ -116,7 +117,7 @@ class Formatter(QgsFieldFormatter):
 
 
 def register():
-    # V1.19: dopo un aggiornamento senza riavvio si usano le classi correnti.
+    # dopo un aggiornamento senza riavvio si usano le classi correnti.
     register_editor(ID, Factory, {'Wrapper': Wrapper}, _owners)
     register_formatter(ID, Formatter, _owners)
 

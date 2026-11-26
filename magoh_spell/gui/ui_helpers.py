@@ -5,11 +5,11 @@ from __future__ import annotations
 def fit_dialog_to_parent(dialog, parent=None, preferred_width=None, preferred_height=None):
     """Mantiene un dialog entro l'area utile della finestra QGIS.
 
-    Riduce anche minimumSize ereditate da versioni precedenti, evitando che un
+    Riduce anche minimumSize ereditate da impostazioni salvate, evitando che un
     monitor piccolo o una dashboard con scaling alto renda i pulsanti fuori
     schermo. Non impone dimensioni fisse: l'utente puo' sempre ridimensionare.
 
-    V1.6: il minimo segue il layout reale (niente pulsanti tagliati) e, senza
+    il minimo segue il layout reale (niente pulsanti tagliati) e, senza
     preferenze esplicite, la dimensione iniziale segue il contenuto.
     """
     try:

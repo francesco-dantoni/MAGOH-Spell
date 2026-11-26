@@ -12,14 +12,14 @@ import xml.etree.ElementTree as ET
 from qgis.core import (QgsProject, QgsVectorLayer, QgsReadWriteContext,
                        QgsPathResolver, QgsRelation)
 from qgis.PyQt.QtXml import QDomDocument
-from ..gna_template_resources import (official_project_xml, materialize_vocabularies,
+from ..gna_template_resources import (official_project_xml, materialize_vocabularies, vocabulary_folder,
                                       normalize_dictionary_references, portable_form_code, native_photo_forms)
 
 GENERATED = 'magoh/gna_export_generated'
 BATCH = 'magoh/gna_presentation_batch'
 
 
-#: V1.23.2: layer IDs of the official Template that the official GNA plugin
+#: layer IDs of the official Template that the official GNA plugin
 #: looks up with getLayerById() when it downloads data from the GNA.
 GNA_PLUGIN_LAYER_IDS = ('MOPR_9f2ef54b_70dd_412b_a0d8_c6133776fa24',
                         'MOSI_multipolygon_7931f3fe_36bd_43fe_b5bb_0bb1ed6ba32c',
@@ -40,7 +40,7 @@ def load_official_outputs(gpkg):
                      if l.customProperty(GENERATED, False) and l.customProperty('magoh/gna_ruolo', '') in ('mosi','dsc','mopr')]
             return names, ['Questo pacchetto è già aperto in modifica: nessun layer è stato ricaricato / This package has unsaved edits: no layer reloaded']
     doc = ET.fromstring(official_project_xml())
-    dictionary_sources = materialize_vocabularies(gpkg.parent / 'vocabolari_MAGOH')
+    dictionary_sources = materialize_vocabularies(vocabulary_folder(gpkg.parent))
     normalize_dictionary_references(doc, dictionary_sources)
     batch = uuid.uuid4().hex
     definitions, layers, source_paths = {}, {}, {}
@@ -59,7 +59,7 @@ def load_official_outputs(gpkg):
             path = str(gpkg) + '|layername=' + table
         else:
             continue  # no WMS services, remote geometry or unrelated host layers
-        # V1.23.2: all three MOSI layers, empty ones too: the official GNA
+        # all three MOSI layers, empty ones too: the official GNA
         # plugin writes the records it downloads into each of them.
         definitions[ident], source_paths[ident] = copy.deepcopy(elem), path
 
@@ -77,7 +77,7 @@ def load_official_outputs(gpkg):
     preserve = custom_relations or any(isinstance(l, QgsVectorLayer) and l.isEditable() for l in previous)
     if preserve:
         warnings.append('Esportazione precedente conservata con tutti i riferimenti: modifiche non salvate o relazioni personalizzate / Previous export retained with all references: unsaved edits or custom relations')
-    # V1.23.2: keep the layer IDs of the official Template, as in the package
+    # keep the layer IDs of the official Template, as in the package
     # project, so that the official GNA plugin finds MOPR and MOSI here too.
     # Fresh IDs only when one of them is already taken by a layer that stays.
     staying = set(project.mapLayers()) - (set() if preserve else previous_ids)
@@ -148,7 +148,7 @@ def load_official_outputs(gpkg):
                 raise ValueError('Impossibile applicare la presentazione GNA / GNA presentation could not be applied')
         if not layers[ident].isValid():
             raise ValueError('Layer GNA non valido / Invalid GNA layer: ' + layers[ident].name())
-        # V1.23: in the MAGOH working project the GNA data layers (MOSI, DSC,
+        # in the MAGOH working project the GNA data layers (MOSI, DSC,
         # MOPR) stay editable and every layer can be removed from the legend.
         # Only the vocabulary tables keep the read-only state of the Template.
         # The standalone GNA package project is not touched here.
@@ -223,7 +223,7 @@ def load_official_outputs(gpkg):
 
 
 def upgrade_generated_ids():
-    """V1.23.2: projects saved before: reload the GNA package with the official IDs.
+    """projects saved before: reload the GNA package with the official IDs.
 
     Only when it is safe: one package, file present, nothing in editing, no
     user relation on those layers, IDs not taken by other layers. The reload

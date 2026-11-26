@@ -88,7 +88,7 @@ def load_gna_outputs(directory, gpkg=None):
             warnings.append('Impossibile caricare l’anteprima: ' + filename)
             continue
         if parent == 'MOSI' and layer.featureCount() == 0:
-            # V1.15: only MOSI geometry types actually produced by the conversion.
+            # only MOSI geometry types actually produced by the conversion.
             continue
         layer.setCustomProperty(GENERATED, True)
         layer.setCustomProperty('magoh/gna_export_path', str(path))

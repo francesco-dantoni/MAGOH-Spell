@@ -1,6 +1,6 @@
 """Small local attribution dialog; the artist's image is never modified.
 
-V1.15: clearer layout (the illustration itself, the artist, a clickable
+clearer layout (the illustration itself, the artist, a clickable
 Instagram handle and a rights note). The PNG is only displayed, never edited.
 """
 from qgis.PyQt.QtCore import Qt

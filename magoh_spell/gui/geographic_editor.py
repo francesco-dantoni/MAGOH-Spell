@@ -6,6 +6,7 @@ from qgis.gui import QgsGui, QgsAttributeForm, QgsEditorWidgetFactory, QgsEditor
 from qgis.core import QgsFieldFormatter, QgsApplication, QgsVariantUtils, QgsProject
 from ..geographic_lookups import by_municipality, municipality_label, municipality_rows, municipality_names, municipality_code, readable_names
 from ..i18n import _tf as t
+from .editor_registry import config_widget, field_value
 
 WIDGET_ID = 'MAGOHStreetId'
 TOPONYM_ID = 'MAGOHToponymId'
@@ -21,12 +22,11 @@ def clean(value):
 def _attribute_form(widget):
     """Return the QgsAttributeForm that contains ``widget`` (or None).
 
-    V1.14 fix. The form opened by QGIS (identify, add feature, attribute
+    The form opened by QGIS (identify, add feature, attribute
     table) is created in C++. PyQt/SIP exposes such an ancestor as a plain
-    QWidget unless Python already holds a typed reference, so the V1.13
-    ``isinstance(parent, QgsAttributeForm)`` test was always False in real
-    use and the dependent editors never received the Comune changes. The
-    automated tests built the form from Python and therefore masked it.
+    QWidget unless Python already holds a typed reference, so an
+    ``isinstance(parent, QgsAttributeForm)`` test is always False in real
+    use and the dependent editors would never receive the Comune changes.
     Qt's own meta-object check is independent from the Python wrapper type.
     """
     current = widget
@@ -162,14 +162,14 @@ class MunicipalityWrapper(QgsEditorWidgetWrapper):
             del blocker
 
     def setFeature(self, feature):
-        # V1.14: do not depend on the C++ base dispatching updateValues() to
+        # do not depend on the C++ base dispatching updateValues() to
         # Python (not reliable on every runtime): load the stored ID directly.
         try:
             self.setFormFeature(feature)
         except Exception:
             pass
         try:
-            self.updateValues(feature.attribute(self.fieldIdx()))
+            self.updateValues(field_value(feature, self.fieldIdx()))
         except Exception:
             self.updateValues(None)
 
@@ -348,7 +348,7 @@ class GeographicWrapper(QgsEditorWidgetWrapper):
         line_blocker = QSignalBlocker(self.combo.lineEdit())
         self.combo.clear()
         self.combo.addItem('—', None)
-        # V1.15: readable names as in the other fields; the ID stays the stored
+        # readable names as in the other fields; the ID stays the stored
         # value (tooltip only). Homonymous segments get a discreet ordinal.
         names = readable_names(self.kind)
         choices = [(ident, names.get(ident, label)) for ident, label in self._choices()]
@@ -380,8 +380,8 @@ class GeographicWrapper(QgsEditorWidgetWrapper):
 
     def setFeature(self, feature):
         self._bind_form()
-        self.commune = clean(feature['id_comune']) if 'id_comune' in feature.fields().names() else ''
-        self.updateValues(feature[self.fieldIdx()])
+        self.commune = clean(field_value(feature, feature.fields().indexOf('id_comune')))
+        self.updateValues(field_value(feature, self.fieldIdx()))
 
     def _form_changed(self, name, value, changed):
         if name != 'id_comune' or self.form is None or _flag(self.form, 'magohGeoBusy', False):
@@ -483,6 +483,9 @@ class GeographicFactory(QgsEditorWidgetFactory):
     def fieldScore(self, layer, index):
         return 0
 
+    def configWidget(self, layer, index, parent):
+        return config_widget(layer, index, parent)
+
 
 class GeographicFormatter(QgsFieldFormatter):
     def __init__(self, kind):
@@ -500,11 +503,11 @@ class GeographicFormatter(QgsFieldFormatter):
 
 
 def _adopt(factory):
-    """Make a factory left by a previous plugin version build current wrappers.
+    """Make a factory registered before a plugin update build current wrappers.
 
     QGIS keeps editor-widget factories for the whole session and offers no way
     to replace one with the same ID. After "Install from ZIP" without a QGIS
-    restart, the V1.13 factory would otherwise keep creating V1.13 wrappers.
+    restart, the earlier factory would otherwise keep creating its own wrappers.
     Only a factory created by this module (same IDs) is touched.
     """
     try:
@@ -533,7 +536,7 @@ def register():
             _adopt(registry.factory(ident))
         existing = formatters.fieldFormatter(ident)
         if existing.id() == ident and not isinstance(existing, GeographicFormatter):
-            # V1.15.1: a formatter left in memory by a previous version (even
+            # a formatter left in memory before a plugin update (even
             # one whose folder was uninstalled without restarting QGIS) would
             # keep reading its own, possibly deleted, data files. Replace it.
             try:

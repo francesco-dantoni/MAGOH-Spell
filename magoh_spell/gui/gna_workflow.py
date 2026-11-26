@@ -294,7 +294,7 @@ class GnaWorkflowDialog(QDialog):
         tabs_holder.setObjectName('MagohPage')
         tabs_layout = QVBoxLayout(tabs_holder)
         tabs_layout.setContentsMargins(SPACE_L, SPACE_S, SPACE_L, SPACE_M)
-        # V1.14: same guide, also inside the MOPR compilation page and in the
+        # same guide, also inside the MOPR compilation page and in the
         # native QGIS form of the MOPR layer (see gui/mopr_guide.py).
         self.mopr_help = guide_button(tabs_holder, 'MagohMoprGuideTop')
         tabs_layout.addWidget(self.mopr_help)
@@ -324,7 +324,7 @@ class GnaWorkflowDialog(QDialog):
         self.source = QComboBox()
         ex.addWidget(self.source)
         self.selected_only = QCheckBox(t('Usa solo le geometrie selezionate', 'Use selected geometries only'))
-        # V1.19 (MOD-04): mai preselezionata, anche se nel layer c'è già una selezione QGIS.
+        # MOD-04: mai preselezionata, anche se nel layer c'è già una selezione QGIS.
         self.selected_only.setChecked(False)
         ex.addWidget(self.selected_only)
         button(t('Copia geometria e compila MOPR', 'Copy geometry and fill MOPR'), self.copy_source, ex)
@@ -457,7 +457,7 @@ class GnaWorkflowDialog(QDialog):
             self.output.setText(self._output_default)
 
     def project_name(self):
-        """Nome del progetto MAGOH Spell, usato anche per il pacchetto GNA (V1.15)."""
+        """Nome del progetto MAGOH Spell, usato anche per il pacchetto GNA."""
         project = QgsProject.instance()
         name = ''
         try:
@@ -558,7 +558,7 @@ class GnaWorkflowDialog(QDialog):
             if source is None: raise ValueError(t('Scegliere un layer poligonale.', 'Choose a polygon layer.'))
             if source.isEditable(): raise ValueError(t('Salvare o annullare prima le modifiche del layer sorgente.', 'Save or discard the edits of the source layer first.'))
             if self.selected_only.isChecked():
-                # V1.19 (MOD-04): con la casella spuntata si usano solo gli elementi selezionati;
+                # MOD-04: con la casella spuntata si usano solo gli elementi selezionati;
                 # senza selezione si avvisa e non si ripiega mai sull'intero layer.
                 features = source.selectedFeatures()
                 if not features:

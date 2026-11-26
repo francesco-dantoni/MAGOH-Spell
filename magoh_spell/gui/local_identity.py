@@ -63,6 +63,27 @@ LABELS = {
 }
 #: Only the Scheda di Intervento is labelled on the map.
 LABELLED = 'magoh_scheda_intervento'
+#: Descriptive fields shown after the identifier in lists and relation
+#: editors, as in the display expressions of the original MAGOH template
+#: ("id" || ' - ' || "iii_livello_txt"). The first field present and not
+#: empty is used. The Scheda di Intervento keeps the bare identifier.
+DETAIL = {
+    'magoh_ritrovamenti': ('iii_livello_txt', 'iii_livello'),
+    'magoh_evidenza_archeologica': ('iv_livello',),
+    'magoh_evidenza_archeologica_no_geom': ('iv_livello',),
+}
+
+
+def display_expression(layer, table, key):
+    """Identifier followed by the descriptive field, when the layer has it."""
+    expr = shown_id(key)
+    names = [n for n in DETAIL.get(table, ()) if layer.fields().indexOf(n) >= 0]
+    if names:
+        parts = ', '.join("nullif(to_string(\"%s\"), '')" % n.replace('"', '""') for n in names)
+        detail = 'coalesce(%s)' % parts if len(names) > 1 else parts
+        expr = (f"({expr}) || CASE WHEN {detail} IS NOT NULL "
+                f"THEN ' - ' || {detail} ELSE '' END")
+    return expr
 
 
 def _kind(element):
@@ -91,7 +112,7 @@ def _template_field(layer, key, parent):
 
 def _restore_layout(layer, container, key, label):
     """Keep the Template layout: drop codice_locale and put the key field back
-    where the first 1.0 build had replaced it with a text element."""
+    where it may have been replaced with a text element."""
     rebuilt, changed = [], False
     for element in list(container.children()):
         kind = _kind(element)
@@ -156,4 +177,4 @@ def install_form(layer, table):
         apply_intervention_labels(layer)
     else:
         _drop_generated_labels(layer, key)
-    layer.setDisplayExpression(shown_id(key))
+    layer.setDisplayExpression(display_expression(layer, table, key))

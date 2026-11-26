@@ -61,7 +61,7 @@ def _renderer_dscex(layer):
                                   "esito non determinato")
     categorie.append(riserva)
 
-    # V1.15.1: in the package GeoPackage DSCEX holds the official KEY
+    # in the package GeoPackage DSCEX holds the official KEY
     # (1 = negativo, 2 = positivo); the staging GeoJSON holds the label.
     # Classify on an expression that understands both, so a positive DSC is
     # never drawn as «esito non determinato».

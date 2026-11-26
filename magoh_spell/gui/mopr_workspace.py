@@ -115,7 +115,7 @@ def mopr_data(attrs, geometry, crs, vocab):
 
 
 def make_removable(layer):
-    """V1.23: the layer can be removed from the legend (flag only, no data change)."""
+    """the layer can be removed from the legend (flag only, no data change)."""
     try:
         from qgis.core import QgsMapLayer
         removable = getattr(QgsMapLayer, 'Removable', None) or QgsMapLayer.LayerFlag.Removable
@@ -126,11 +126,11 @@ def make_removable(layer):
 
 
 def unlock_workspace_layer(layer):
-    """V1.15: the working MOPR loaded by the plugin is never locked.
+    """the working MOPR loaded by the plugin is never locked.
 
     Both the working and exported plugin-owned MOPR must remain editable and
     removable in the layer tree. No provider permissions are escalated.
-    V1.23: the same applies to the MOSI and DSC layers the plugin adds to the
+    the same applies to the MOSI and DSC layers the plugin adds to the
     MAGOH working project.
     """
     try:
@@ -200,7 +200,7 @@ class MoprWorkspace:
         config.setLayout(QgsEditFormConfig.TabLayout)
         root = config.invisibleRootContainer()
         root.clear()
-        # V1.14: guide button inside the native QGIS form of the MOPR layer.
+        # guide button inside the native QGIS form of the MOPR layer.
         try:
             from .mopr_guide import ensure_layer_action
             from qgis.core import QgsAttributeEditorAction
