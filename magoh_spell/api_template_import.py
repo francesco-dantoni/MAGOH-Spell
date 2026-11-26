@@ -59,7 +59,7 @@ def _decoded(value: Any) -> Any:
     return decode_json_value(value)
 
 
-# Refusi presenti nei thesauri di progetti creati prima della V1.19.1: la
+# Refusi presenti nei thesauri di progetti creati prima della la
 # grafia corretta usata da MAGOH deve trovare lo stesso codice.
 _LABEL_TYPOS = (("poduzione", "produzione"),)
 

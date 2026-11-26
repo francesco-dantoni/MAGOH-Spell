@@ -23,7 +23,7 @@ _HERE = Path(__file__).parent
 _UI_ICONS = _HERE / "icons" / "ui"
 
 # --- Tokens -----------------------------------------------------------------
-# Colours already used by MAGOH Spell up to V1.5, unchanged in V1.6; only their roles are fixed here.
+# MAGOH Spell colours; this module fixes their roles.
 PETROL = "#005f5f"          # primary actions, selection, focus
 PETROL_HOVER = "#007171"
 PETROL_PRESSED = "#004b4b"

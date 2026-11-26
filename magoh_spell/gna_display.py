@@ -41,7 +41,7 @@ def describe(role, feature):
 
 
 # ---------------------------------------------------------------------------
-# V1.23: due colonne «ID scheda» e «Ubicazione» nei risultati di Gestione.
+# due colonne «ID scheda» e «Ubicazione» nei risultati di Gestione.
 # Solo lettura: nessun campo viene scritto per alimentare l'anteprima.
 # L'ID di provenienza MAGOH si mostra così com'è; un codice GNA o il fid
 # tecnico di QGIS portano sempre il nome del campo, così non si confondono.
@@ -92,7 +92,7 @@ def preview_identity(role, feature):
             return found.group(1), _tf('ID Ritrovamento MAGOH di provenienza (da DES)', 'Source MAGOH Ritrovamento ID (from DES)')
         accc = _text(feature, 'ACCC')
         if _text(feature, 'GNA') == '1' and accc:
-            # V1.23.2: record downloaded from the GNA by the official plugin:
+            # record downloaded from the GNA by the official plugin:
             # its id_viarch is only a progressive number, ACCC is its code.
             return 'ACCC ' + _short(accc), _tf('Scheda già presente nel GNA, codice ACCC: {v}', 'Record already in the GNA, ACCC code: {v}', v=accc)
         idv = _text(feature, 'id_viarch')

@@ -361,7 +361,7 @@ class RelatedFilterSession:
 
 
 def _apply_many(self, selections):
-    """V1.15: one filter over several source layers at once (e.g. every MOSI).
+    """one filter over several source layers at once (e.g. every MOSI).
 
     ``selections`` is a list of (layer, feature ids). Each source keeps its own
     matches; ancestors/descendants are the union of all propagations. All

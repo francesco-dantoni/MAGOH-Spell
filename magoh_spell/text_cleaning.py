@@ -53,3 +53,60 @@ def with_provenance(notes,identifier,local_code=''):
     body=scientific_description(notes)
     source=magoh_provenance(identifier,local_code)
     return '\n\n'.join(p for p in (body,source) if p)
+
+
+_URL=re.compile(r'https?://\S+',re.I)
+_REDUCED='[…] Testo ridotto per il limite di %d caratteri del GNA'
+_REDUCED_REF=_REDUCED+': il testo integrale è nella scheda indicata sotto.'
+
+
+def _cut_on_word(text,limit):
+    if len(text)<=limit:
+        return text
+    if limit<=0:
+        return ''
+    cut=text.rfind(' ',0,limit)
+    if cut<limit*0.6:
+        cut=limit
+    return text[:cut].rstrip()
+
+
+def fit_with_references(text,limit,reference=''):
+    """Bring ``text`` within ``limit`` characters, always keeping its URL references.
+
+    Paragraphs that contain a URL (for instance the link to the MAGOH record)
+    are set aside, the rest is shortened on a word boundary and marked as
+    reduced, then the URL paragraphs are appended again. ``reference`` is an
+    extra paragraph (such as the MAGOH provenance line) added only when the
+    text has to be shortened and is not already present. A text within the
+    limit is returned unchanged.
+    """
+    text=str(text or '')
+    limit=int(limit or 0)
+    if not limit or len(text)<=limit:
+        return text
+    paragraphs=[p for p in re.split(r'\n\s*\n',text)]
+    refs=[p.strip() for p in paragraphs if _URL.search(p)]
+    body='\n\n'.join(p for p in paragraphs if not _URL.search(p)).strip()
+    reference=str(reference or '').strip()
+    if reference and reference not in refs:
+        refs.append(reference)
+    tail='\n\n'.join(refs)
+    marker=(_REDUCED_REF if refs else _REDUCED+'.')%limit
+    if len(tail)+len(marker)+4>limit:
+        # Even the references do not fit with the note: keep the URLs alone.
+        urls=[]
+        for p in refs:
+            for u in _URL.findall(p):
+                if u not in urls:
+                    urls.append(u)
+        tail=' '.join(urls)
+        marker=(_REDUCED%limit)+':'
+        if len(tail)+len(marker)+4>limit:
+            return _cut_on_word(text,limit)
+    budget=limit-len(tail)-len(marker)-(4 if tail else 1)
+    kept=_cut_on_word(body,budget)
+    result=(kept+' '+marker).strip()
+    if tail:
+        result+='\n\n'+tail
+    return result if len(result)<=limit else _cut_on_word(result,limit)

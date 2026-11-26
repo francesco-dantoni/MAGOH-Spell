@@ -33,7 +33,7 @@ class TextIndex:
         self.bytes = 0
 
     def find(self, layer, text, field='', cache_id=None, label=None):
-        """label(index, value): etichetta normalizzata dei campi a elenco (V1.23.1), oppure None."""
+        """label(index, value): etichetta normalizzata dei campi a elenco, oppure None."""
         from .conversion.entity_summary import normalize
         needle = str(text).strip().casefold()
         if not needle or layer is None or sip.isdeleted(layer):

@@ -35,7 +35,7 @@ def national_service(layer):
 def gna_role(layer):
     """'dsc' / 'mosi' only for Template GNA tables (GeoPackage, shared postgres template).
 
-    V1.23.2: service layers (WFS, memory) and the national GNA database added
+    service layers (WFS, memory) and the national GNA database added
     by the official plugin are no longer taken for the user's records.
     """
     if not isinstance(layer, QgsVectorLayer) or not layer.isValid() or not layer.isSpatial():

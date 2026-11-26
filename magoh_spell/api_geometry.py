@@ -4,7 +4,7 @@ Un solo punto di ingresso per l'import nel template e per il filtro spaziale.
 Ogni geometria rifiutata ha un motivo leggibile, che finisce nel log
 dell'import: niente più «errori_geometria» senza spiegazione.
 
-Regole (V1.19.1):
+Regole:
 - il membro ``crs`` del GeoJSON, quando presente, è rispettato;
 - senza ``crs``, coordinate entro ±180/±90 sono lette in EPSG:4326;
 - senza ``crs`` e con coordinate proiettate, si usa il CRS del layer di

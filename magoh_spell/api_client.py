@@ -79,8 +79,6 @@ class MagohApiSettings:
             if s.status() != QSettings.Status.NoError:
                 raise SecurityError('Impossibile salvare il riferimento protetto: token precedente conservato / Cannot save secure reference: previous token retained')
             s.remove(API_PREFIX + "token")
-            # V1.15 copied legacy settings once. Remove only this migrated secret.
-            s.remove("magoh_offline/api/token")
             s.sync()
             self.token = ""
         elif self.authcfg:

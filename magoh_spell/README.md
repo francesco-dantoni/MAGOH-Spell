@@ -80,6 +80,8 @@ La conversione crea la cartella `<nome progetto>_GNA` e uno ZIP con lo stesso no
 
 Nel pacchetto GNA le schede create con MAGOH Spell non rimandano alla piattaforma MAGOH: OSS e DOZ indicano che il dato è stato creato con il plugin e ne riportano il codice.
 
+Il pacchetto usa il Template GNA 1.6.0 del 26 settembre 2026, con i vocabolari ufficiali in locale nella cartella `vocabolari_GNA`; i pacchetti creati con la cartella `vocabolari_MAGOH` continuano ad aprirsi. Compilatore e responsabile delle schede (CMPN delle DSC, CMC e CMR dei MOSI) vengono dalla scheda di progetto, nella forma «Cognome, Nome» richiesta dal Template; RSR delle DSC resta l’esecutore indicato in MAGOH.
+
 Il pacchetto è un template di lavoro: può contenere campi da completare e non costituisce un conferimento. L’invio dei dati si fa con il plugin GNA ufficiale, che si installa separatamente dal Geoportale; MAGOH Spell non invia dati al Geoportale. Per la compilazione del MOPR vedi la [guida ministeriale](https://gna.cultura.gov.it/wiki/index.php/Compilare_il_MOPR).
 
 Nel progetto MAGOH di lavoro il pacchetto viene caricato con gli stessi identificativi dei layer e lo stesso gruppo «SITI ARCHEOLOGICI E GEO-PALEONTOLOGICI (MOSI)» del Template ufficiale, con tutti e tre i layer MOSI anche se vuoti. In questo modo l’importazione dei dati già presenti nel GNA con il plugin ufficiale funziona anche qui, e i record scaricati finiscono nel GeoPackage del pacchetto. I layer GNA aggiunti dal plugin si possono togliere dalla legenda; MOSI, DSC e MOPR restano modificabili, mentre le tabelle dei vocabolari sono in sola lettura. Il progetto `.qgz` del pacchetto mantiene le regole e gli stili del Template GNA 1.6.0.
@@ -89,8 +91,14 @@ Nel progetto MAGOH di lavoro il pacchetto viene caricato con gli stessi identifi
 - `OGN`: III livello del Ritrovamento e Ubicazione dell’Intervento, separati da « – » (per esempio «Reperti mobili – Certosa di Calci»), senza altri campi.
 - `DES`: sintesi del Ritrovamento (ID e livelli I, II e III presenti), una riga vuota e la descrizione integrale della scheda Intervento. Il IV livello non viene elencato e il campo note dell’Intervento non sostituisce la descrizione.
 - `GEN`: nei MOSI puntuali e multipunto contiene una nota fissa che dichiara la geometria puntuale una rappresentazione convenzionale; nei MOSI poligonali e lineari resta vuoto.
+- `OGM_new`: modalità di individuazione. Quando in MAGOH la modalità è una fonte («dati di archivio», «dati bibliografici»), che il Template registra in FNTP, si ricava dal tipo di intervento: scavi e assistenze → scavo archeologico; ricognizioni, sopralluoghi e letture degli elevati → ricognizione archeologica/sopralluogo; carotaggi → indagini geomorfologiche; indagini geofisiche → prospezioni geofisiche; telerilevamento → fotointerpretazione/fotorestituzione. Negli altri casi resta vuoto e il report lo segnala.
+- `DTR_new`: periodo GNA coerente con gli anni, come chiede il Template (DTSI non anteriore all’inizio del periodo, DTSF non successivo alla fine). Se gli anni non rientrano nel periodo MAGOH si usa il periodo più breve che li comprende; se non rientrano in nessun periodo, DTR va scelto nel Template. Se gli anni mancano, DTSI e DTSF prendono gli estremi del periodo e il report lo segnala.
 - `DTT` resta sempre vuoto. `DTSI` e `DTSF` non riportano gli estremi convenzionali di «Non determinato» usati da MAGOH (-3000000 e 5000).
 - I punti coincidenti non vengono spostati né accorpati.
+
+### Lunghezza dei testi
+
+Il database del GNA rifiuta un testo più lungo del campo, e con esso, all’invio, l’intero layer che lo contiene. Per questo nessun testo supera la lunghezza dichiarata dal Template: un testo oltre il limite (per esempio una DES oltre 10.000 caratteri o un OSS oltre 5.000) viene ridotto senza spezzare le parole, con la nota «[…] Testo ridotto per il limite di N caratteri del GNA», e il report lo segnala come `testo_ridotto`. I paragrafi con riferimenti URL, come il rimando alla scheda MAGOH, restano sempre in fondo al testo; una DES ridotta rimanda alla scheda Intervento MAGOH, dove il testo è integrale.
 
 ### Vocabolari
 

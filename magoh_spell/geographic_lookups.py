@@ -84,7 +84,7 @@ def ensure_toponym_schema(path, backup_dir=None):
         if backup_dir:
             import time
             folder=Path(backup_dir); folder.mkdir(parents=True,exist_ok=True)
-            with closing(sqlite3.connect(str(folder/(Path(path).stem+'_pre_V1_13_'+str(time.time_ns())+'.gpkg')))) as backup:
+            with closing(sqlite3.connect(str(folder/(Path(path).stem+'_backup_'+str(time.time_ns())+'.gpkg')))) as backup:
                 db.backup(backup)
         with db:
             db.execute('CREATE TABLE shape_toponimi(fid INTEGER PRIMARY KEY AUTOINCREMENT,pk_uid TEXT NOT NULL UNIQUE,toponimo TEXT NOT NULL,comune TEXT,codcom TEXT)')
@@ -94,7 +94,7 @@ def ensure_toponym_schema(path, backup_dir=None):
     return True
 
 
-# --- V1.15: readable labels (no ALL CAPS, no codes shown) ------------------
+# --- readable labels (no ALL CAPS, no codes shown) ------------------
 import re as _re
 
 _SMALL = {

@@ -134,7 +134,7 @@ from .related_filters import relation_graph, component
 
 # Nome del progetto QGIS incorporato nel GeoPackage distribuito con il plugin.
 # ATTENZIONE: nel gpkg il progetto si chiama "template MAGOH" (con lo SPAZIO).
-# Le versioni <= v13 cercavano "template_MAGOH" e non lo trovavano mai.
+# Va cercato con lo spazio: "template_MAGOH" non lo trova.
 DEFAULT_PROJECT_NAME = "template MAGOH"
 
 
@@ -154,33 +154,6 @@ PLUGIN_VERSION = _metadata_version()
 # Progetti che puntano a sorgenti remote (PostGIS/WFS): li segnaliamo prima di aprirli
 # perche' offline bloccherebbero QGIS in attesa della connessione.
 _REMOTE_PROJECT_HINTS = ("dbname=", "host=", "service=")
-
-
-def migrate_legacy_settings():
-    """V1.15: copy settings saved under the old plugin identifier, once.
-
-    Old keys are left untouched, so an earlier version keeps working if it is
-    reinstalled. Nothing is overwritten if a new key already exists.
-    """
-    try:
-        settings = QSettings()
-        if settings.value("magoh_spell/settings_migrated_from_legacy", False, type=bool):
-            return 0
-        settings.beginGroup("magoh_offline")
-        keys = settings.allKeys()
-        values = {key: settings.value(key) for key in keys}
-        settings.endGroup()
-        copied = 0
-        for key, value in values.items():
-            target = "magoh_spell/" + key
-            if not settings.contains(target):
-                settings.setValue(target, value)
-                copied += 1
-        settings.setValue("magoh_spell/settings_migrated_from_legacy", True)
-        settings.sync()
-        return copied
-    except Exception:
-        return 0
 
 
 def _log(msg, level=Qgis.Info):
@@ -470,7 +443,6 @@ class MagohRelationEditorFactory(QgsAbstractRelationEditorWidgetFactory):
 
 class MagohSpellPlugin:
     def __init__(self, iface):
-        migrate_legacy_settings()
         self.iface = iface
         self.plugin_dir = os.path.dirname(__file__)
         self.actions = []
@@ -485,7 +457,7 @@ class MagohSpellPlugin:
     def initGui(self):
         """Two stable toolbar buttons; the same access is available in Plugin menu.
 
-        V1.19.2: pulsanti e menu vengono creati per primi. Le operazioni di
+        pulsanti e menu vengono creati per primi. Le operazioni di
         avvio successive (editor di campo, ripristino del progetto aperto…)
         sono indipendenti: se una fallisce, il plugin resta visibile e il
         motivo compare nella barra messaggi e nel Registro messaggi.
@@ -518,15 +490,11 @@ class MagohSpellPlugin:
             register_expression_function()
 
         steps = (
-            # v18: separa template/plugin dai dati utente; un GeoPackage
-            # persistente di vecchie build resta tra i recenti, non viene riaperto.
-            (_tf('migrazione delle impostazioni', 'settings migration'), self._migrate_legacy_state_once),
-            (_tf('controllo copie precedenti', 'legacy copy check'), self._warn_legacy_copy),
             (_tf('editor delle relazioni', 'relation editor'), self._register_relation_editor_widget),
             (_tf('editor di indirizzi e toponimi', 'address and toponym editor'), register('geographic_editor')),
             (_tf('editor della cronologia', 'chronology editor'), register('chronology_editor')),
             (_tf('editor delle evidenze', 'evidence editor'), register('evidence_editor')),
-            # V1.15: Comune proposto dalla geometria dei nuovi interventi.
+            # Comune proposto dalla geometria dei nuovi interventi.
             (_tf('Comune dalla geometria', 'municipality from geometry'), municipality_function),
             (_tf('collegamento al progetto QGIS', 'QGIS project connection'), connect_project_signals),
             (_tf('ripristino del progetto aperto', 'open project restore'), restore_open_project),
@@ -800,18 +768,6 @@ class MagohSpellPlugin:
         self._relation_editor_factory = None
 
     # ---------- Helpers ----------
-    def _warn_legacy_copy(self):
-        """V1.15: the plugin folder is now magoh_spell; an old copy must be removed."""
-        try:
-            from qgis import utils as qgis_utils
-            if "magoh_offline" in getattr(qgis_utils, "plugins", {}) or "magoh_offline" in getattr(qgis_utils, "active_plugins", []):
-                self.iface.messageBar().pushWarning(
-                    "MAGOH Spell",
-                    _tf("È installata anche la versione precedente (cartella magoh_off" + "line): disinstallala da Plugin → Gestisci e installa plugin e riavvia QGIS.",
-                        "The previous version (folder magoh_off" + "line) is also installed: uninstall it from Plugins → Manage and Install Plugins and restart QGIS."))
-        except Exception:
-            pass
-
     def _packaged_gpkg_path(self):
         return os.path.join(self.plugin_dir, "data", "magoh_spell.gpkg")
 
@@ -822,51 +778,6 @@ class MagohSpellPlugin:
         os.makedirs(workdir, exist_ok=True)
         return workdir
 
-    def _legacy_work_gpkg_path(self):
-        """Percorso usato dalle build <= v17 per il database persistente nascosto.
-
-        Il file NON viene cancellato: può contenere dati dell'utente e viene
-        semplicemente disaccoppiato dal nuovo flusso a progetti espliciti.
-        """
-        # Old location, kept verbatim for the one-time migration (not recreated).
-        return os.path.join(QgsApplication.qgisSettingsDirPath(), "magoh_offline", "magoh_offline.gpkg")
-
-    def _migrate_legacy_state_once(self):
-        """Disattiva una sola volta il vecchio GeoPackage nascosto come sorgente attiva.
-
-        In v17 il plugin poteva riusare automaticamente
-        ``<profilo QGIS>/magoh_spell/magoh_spell.gpkg``. Se quel file era
-        stato popolato in una sessione precedente, reinstallando il plugin le
-        vecchie geometrie ricomparivano. Da v18 i dati utente devono vivere in
-        una cartella progetto scelta esplicitamente.
-        """
-        settings = QSettings()
-        if settings.value("magoh_spell/v18_legacy_state_migrated", False, type=bool):
-            return
-        try:
-            legacy = os.path.normcase(os.path.abspath(self._legacy_work_gpkg_path()))
-            candidates = [
-                settings.value("magoh_spell/active_gpkg", "", type=str) or "",
-                settings.value("magoh_spell/linked_gpkg", "", type=str) or "",
-            ]
-            for raw in candidates:
-                if not raw:
-                    continue
-                try:
-                    current = os.path.normcase(os.path.abspath(raw))
-                except Exception:
-                    current = raw
-                if current == legacy:
-                    if os.path.exists(raw):
-                        self.add_recent_gpkg(raw)
-                        settings.setValue("magoh_spell/legacy_gpkg_preserved", raw)
-                    settings.setValue("magoh_spell/active_gpkg", "")
-                    settings.setValue("magoh_spell/linked_gpkg", "")
-                    break
-        finally:
-            settings.setValue("magoh_spell/v18_legacy_state_migrated", True)
-
-
     def get_active_gpkg(self) -> str:
         """Ritorna SOLO la sorgente scelta esplicitamente dall'utente.
 
@@ -876,7 +787,7 @@ class MagohSpellPlugin:
         s = QSettings()
         path = s.value("magoh_spell/active_gpkg", "", type=str) or ""
         if not path:
-            # compatibilità con una sorgente esterna scelta nelle build vecchie
+            # sorgente esterna collegata al progetto
             path = s.value("magoh_spell/linked_gpkg", "", type=str) or ""
         if path and os.path.exists(path) and path.lower().endswith(".gpkg"):
             return os.path.abspath(path)
@@ -1027,7 +938,7 @@ class MagohSpellPlugin:
 
         Le cartelle vengono create solo dentro un workspace MAGOH riconosciuto.
         Nessuna directory viene inventata accanto a GeoPackage esterni generici.
-        V1.23: restano solo le uscite in uso (pdf, gna, mopr); per ogni altro
+        restano solo le uscite in uso (pdf, gna, mopr); per ogni altro
         tipo non viene creata alcuna cartella.
         """
         root = self.get_project_root()
@@ -1052,7 +963,7 @@ class MagohSpellPlugin:
 
         Il GeoPackage resta il database operativo, ma l'unità aperta
         dall'utente è la directory di progetto. Le chiavi aggiuntive sono
-        retrocompatibili con i manifest v18/v19 che contenevano solo ``gpkg``.
+        compatibili con i manifest che contengono solo ``gpkg``.
         """
         rel = os.path.relpath(gpkg_path, root).replace("\\", "/")
         qgz_name = f"{project_name}.qgz"
@@ -1092,7 +1003,7 @@ class MagohSpellPlugin:
 
         L'utente sceglie SOLO la directory radice. Il plugin cerca il database
         in ``data/`` e il progetto QGIS nella root. Prima usa il manifest; per
-        i workspace v18/v19 senza chiavi nuove applica una compatibilità sicura.
+        i workspace con il solo ``gpkg`` nel manifest applica una compatibilità sicura.
         Non seleziona mai silenziosamente tra più GeoPackage MAGOH validi.
         """
         if not root or not os.path.isdir(root):
@@ -1427,7 +1338,7 @@ class MagohSpellPlugin:
     def open_existing_magoh_project(self):
         """Apre un progetto MAGOH scegliendo la sola cartella radice.
 
-        Da v20 l'utente non deve più conoscere o cercare il file .gpkg:
+        L'utente non deve conoscere o cercare il file .gpkg:
         MAGOH_project.json e la struttura standard della directory determinano
         automaticamente database, progetto QGIS e cartelle di output.
         """
@@ -2477,7 +2388,7 @@ class MagohSpellPlugin:
                         # completer on every keypress and can erase user input.
                         'FilterExpression': '"legacy"=0' if commune_widget=='ValueRelation' else '', 'CompleterMatchFlags':1,
                         'AllowNull':True, 'AllowMulti':False, 'OrderByValue':True}))
-                    # V1.15: new interventions receive the Comune that contains
+                    # new interventions receive the Comune that contains
                     # their geometry (evaluated once, at creation; editable).
                     from .municipality_locator import DEFAULT_EXPRESSION
                     current = intervention.defaultValueDefinition(index)
@@ -2565,11 +2476,11 @@ class MagohSpellPlugin:
             self._reinitialize_relation_form_elements(gpkg_path)
         except Exception as e:
             _log(f"Relation editor form MAGOH: {e}", Qgis.Warning)
-        # V1: no CTR is added automatically. Existing user basemaps are untouched.
+        # no CTR is added automatically. Existing user basemaps are untouched.
         from .gui.layer_organization import normalize_magoh
         normalize_magoh(gpkg_path)
         try:
-            # V1.23.2: GNA layers loaded by earlier versions get the IDs of the
+            # GNA layers loaded in older projects get the IDs of the
             # official Template, so that the official GNA plugin can download here.
             from .gui.gna_presentation import upgrade_generated_ids
             if upgrade_generated_ids() is not None:
@@ -2680,7 +2591,7 @@ class MagohSpellPlugin:
         """Trova il nome reale del progetto nel gpkg tollerando spazi/underscore.
 
         Nel GeoPackage MAGOH il progetto si chiama "template MAGOH": cercare
-        letteralmente "template_MAGOH" (come nelle build <= v13) falliva sempre.
+        letteralmente "template_MAGOH" fallirebbe sempre.
         """
         names = [p["name"] for p in self.list_gpkg_projects(gpkg_path)]
         if not names:
@@ -3203,9 +3114,9 @@ class MagohSpellPlugin:
     def open_launcher_dialog(self):
         """Dashboard NON modale.
 
-        Nelle build <= v13 la dashboard veniva aperta con exec_(): essendo modale
-        bloccava l'input verso la finestra dei Filtri e verso il pannello laterale,
-        che quindi risultavano aperti ma inutilizzabili (vedi workflow demo, punto 5).
+        Aperta con exec_() sarebbe modale e bloccherebbe l'input verso la finestra
+        dei Filtri e verso il pannello laterale, che resterebbero aperti ma
+        inutilizzabili.
         """
         dlg = getattr(self, "_launcher_dlg", None)
         if dlg is None:
@@ -4077,11 +3988,10 @@ class MagohSpellPlugin:
             def _draw_attr_pages(ft):
                 """Stampa la scheda attributi su quante pagine servono.
 
-                Layout identico alla build approvata: qui cambia SOLO la logica di
-                avanzamento pagina. Nella v13 il controllo "siamo a inizio pagina?"
-                confrontava y con margin+header_h+mm(12), valore che l'header supera
-                sempre (aggiunge l'intestazione di tabella): il ramo di spezzatura del
-                testo non veniva mai raggiunto e un valore piu' alto di una pagina
+                Il controllo "siamo a inizio pagina?" non può confrontare y con
+                margin+header_h+mm(12), valore che l'header supera sempre (aggiunge
+                l'intestazione di tabella): il ramo di spezzatura del testo non
+                verrebbe mai raggiunto e un valore piu' alto di una pagina
                 generava pagine all'infinito. Ora l'inizio pagina e' memorizzato.
                 """
                 rec_id = _feature_label(ft)
@@ -4278,7 +4188,7 @@ class MagohSpellPlugin:
 class MagohApiDialog(QDialog):
     """Import MAGOH SearchController -> template MAGOH Spell.
 
-    V1: l'interfaccia espone solo ambito territoriale, entita' e log.
+    l'interfaccia espone solo ambito territoriale, entita' e log.
     La configurazione di connessione esistente viene preservata. L'import e' append-only:
     non aggiorna o sovrascrive mai un ID ufficiale gia' presente.
     """
@@ -4417,7 +4327,7 @@ class MagohApiDialog(QDialog):
         future.setObjectName('MagohHint')
         main.addWidget(future)
 
-        # V1 uses the existing connection configuration without exposing it.
+        # The existing connection configuration is used without exposing it.
 
         # --- Log sempre visibile: e' il principale strumento diagnostico.
         log_box = QGroupBox(_tf('Log importazione', 'Import log'))
@@ -5191,7 +5101,7 @@ class MagohApiDialog(QDialog):
         return re.sub(r'\s+', ' ', textv).casefold()
 
     def _same_existing_record(self, entity_key, attrs, layer, fid):
-        """Riconosce un record pre-v32.7 identico per evitare falsi conflitti.
+        """Riconosce un record locale già presente e identico, per evitare falsi conflitti.
 
         Non basta che l'ID coincida: confrontiamo almeno due campi sostanziali.
         Se un vecchio record locale positivo e' diverso, resta una collisione e
@@ -5306,7 +5216,7 @@ class MagohApiDialog(QDialog):
 
         note = None
         if layer.isSpatial() and geom_obj:
-            # V1.19.1: lettore condiviso (api_geometry.py). Rispetta il membro
+            # lettore condiviso (api_geometry.py). Rispetta il membro
             # «crs» del GeoJSON e restituisce sempre il motivo di un rifiuto.
             geom, note, error = api_geometry_for_layer(geom_obj, layer, QgsProject.instance().transformContext())
             if geom is None:
@@ -5433,7 +5343,7 @@ class MagohApiDialog(QDialog):
         prepared_ids = {key: set() for key in self.CORE_ORDER}
         missing_parent = {key: 0 for key in self.CORE_ORDER}
         geom_errors = {key: 0 for key in self.CORE_ORDER}
-        # V1.19.1: motivi dei rifiuti e ipotesi dichiarate, con ID di esempio.
+        # motivi dei rifiuti e ipotesi dichiarate, con ID di esempio.
         geom_reasons = {key: {} for key in self.CORE_ORDER}
         geom_notes = {key: {} for key in self.CORE_ORDER}
 
@@ -6510,7 +6420,7 @@ class InfoDialog(QDialog):
         apply_teal_style(self)
 
     def retranslate(self, language=None):
-        """V1.15.1: the long project text follows the language switch too."""
+        """the long project text follows the language switch too."""
         language = language or _language()
         self.browser.setHtml(MAGOH_INFO_HTML_EN if language == "en" else MAGOH_INFO_HTML_IT)
 
@@ -6528,7 +6438,6 @@ class InfoDialog(QDialog):
 class MagohRelationNavigator(QWidget):
     """Esplora le schede MAGOH con un unico albero gerarchico.
 
-    v23:
     - un solo blocco di navigazione (niente browser + relazioni separati);
     - la ricerca ID produce una vista padre -> figli -> nipoti;
     - i quattro dataset MAGOH vengono filtrati davvero ai soli record del
@@ -6735,7 +6644,7 @@ class MagohRelationNavigator(QWidget):
             from .gna_display import describe
             return describe('dsc' if str(lname).upper().startswith('DSC_') else 'mosi', feat)
         if lname == 'magoh_scheda_intervento':
-            # V1.23: ID scheda al posto dell'anno, come per Ritrovamenti ed Evidenze.
+            # ID scheda al posto dell'anno, come per Ritrovamenti ed Evidenze.
             ident = self._value(feat, 'codice_locale') or self._value(feat, 'idscheda') or feat.id()
             place = self._value(feat, 'ubicazione') or ''
             return f"ID {ident}" + (f" – {place}" if place else '')
@@ -6827,7 +6736,7 @@ class MagohRelationNavigator(QWidget):
     def _searchable_layers(self):
         """Layer MAGOH core + layer vettoriali del gruppo/schema GNA.
 
-        V1.15: the MOPR is never filtered by the panel."""
+        the MOPR is never filtered by the panel."""
         out = []
         seen = set()
         loaded = self._loaded_layers()
@@ -6856,7 +6765,7 @@ class MagohRelationNavigator(QWidget):
             lname = self._layer_name(layer)
             label = _t(self.FRIENDLY.get(lname, layer.name()))
             if self._is_gna_layer(layer):
-                # V1.15: GNA offers only DSC and one «MOSI» entry (all MOSI layers).
+                # GNA offers only DSC and one «MOSI» entry (all MOSI layers).
                 role = self._gna_role(layer)
                 if role == 'mosi':
                     mosi_layers.append(layer)
@@ -6930,7 +6839,7 @@ class MagohRelationNavigator(QWidget):
     PREVIEW_ID_WIDTH = 92
 
     def _set_browser_columns(self, role=''):
-        # V1.23: risultati di Intervento, DSC e MOSI in due colonne «ID scheda» e «Ubicazione».
+        # risultati di Intervento, DSC e MOSI in due colonne «ID scheda» e «Ubicazione».
         self._gna_preview_role = role
         self._dsc_locations = None
         self.browser.setColumnCount(2)
@@ -7156,7 +7065,7 @@ class MagohRelationNavigator(QWidget):
         i dati storici importati solo per una lieve incoerenza geometrica.
         La regola spaziale resta hard nelle form QGIS per la creazione/modifica
         manuale dei nuovi record; le anomalie topologiche dei dati preesistenti
-        restano da verificare (il Controllo qualità è sospeso dalla V1.19).
+        restano da verificare.
         """
         return True
 
@@ -7375,7 +7284,7 @@ class MagohRelationNavigator(QWidget):
     LABEL_WIDGETS = ('ValueRelation', 'ValueMap')
 
     def _label_lookup(self, layer, indexes):
-        """V1.23.1: etichetta mostrata nella scheda per i campi a elenco (thesauri, ValueMap).
+        """etichetta mostrata nella scheda per i campi a elenco (thesauri, ValueMap).
 
         Il valore salvato può essere un codice (crono_iniziale = 41) mentre la
         scheda mostra «Eta' altomedievale > VIII sec. d.C.». L'etichetta si
@@ -7411,7 +7320,7 @@ class MagohRelationNavigator(QWidget):
     def _search_all_attributes(self, layer, text):
         """Ricerca case-insensitive su tutti gli attributi, senza leggere geometrie.
 
-        V1.23.1: per i campi a elenco vale anche l'etichetta mostrata nella scheda.
+        per i campi a elenco vale anche l'etichetta mostrata nella scheda.
         """
         from .conversion.entity_summary import normalize
         field_name = self.search_field_combo.currentData()
@@ -7743,7 +7652,7 @@ class MagohRelationNavigator(QWidget):
             ))
 
 class MagohToolsDockWidget(QDockWidget):
-    """V1: Management (records + chronology), API, PDF and backup."""
+    """Management (records + chronology), API, PDF and backup."""
 
     def sizeHint(self):
         # Comfortable initial width, while retaining user resizing/docking.
@@ -7821,7 +7730,7 @@ class MagohToolsDockWidget(QDockWidget):
             _tf("Convertitore MAGOH-GNA", "MAGOH-GNA converter"),
             plugin.open_gna_export_dialog,
             tooltip=_tf("Prepara un template di lavoro con i livelli interni al MOPR", "Prepare a working template with levels inside MOPR"))
-        # V1.14: the official MOPR guide is reachable before opening the converter too.
+        # the official MOPR guide is reachable before opening the converter too.
         try:
             from .gui.mopr_guide import guide_button
             gna_guide = guide_button(gna_row, 'MagohMoprGuideDock')

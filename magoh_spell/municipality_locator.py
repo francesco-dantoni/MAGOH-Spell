@@ -1,4 +1,4 @@
-"""Comune from geometry (V1.15), light enough to run when a feature is created.
+"""Comune from geometry, light enough to run when a feature is created.
 
 Source: the user-supplied ``comuni.geojson`` (field ``id`` = MAGOH code, the
 same file used for the Comune vocabulary; SHA256 recorded in

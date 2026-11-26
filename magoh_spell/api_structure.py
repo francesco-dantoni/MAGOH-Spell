@@ -110,7 +110,7 @@ def geometry_from_record(record: Dict[str, Any], entity_key: str) -> Optional[Di
         return None
     kind = str(obj.get("type", ""))
     if kind and ("coordinates" in obj or (kind == "GeometryCollection" and obj.get("geometries"))):
-        # V1.19.1: anche le GeometryCollection; il membro «crs» resta con la geometria.
+        # anche le GeometryCollection; il membro «crs» resta con la geometria.
         return obj
     if kind.lower() == "feature":
         geom = obj.get("geometry")

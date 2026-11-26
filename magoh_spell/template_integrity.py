@@ -68,7 +68,7 @@ def ensure_archive_schema(path, backup_dir=None):
             return False
         if backup_dir:
             folder = Path(backup_dir); folder.mkdir(parents=True, exist_ok=True)
-            backup = folder / (Path(path).stem + '_pre_V1_13_' + str(time.time_ns()) + '.gpkg')
+            backup = folder / (Path(path).stem + '_backup_' + str(time.time_ns()) + '.gpkg')
             with closing(sqlite3.connect(str(backup))) as dest:
                 db.backup(dest)
         db.execute('BEGIN IMMEDIATE')
